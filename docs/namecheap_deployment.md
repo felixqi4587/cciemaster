@@ -1,123 +1,158 @@
-# Namecheap共享主机部署计划
+# CCIE培训网站 Namecheap 部署指南
 
-## 部署步骤
+## 简介
 
-1. **准备静态网站文件**
-   - 运行 `npm run export` 命令生成静态网站文件
-   - 导出的文件将位于 `out` 目录
+本文档介绍如何将CCIE培训网站部署到Namecheap共享主机上，包括手动部署和自动化部署两种方式。
 
-2. **上传文件到Namecheap共享主机**
-   - 登录Namecheap cPanel控制面板
-   - 使用文件管理器或FTP客户端（如FileZilla）
-   - 将`out`目录中的所有文件上传到网站根目录（通常是`public_html`）
+## 前提条件
 
-3. **配置域名指向**
-   - 在Namecheap控制面板中，确保域名指向正确的共享主机服务器
-   - 检查DNS设置是否正确
+- Namecheap 共享主机账户
+- FTP访问凭证
+- Node.js和npm安装在本地开发环境
+- Git和GitHub账户
 
-4. **测试网站**
-   - 在浏览器中访问您的网站域名，确认网站正常显示
-   - 测试网站的各项功能
+## 手动部署步骤
 
-## 自动化部署方案
+### 1. 构建生产版本
 
-### 方案一：使用GitHub Actions自动部署到Namecheap
+```bash
+# 安装依赖
+npm install
 
-1. **设置GitHub仓库**
-   - 将项目代码推送到GitHub仓库
-   - 设置仓库密钥，包括Namecheap主机的FTP凭据
+# 构建生产版本
+npm run build
 
-2. **创建GitHub Actions工作流文件**
-   - 在项目根目录创建`.github/workflows/deploy.yml`文件
-   - 配置工作流在每次推送到main分支时触发
-   - 工作流包括：安装依赖、构建项目、将静态文件部署到Namecheap服务器
+# 导出静态网站
+npm run export
+```
 
-3. **GitHub Actions工作流示例**:
-   ```yaml
-   name: Deploy to Namecheap
+构建完成后，将在`out`目录生成静态网站文件。
 
-   on:
-     push:
-       branches: [ main ]
+### 2. 通过FTP上传
 
-   jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       
-       steps:
-       - uses: actions/checkout@v2
-       
-       - name: Setup Node.js
-         uses: actions/setup-node@v2
-         with:
-           node-version: '16'
-           
-       - name: Install dependencies
-         run: npm install
-         
-       - name: Build and export
-         run: npm run export
-         
-       - name: Deploy to Namecheap
-         uses: SamKirkland/FTP-Deploy-Action@4.3.0
-         with:
-           server: ${{ secrets.FTP_SERVER }}
-           username: ${{ secrets.FTP_USERNAME }}
-           password: ${{ secrets.FTP_PASSWORD }}
-           local-dir: ./out/
-           server-dir: /public_html/
-   ```
+使用任意FTP客户端(如FileZilla)，将`out`目录中的所有文件上传到Namecheap主机的网站根目录。
 
-### 方案二：使用CI/CD工具与FTP部署
+- 主机: ftp.yourdomain.com
+- 用户名: 你的Namecheap FTP用户名
+- 密码: 你的Namecheap FTP密码
+- 端口: 21
 
-1. **设置Jenkins或GitLab CI**
-   - 配置CI/CD服务器
-   - 创建构建任务，包括安装依赖、构建项目
-   - 使用FTP任务部署到Namecheap服务器
+## 自动部署设置
 
-2. **本地自动化脚本**
-   - 创建本地部署脚本（如deploy.sh或deploy.bat）
-   - 脚本包括：构建项目、FTP上传到Namecheap
+为了简化部署流程，我们可以设置GitHub Actions来自动构建和部署网站。
 
-3. **Windows批处理脚本示例**:
-   ```bat
-   @echo off
-   echo === 开始构建网站 ===
-   call npm run export
-   
-   echo === 开始上传文件 ===
-   cd out
-   
-   echo 正在连接FTP服务器...
-   echo open %FTP_SERVER% > ftpcmd.txt
-   echo %FTP_USER%>> ftpcmd.txt
-   echo %FTP_PASSWORD%>> ftpcmd.txt
-   echo cd /public_html>> ftpcmd.txt
-   echo binary>> ftpcmd.txt
-   echo mput *>> ftpcmd.txt
-   echo disconnect>> ftpcmd.txt
-   echo bye>> ftpcmd.txt
-   
-   ftp -s:ftpcmd.txt
-   del ftpcmd.txt
-   
-   echo === 部署完成 ===
-   ```
+### 1. 配置FTP部署密钥
 
-## 维护注意事项
+在GitHub仓库中，导航到 Settings > Secrets > Actions，添加以下密钥:
 
-1. **备份**
-   - 在每次部署前备份远程服务器上的文件
-   - 在本地保留网站文件的版本历史
+- `FTP_SERVER`: 你的FTP服务器地址
+- `FTP_USERNAME`: 你的FTP用户名
+- `FTP_PASSWORD`: 你的FTP密码
+- `FTP_DIRECTORY`: 目标目录 (通常是 `/public_html/` 或根据你的Namecheap设置)
 
-2. **监控**
-   - 定期检查网站状态和性能
-   - 设置监控工具，在网站出现问题时发送通知
+### 2. 创建GitHub Actions配置文件
 
-3. **安全更新**
-   - 定期更新依赖包
-   - 检查并修复安全漏洞
+在项目根目录创建 `.github/workflows/deploy.yml` 文件:
 
-4. **日志记录**
-   - 保持部署日志，记录每次部署的内容和结果
-   - 在docs/changelog.md中持续记录网站更新 
+```yaml
+name: Deploy to Namecheap
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Export static files
+        run: npm run export
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: ${{ secrets.FTP_DIRECTORY }}
+          dangerous-clean-slate: true
+```
+
+### 3. 添加导出脚本
+
+在 `package.json` 文件中添加 export 脚本:
+
+```json
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "export": "next export"
+}
+```
+
+### 4. 启用GitHub Actions
+
+将上述更改推送到GitHub主分支，GitHub Actions将自动运行部署流程。
+
+```bash
+git add .
+git commit -m "添加自动部署配置"
+git push origin main
+```
+
+## 部署验证
+
+1. 检查GitHub仓库中的Actions标签页，查看工作流是否成功运行
+2. 访问你的网站(如 https://yourdomain.com)验证部署是否成功
+3. 检查所有页面是否正常工作，特别是表单提交功能
+
+## 故障排除
+
+如果部署过程中遇到问题:
+
+1. 检查GitHub Actions日志以查看详细错误信息
+2. 确认FTP凭证是否正确
+3. 检查Namecheap主机设置，确保支持所需的文件类型
+4. 联系Namecheap支持以获取更多帮助
+
+## 更新网站
+
+对网站进行更改后，只需将更改推送到GitHub主分支，自动部署将处理其余工作:
+
+```bash
+git add .
+git commit -m "更新网站内容"
+git push origin main
+```
+
+GitHub Actions会自动构建新版本并部署到Namecheap主机。
+
+## 安全注意事项
+
+- 永远不要在代码中硬编码FTP凭证
+- 定期更新GitHub Actions依赖
+- 考虑在生产环境中实施内容安全策略(CSP)
+- 为Namecheap账户启用两因素认证
+
+## 资源链接
+
+- [Namecheap帮助中心](https://www.namecheap.com/support/)
+- [Next.js静态导出文档](https://nextjs.org/docs/advanced-features/static-html-export)
+- [cPanel用户指南](https://docs.cpanel.net/cpanel/) 

@@ -1,26 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
-  const [language, setLanguage] = useState('zh'); // 默认为中文
-  
-  // 语言切换处理函数
-  const toggleLanguage = () => {
-    setLanguage(language === 'zh' ? 'en' : 'zh');
-  };
-  
-  // 多语言文本内容
+export default function Home({ language }) {
+  // 语言文本
   const text = {
     zh: {
       title: 'CCIE培训 - 高效直达认证的捷径',
       metaDescription: '专业的CCIE培训课程，提供完整实验环境和考试资料，助您快速通过CCIE认证',
       menuHome: '首页',
       menuCourses: '课程',
-      menuSimulator: '网络模拟器',
-      menuDiscussion: '技术讨论',
-      menuBlog: '博客',
       menuResources: '学习资源',
       menuAbout: '关于我们',
       menuContact: '联系方式',
@@ -70,14 +60,6 @@ export default function Home() {
       contactButton1: '获取课程资料',
       contactButton2: '电话咨询',
       
-      simulatorTitle: '免费在线网络模拟器',
-      simulatorDesc: '体验思科设备配置，提前适应CCIE考试环境',
-      simulatorFeature1: '与考试环境相似的拓扑',
-      simulatorFeature2: '关键命令实战练习',
-      simulatorFeature3: '多设备配置模拟',
-      simulatorFeature4: '免费在线体验',
-      simulatorButton: '立即体验',
-      
       footerAbout: '关于我们',
       footerAboutDesc: '专业的CCIE培训机构，致力于以最短时间帮助学员获得认证',
       footerContact: '联系方式',
@@ -96,9 +78,6 @@ export default function Home() {
       metaDescription: 'Professional CCIE training courses providing complete lab environment and exam materials to help you pass CCIE certification quickly',
       menuHome: 'Home',
       menuCourses: 'Courses',
-      menuSimulator: 'Network Simulator',
-      menuDiscussion: 'Tech Discussion',
-      menuBlog: 'Blog',
       menuResources: 'Resources',
       menuAbout: 'About Us',
       menuContact: 'Contact',
@@ -148,14 +127,6 @@ export default function Home() {
       contactButton1: 'Get Course Materials',
       contactButton2: 'Call Us',
       
-      simulatorTitle: 'Free Online Network Simulator',
-      simulatorDesc: 'Practice Cisco device configuration, prepare for CCIE exam environment',
-      simulatorFeature1: 'Exam-like topologies',
-      simulatorFeature2: 'Key command practice',
-      simulatorFeature3: 'Multi-device configuration',
-      simulatorFeature4: 'Free online access',
-      simulatorButton: 'Try Now',
-      
       footerAbout: 'About Us',
       footerAboutDesc: 'Professional CCIE training institution dedicated to helping students achieve certification in the shortest time',
       footerContact: 'Contact Us',
@@ -172,7 +143,7 @@ export default function Home() {
   };
   
   // 当前语言的文本
-  const t = text[language];
+  const t = text[language || 'en'];
 
   return (
     <div className={styles.container}>
@@ -181,28 +152,6 @@ export default function Home() {
         <meta name="description" content={t.metaDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <header className={styles.header}>
-        <div className={styles.logo}>
-          <h1>CCIE Training Center</h1>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/">{t.menuHome}</Link>
-          <Link href="/courses">{t.menuCourses}</Link>
-          <Link href="/network-simulator">{t.menuSimulator}</Link>
-          <Link href="/discussion">{t.menuDiscussion}</Link>
-          <Link href="/blog">{t.menuBlog}</Link>
-          <Link href="/resources">{t.menuResources}</Link>
-          <Link href="/about">{t.menuAbout}</Link>
-          <Link href="/contact">{t.menuContact}</Link>
-          <button 
-            className={styles.languageToggle} 
-            onClick={toggleLanguage}
-          >
-            {t.languageToggle}
-          </button>
-        </nav>
-      </header>
 
       <main className={styles.main}>
         <section className={styles.hero}>
@@ -322,53 +271,7 @@ export default function Home() {
             </a>
           </div>
         </section>
-
-        <section className={styles.simulatorPromo}>
-          <div className={styles.simulatorContent}>
-            <div className={styles.simulatorText}>
-              <h2>{t.simulatorTitle}</h2>
-              <p>{t.simulatorDesc}</p>
-              <ul className={styles.simulatorFeatures}>
-                <li>{t.simulatorFeature1}</li>
-                <li>{t.simulatorFeature2}</li>
-                <li>{t.simulatorFeature3}</li>
-                <li>{t.simulatorFeature4}</li>
-              </ul>
-              <Link href="/network-simulator">
-                <button className={styles.simulatorButton}>{t.simulatorButton}</button>
-              </Link>
-            </div>
-            <div className={styles.simulatorImage}>
-              <img src="/images/simulator-preview.jpg" alt="Network Simulator Preview" />
-            </div>
-          </div>
-        </section>
       </main>
-
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerColumn}>
-            <h3>{t.footerAbout}</h3>
-            <p>{t.footerAboutDesc}</p>
-          </div>
-          <div className={styles.footerColumn}>
-            <h3>{t.footerContact}</h3>
-            <p>{t.footerPhone}</p>
-            <p>{t.footerEmail}</p>
-          </div>
-          <div className={styles.footerColumn}>
-            <h3>{t.footerFollow}</h3>
-            <div className={styles.socialLinks}>
-              <a href="#" target="_blank" rel="noopener noreferrer">{t.footerWeChat}</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">{t.footerWeibo}</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">{t.footerQQ}</a>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          &copy; {new Date().getFullYear()} CCIE Training Center {t.footerCopyright}
-        </div>
-      </footer>
     </div>
   );
 } 

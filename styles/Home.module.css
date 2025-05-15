@@ -1,8 +1,8 @@
 /* 全局样式 */
 .container {
   width: 100%;
-  color: #333;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
 }
 
 /* 头部导航 */
@@ -65,9 +65,9 @@
 
 /* 英雄区域 */
 .hero {
-  background: linear-gradient(135deg, #0066cc, #004080);
+  background: linear-gradient(135deg, var(--primary-color), #004080);
   color: white;
-  padding: 5rem 5%;
+  padding: 6rem 5% 7rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,23 +75,31 @@
 }
 
 .heroContent {
-  max-width: 800px;
+  max-width: 900px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .hero h2 {
   font-size: 1.8rem;
   font-weight: 400;
   margin-bottom: 1.5rem;
+  opacity: 0.9;
 }
 
 .hero p {
   font-size: 1.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 .cta {
@@ -101,72 +109,213 @@
 }
 
 .primaryButton {
-  background-color: #ff6600;
+  background-color: var(--secondary-color);
   color: white;
-  padding: 0.8rem 2rem;
+  padding: 0.9rem 2.5rem;
   border-radius: 30px;
   text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
 }
 
 .primaryButton:hover {
   background-color: #e55c00;
+  transform: translateY(-2px);
 }
 
 .secondaryButton {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
-  padding: 0.8rem 2rem;
+  padding: 0.9rem 2.5rem;
   border-radius: 30px;
   text-decoration: none;
-  border: 2px solid white;
-  font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  backdrop-filter: blur(5px);
 }
 
 .secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* 核心优势区域 */
+.coreAdvantages {
+  padding: 6rem 5%;
+  text-align: center;
+  background-color: var(--background-light);
+}
+
+.coreAdvantages h2 {
+  margin-bottom: 3.5rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  position: relative;
+  display: inline-block;
+}
+
+.coreAdvantages h2:after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.advantageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.advantageCard {
   background-color: white;
-  color: #0066cc;
+  padding: 3rem 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+}
+
+.advantageCard:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.advantageIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 102, 204, 0.1);
+  border-radius: 50%;
+}
+
+.advantageIcon img {
+  width: 40px;
+  height: 40px;
+}
+
+.advantageCard h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.advantageCard p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+/* 3个月保障横幅 */
+.guaranteeBanner {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  color: white;
+  padding: 4rem 5%;
+  text-align: center;
+}
+
+.guaranteeContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.guaranteeBanner h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.guaranteeBanner p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.guaranteeButton {
+  background-color: white;
+  color: #1a73e8;
+  padding: 0.9rem 2.5rem;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.guaranteeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* 特色区域 */
 .features {
-  display: flex;
-  justify-content: space-between;
-  padding: 5rem 5%;
-  gap: 2rem;
-  background-color: #f5f5f5;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 6rem 5%;
+  gap: 2.5rem;
+  background-color: var(--background-color);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .featureCard {
-  flex: 1;
   background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .featureCard:hover {
   transform: translateY(-10px);
+  box-shadow: var(--shadow-md);
 }
 
 .featureCard h3 {
-  color: #0066cc;
+  color: var(--primary-color);
   margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.featureCard p {
+  color: var(--text-light);
+  line-height: 1.6;
+  font-size: 1.05rem;
 }
 
 /* 课程区域 */
 .courses {
-  padding: 5rem 5%;
+  padding: 6rem 5%;
   text-align: center;
 }
 
 .courses h2 {
-  margin-bottom: 3rem;
-  font-size: 2.2rem;
+  margin-bottom: 3.5rem;
+  font-size: 2.4rem;
+  font-weight: 700;
   position: relative;
   display: inline-block;
 }
@@ -176,42 +325,59 @@
   position: absolute;
   width: 60px;
   height: 3px;
-  background-color: #ff6600;
-  bottom: -10px;
+  background-color: var(--secondary-color);
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .courseGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .courseCard {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: left;
-  transition: all 0.3s;
+  background-color: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .courseCard:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-color: #0066cc;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
 }
 
 .courseCard h3 {
-  color: #0066cc;
-  margin-bottom: 1rem;
+  color: var(--text-color);
+  margin: 1.5rem 0 0.8rem;
+  padding: 0 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.courseCard p {
+  color: var(--text-light);
+  padding: 0 1.5rem 1.5rem;
+  line-height: 1.5;
+  flex-grow: 1;
+  text-align: left;
 }
 
 .courseCard a {
   display: inline-block;
-  margin-top: 1rem;
-  color: #ff6600;
+  margin: 0 1.5rem 1.5rem;
+  color: var(--primary-color);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  text-align: left;
 }
 
 .courseCard a:hover {
@@ -220,14 +386,15 @@
 
 /* 学员评价 */
 .testimonials {
-  background-color: #f5f5f5;
-  padding: 5rem 5%;
+  background-color: #f2f2f7;
+  padding: 6rem 5%;
   text-align: center;
 }
 
 .testimonials h2 {
-  margin-bottom: 3rem;
-  font-size: 2.2rem;
+  margin-bottom: 3.5rem;
+  font-size: 2.4rem;
+  font-weight: 700;
   position: relative;
   display: inline-block;
 }
@@ -237,135 +404,74 @@
   position: absolute;
   width: 60px;
   height: 3px;
-  background-color: #ff6600;
-  bottom: -10px;
+  background-color: var(--secondary-color);
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .testimonialGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .testimonialCard {
   background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   text-align: left;
+  position: relative;
 }
 
 .testimonialCard p {
-  font-style: italic;
-  margin-bottom: 1rem;
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-style: italic;
 }
 
 .testimonialAuthor {
-  font-weight: bold;
-  color: #0066cc;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-light);
 }
 
-/* 联系区域 */
+/* 联系部分 */
 .contact {
-  padding: 5rem 5%;
+  padding: 6rem 5%;
   text-align: center;
-  background-color: #0066cc;
-  color: white;
+  background-color: white;
 }
 
 .contact h2 {
-  margin-bottom: 1.5rem;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .contact p {
-  margin-bottom: 2rem;
   font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-light);
 }
 
 .contactButtons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .contact .primaryButton {
-  background-color: white;
-  color: #0066cc;
-}
-
-.contact .primaryButton:hover {
-  background-color: #f0f0f0;
-}
-
-.contact .secondaryButton {
-  border-color: white;
-}
-
-/* 页脚 */
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 4rem 5% 2rem;
-}
-
-.footerContent {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.footerColumn {
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 2rem;
-  padding-right: 2rem;
-}
-
-.footerColumn h3 {
-  margin-bottom: 1.5rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.footerColumn h3:after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: #ff6600;
-  bottom: 0;
-  left: 0;
-}
-
-.socialLinks {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.socialLinks a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.socialLinks a:hover {
-  color: #ff6600;
-}
-
-.copyright {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
+  margin-bottom: 0;
 }
 
 /* 响应式设计 */
@@ -386,24 +492,32 @@
   }
   
   .hero h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   
   .hero h2 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+  }
+  
+  .coreAdvantages h2, 
+  .courses h2, 
+  .testimonials h2,
+  .contact h2,
+  .guaranteeBanner h2 {
+    font-size: 2rem;
   }
   
   .features {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   
   .cta, .contactButtons {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
   }
   
-  .footerContent {
-    flex-direction: column;
+  .testimonialGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -523,140 +637,4 @@
 .languageToggle:hover {
   background-color: #0066cc;
   color: white;
-}
-
-/* 核心优势区域 - 最醒目的位置 */
-.coreAdvantages {
-  padding: 5rem 5%;
-  background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
-  text-align: center;
-  position: relative;
-}
-
-.coreAdvantages h2 {
-  margin-bottom: 3.5rem;
-  font-size: 2.4rem;
-  position: relative;
-  display: inline-block;
-  color: #002244;
-}
-
-.coreAdvantages h2:after {
-  content: '';
-  position: absolute;
-  width: 80px;
-  height: 3px;
-  background-color: #ff6600;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.advantageGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.advantageCard {
-  background-color: white;
-  border-radius: 10px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-  z-index: 1;
-  text-align: left;
-}
-
-.advantageCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-}
-
-.advantageCard:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #0066cc, #4da6ff);
-  border-radius: 10px 10px 0 0;
-}
-
-.advantageIcon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: #f0f7ff;
-}
-
-.advantageIcon img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-.advantageCard h3 {
-  color: #002244;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.advantageCard p {
-  color: #555;
-  line-height: 1.7;
-  font-size: 1.05rem;
-}
-
-/* 3个月保障横幅 */
-.guaranteeBanner {
-  padding: 4rem 5%;
-  background: linear-gradient(135deg, #ff6600, #ff9248);
-  color: white;
-  text-align: center;
-  margin: 5rem 0;
-}
-
-.guaranteeContent {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.guaranteeBanner h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-}
-
-.guaranteeBanner p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.guaranteeButton {
-  padding: 1rem 2.5rem;
-  background-color: white;
-  color: #ff6600;
-  border: none;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.guaranteeButton:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 } 
