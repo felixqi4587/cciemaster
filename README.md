@@ -17,6 +17,16 @@
 - **CSS Modules** - 模块化样式管理，避免样式冲突
 - **响应式设计** - 自适应各种屏幕尺寸
 
+## 项目文档
+
+详细的项目文档位于 `docs/` 目录:
+
+- [开发指南](docs/development_guide.md) - 项目开发相关说明
+- [环境搭建指南](docs/setup_guide.md) - 新电脑上配置开发环境
+- [更新日志](docs/changelog.md) - 版本更新历史
+- [待办事项](docs/todo.md) - 计划中的任务
+- [项目状态](docs/project_status.md) - 当前进度和计划
+
 ## 项目结构
 
 ```
@@ -33,6 +43,7 @@ ccie-training/
 │   ├── Courses.module.css # 课程页面样式
 │   ├── About.module.css   # 关于我们页面样式
 │   └── Contact.module.css # 联系页面样式
+├── docs/              # 项目文档
 └── public/            # 静态资源
 ```
 
@@ -42,8 +53,8 @@ ccie-training/
 
 1. 克隆此仓库
 ```bash
-git clone https://github.com/dgfdfdgfdff/ccie-training.git
-cd ccie-training
+git clone https://github.com/felixqi4587/cciemaster.git
+cd cciemaster
 ```
 
 2. 安装依赖
