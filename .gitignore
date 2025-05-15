@@ -1,0 +1,33 @@
+# 依赖项
+/node_modules
+/.pnp
+.pnp.js
+
+# 测试文件
+/coverage
+
+# next.js构建文件
+/.next/
+/out/
+
+# 生产环境构建文件
+/build
+
+# 杂项
+.DS_Store
+*.pem
+
+# 调试日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 本地环境变量文件
+.env*.local
+
+# vercel部署文件
+.vercel
+
+# typescript类型定义
+*.tsbuildinfo
+next-env.d.ts 

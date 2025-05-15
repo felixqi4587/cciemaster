@@ -1,0 +1,367 @@
+/* 全局样式 */
+.container {
+  width: 100%;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* 头部导航 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #0066cc;
+}
+
+.nav a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0066cc;
+  transition: width 0.3s;
+}
+
+.nav a:hover:after {
+  width: 100%;
+}
+
+/* 主要内容 */
+.main {
+  min-height: 100vh;
+}
+
+/* 英雄区域 */
+.hero {
+  background: linear-gradient(135deg, #0066cc, #004080);
+  color: white;
+  padding: 3rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+/* 联系区域 */
+.contactSection {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem 5%;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contactInfo {
+  flex: 1;
+  min-width: 300px;
+}
+
+.infoCard {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.infoCard h3 {
+  color: #0066cc;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.infoCard p {
+  margin: 0.5rem 0;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.socialItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socialItem span:last-child {
+  font-weight: bold;
+  color: #0066cc;
+}
+
+/* 联系表单 */
+.contactForm {
+  flex: 1.5;
+  min-width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.contactForm h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #0066cc;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.contactForm h2:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: #ff6600;
+  bottom: 0;
+  left: 0;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.submitButton {
+  background-color: #ff6600;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #e55c00;
+}
+
+/* 成功消息 */
+.successMessage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.successMessage h2 {
+  color: #00aa55;
+  margin-bottom: 1rem;
+}
+
+.resetButton {
+  background-color: #0066cc;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.resetButton:hover {
+  background-color: #0055aa;
+}
+
+/* 地图区域 */
+.mapSection {
+  padding: 3rem 5%;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.mapSection h2 {
+  margin-bottom: 2rem;
+}
+
+.mapPlaceholder {
+  background-color: #e0e0e0;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #666;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mapPlaceholder p {
+  margin: 0.5rem 0;
+}
+
+/* 页脚 */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 4rem 5% 2rem;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.footerColumn {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 2rem;
+  padding-right: 2rem;
+}
+
+.footerColumn h3 {
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.footerColumn h3:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #ff6600;
+  bottom: 0;
+  left: 0;
+}
+
+.footer .socialLinks {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer .socialLinks a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .socialLinks a:hover {
+  color: #ff6600;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .logo {
+    margin-bottom: 1rem;
+  }
+  
+  .nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .contactSection {
+    flex-direction: column;
+  }
+} 
