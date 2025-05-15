@@ -26,26 +26,8 @@
 - [更新日志](docs/changelog.md) - 版本更新历史
 - [待办事项](docs/todo.md) - 计划中的任务
 - [项目状态](docs/project_status.md) - 当前进度和计划
-
-## 项目结构
-
-```
-ccie-training/
-├── pages/             # 页面组件
-│   ├── _app.js        # 应用入口
-│   ├── index.js       # 首页
-│   ├── courses.js     # 课程页面  
-│   ├── about.js       # 关于我们
-│   └── contact.js     # 联系页面
-├── styles/            # 样式文件
-│   ├── globals.css    # 全局样式
-│   ├── Home.module.css    # 首页样式
-│   ├── Courses.module.css # 课程页面样式
-│   ├── About.module.css   # 关于我们页面样式
-│   └── Contact.module.css # 联系页面样式
-├── docs/              # 项目文档
-└── public/            # 静态资源
-```
+- [项目规范](docs/project_guidelines.md) - 开发规范和Cursor使用指南
+- [项目结构](docs/project_structure.md) - 目录结构详解
 
 ## 如何运行
 
@@ -103,4 +85,5 @@ npm start
 ### 2024-05-14
 - 初始版本发布
 - 完成首页、课程、关于我们和联系页面
-- 实现响应式设计 
+- 实现响应式设计
+- 添加项目文档 
