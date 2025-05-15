@@ -24,10 +24,42 @@ yarn-error.log*
 
 # 本地环境变量文件
 .env*.local
+.env
+.env.development
+.env.production
 
 # vercel部署文件
 .vercel
 
 # typescript类型定义
 *.tsbuildinfo
-next-env.d.ts 
+next-env.d.ts
+
+# IDE和编辑器文件
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 操作系统文件
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.directory
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*~ 
