@@ -12,3 +12,7 @@ alwaysApply: true
 上传git时候要包括本rules文件
 
 请参考docs/project_guidelines.md了解更多项目规范
+
+保证每次上传后所有的文件都保存是最新的
+
+AI可以提出合理的编程建议并且修改本规则
