@@ -1,249 +1,215 @@
-import Layout from '../components/Layout';
-import LeadMagnet from '../components/LeadMagnet';
-import CountdownTimer from '../components/CountdownTimer';
-import styles from '../styles/Resources.module.css';
+import Head from 'next/head';
 import Link from 'next/link';
+import styles from '../styles/Resources.module.css';
 
-export default function Resources() {
-  // 免费资源数据
-  const freeResources = [
-    {
-      id: 'ccie-study-guide',
-      title: 'CCIE学习指南2024版',
-      description: '全面的CCIE学习路线图和备考攻略，包含知识点整理和学习方法。',
-      image: '/images/resources/study-guide.jpg',
-      type: 'pdf',
-      size: '2.5MB',
-      downloadCount: 3547
+export default function Resources({ language }) {
+  // 语言文本
+  const text = {
+    zh: {
+      title: 'CCIE学习资源 - 免费学习资料和工具',
+      description: '获取CCIE认证学习所需的各种学习资源，包括实验指南、考试技巧和学习工具',
+      hero: {
+        title: 'CCIE学习资源中心',
+        subtitle: '加速您的CCIE认证之旅'
+      },
+      categories: {
+        title: '资源分类',
+        free: '免费资源',
+        premium: '高级资源',
+        tools: '学习工具',
+        guides: '学习指南'
+      },
+      resources: [
+        {
+          id: 'study-guide',
+          title: 'CCIE学习指南',
+          type: '免费PDF',
+          description: '涵盖CCIE认证考试所有主要知识点的学习指南，包括路由、交换、安全和无线网络技术。',
+          cta: '立即下载'
+        },
+        {
+          id: 'exam-tips',
+          title: '考试技巧与策略',
+          type: '免费电子书',
+          description: '来自已通过CCIE考试工程师的宝贵经验和考试技巧，帮助您有效准备并通过考试。',
+          cta: '立即下载'
+        },
+        {
+          id: 'lab-workbook',
+          title: '实验手册合集',
+          type: '高级资源',
+          description: '100+实验练习，覆盖CCIE考试所有实验场景，帮助您熟悉考试环境和要求。',
+          cta: '了解更多'
+        },
+        {
+          id: 'flashcards',
+          title: 'CCIE知识点闪卡',
+          type: '学习工具',
+          description: '包含500+CCIE重要知识点的电子闪卡，是加强记忆和快速复习的利器。',
+          cta: '立即使用'
+        },
+        {
+          id: 'video-lessons',
+          title: '视频课程样例',
+          type: '免费视频',
+          description: '精选CCIE核心技术的视频教程样例，体验我们的专业培训风格和教学方法。',
+          cta: '观看视频'
+        },
+        {
+          id: 'study-planner',
+          title: '学习计划制定工具',
+          type: '学习工具',
+          description: '根据您的时间和目标，生成个性化的CCIE学习计划，确保高效备考。',
+          cta: '开始使用'
+        }
+      ],
+      newsletter: {
+        title: '订阅更多学习资源',
+        description: '每周接收CCIE学习技巧、资源更新和独家学习资料',
+        placeholder: '输入您的邮箱',
+        button: '订阅'
+      },
+      contact: {
+        title: '需要更多帮助？',
+        description: '我们的CCIE专家团队随时为您提供帮助',
+        button: '联系我们'
+      }
     },
-    {
-      id: 'network-commands-cheatsheet',
-      title: '思科网络命令速查手册',
-      description: '常用思科IOS命令集合，覆盖配置、排错和监控等方面，方便实验和工作查阅。',
-      image: '/images/resources/commands-cheatsheet.jpg',
-      type: 'pdf',
-      size: '1.8MB',
-      downloadCount: 4892
-    },
-    {
-      id: 'bgp-configuration-guide',
-      title: 'BGP配置完全指南',
-      description: '详细介绍BGP协议的配置方法和最佳实践，包含常见场景的配置示例。',
-      image: '/images/resources/bgp-guide.jpg',
-      type: 'pdf',
-      size: '3.2MB',
-      downloadCount: 2789
-    },
-    {
-      id: 'network-diagram-templates',
-      title: '网络拓扑图模板集合',
-      description: '提供多种常用网络拓扑图的Visio模板，帮助您快速绘制专业网络图。',
-      image: '/images/resources/diagram-templates.jpg',
-      type: 'zip',
-      size: '5.7MB',
-      downloadCount: 1856
-    },
-    {
-      id: 'ccie-lab-scenarios',
-      title: 'CCIE实验场景示例',
-      description: '模拟CCIE考试实验环境的配置场景，帮助您熟悉考试形式和要求。',
-      image: '/images/resources/lab-scenarios.jpg',
-      type: 'pdf',
-      size: '4.3MB',
-      downloadCount: 3214
-    },
-    {
-      id: 'network-troubleshooting-flowchart',
-      title: '网络故障排查流程图',
-      description: '系统化的网络故障排查方法和步骤，提高故障定位和解决效率。',
-      image: '/images/resources/troubleshooting-flowchart.jpg',
-      type: 'pdf',
-      size: '1.5MB',
-      downloadCount: 2975
+    en: {
+      title: 'CCIE Learning Resources - Free Study Materials and Tools',
+      description: 'Access various learning resources needed for CCIE certification, including lab guides, exam tips, and study tools',
+      hero: {
+        title: 'CCIE Learning Resource Center',
+        subtitle: 'Accelerate your CCIE certification journey'
+      },
+      categories: {
+        title: 'Resource Categories',
+        free: 'Free Resources',
+        premium: 'Premium Resources',
+        tools: 'Study Tools',
+        guides: 'Study Guides'
+      },
+      resources: [
+        {
+          id: 'study-guide',
+          title: 'CCIE Study Guide',
+          type: 'Free PDF',
+          description: 'A comprehensive study guide covering all major topics for the CCIE certification exam, including routing, switching, security, and wireless technologies.',
+          cta: 'Download Now'
+        },
+        {
+          id: 'exam-tips',
+          title: 'Exam Tips & Strategies',
+          type: 'Free eBook',
+          description: 'Valuable experience and exam tips from engineers who have passed the CCIE exam, helping you prepare effectively and pass the exam.',
+          cta: 'Download Now'
+        },
+        {
+          id: 'lab-workbook',
+          title: 'Lab Workbook Collection',
+          type: 'Premium Resource',
+          description: '100+ lab exercises covering all CCIE exam scenarios, helping you become familiar with the exam environment and requirements.',
+          cta: 'Learn More'
+        },
+        {
+          id: 'flashcards',
+          title: 'CCIE Knowledge Flashcards',
+          type: 'Study Tool',
+          description: 'Digital flashcards containing 500+ important CCIE concepts, perfect for reinforcing memory and quick review.',
+          cta: 'Use Now'
+        },
+        {
+          id: 'video-lessons',
+          title: 'Video Lessons Sample',
+          type: 'Free Videos',
+          description: 'Selected video tutorials on CCIE core technologies, experience our professional training style and teaching methods.',
+          cta: 'Watch Videos'
+        },
+        {
+          id: 'study-planner',
+          title: 'Study Plan Generator',
+          type: 'Study Tool',
+          description: 'Generate a personalized CCIE study plan based on your time and goals, ensuring efficient exam preparation.',
+          cta: 'Start Using'
+        }
+      ],
+      newsletter: {
+        title: 'Subscribe for More Resources',
+        description: 'Receive weekly CCIE study tips, resource updates, and exclusive study materials',
+        placeholder: 'Enter your email',
+        button: 'Subscribe'
+      },
+      contact: {
+        title: 'Need More Help?',
+        description: 'Our team of CCIE experts is here to help you',
+        button: 'Contact Us'
+      }
     }
-  ];
+  };
 
-  // 高级资源数据（需要注册才能获取）
-  const premiumResources = [
-    {
-      id: 'ccie-enterprise-mock-lab',
-      title: 'CCIE企业基础设施模拟实验',
-      description: '完整的CCIE企业基础设施模拟实验，包含详细的解题思路和参考答案。',
-      image: '/images/resources/enterprise-lab.jpg'
-    },
-    {
-      id: 'advanced-ospf-scenarios',
-      title: 'OSPF高级配置场景',
-      description: '探讨OSPF在复杂网络环境中的高级配置技巧和优化方法。',
-      image: '/images/resources/ospf-advanced.jpg'
-    },
-    {
-      id: 'mpls-vpn-implementation',
-      title: 'MPLS VPN实施指南',
-      description: '详细讲解MPLS VPN的配置、验证和故障排除方法。',
-      image: '/images/resources/mpls-vpn.jpg'
-    }
-  ];
-
-  // 视频资源数据
-  const videoResources = [
-    {
-      id: 'routing-fundamentals',
-      title: '路由基础知识讲解',
-      description: '深入浅出讲解路由协议基础知识，适合CCIE初学者。',
-      duration: '45分钟',
-      image: '/images/resources/routing-video.jpg'
-    },
-    {
-      id: 'switching-deep-dive',
-      title: '交换技术深度剖析',
-      description: '详细分析交换技术原理和常见配置场景。',
-      duration: '38分钟',
-      image: '/images/resources/switching-video.jpg'
-    }
-  ];
+  // 使用当前语言或默认为英文
+  const t = text[language || 'en'];
+  const resources = t.resources;
 
   return (
-    <Layout
-      title="CCIE学习资源 - 免费网络技术资料下载"
-      description="免费下载CCIE学习资料、思科命令速查手册、网络拓扑图模板等实用资源，助力您的网络技术学习和认证考试。"
-    >
-      <div className={styles.resourcesHeader}>
-        <div className={styles.resourcesHeaderContent}>
-          <h1>免费CCIE学习资源</h1>
-          <p>我们精心整理的网络技术学习资料，助您成为网络专家</p>
+    <>
+      <Head>
+        <title>{t.title}</title>
+        <meta name="description" content={t.description} />
+      </Head>
+
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1>{t.hero.title}</h1>
+          <p>{t.hero.subtitle}</p>
         </div>
-      </div>
+      </section>
 
-      {/* 倒计时促销组件 */}
-      <div className={styles.container}>
-        <div className={styles.countdownSection}>
-          <CountdownTimer
-            title="限时优惠：所有培训课程8折"
-            description="现在注册任意CCIE培训课程，即可享受8折优惠"
-            endDate={new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)} // 5天后
-          />
+      <section className={styles.categories}>
+        <h2>{t.categories.title}</h2>
+        <div className={styles.categoryButtons}>
+          <button className={styles.categoryButton}>{t.categories.free}</button>
+          <button className={styles.categoryButton}>{t.categories.premium}</button>
+          <button className={styles.categoryButton}>{t.categories.tools}</button>
+          <button className={styles.categoryButton}>{t.categories.guides}</button>
         </div>
+      </section>
 
-        {/* 免费资源列表 */}
-        <h2 className={styles.sectionTitle}>免费资源下载</h2>
-        <p className={styles.sectionDescription}>
-          这些资源完全免费，只需填写您的基本信息即可立即下载
-        </p>
-
-        <div className={styles.resourcesGrid}>
-          {freeResources.map((resource) => (
-            <div className={styles.resourceCard} key={resource.id}>
-              <div className={styles.resourceImageContainer}>
-                <img
-                  src={resource.image || '/images/resources/default.jpg'}
-                  alt={resource.title}
-                  className={styles.resourceImage}
-                />
-                <div className={styles.resourceType}>{resource.type}</div>
-              </div>
-              <div className={styles.resourceContent}>
-                <h3>{resource.title}</h3>
-                <p className={styles.resourceDescription}>{resource.description}</p>
-                <div className={styles.resourceMeta}>
-                  <span>文件大小: {resource.size}</span>
-                  <span>{resource.downloadCount}+ 次下载</span>
-                </div>
-                <Link href={`/resources/${resource.id}`} className={styles.downloadButton}>
-                  免费下载
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 邮件订阅 */}
-        <div className={styles.emailSubscribe}>
-          <div className={styles.emailContent}>
-            <h2>订阅获取最新资源</h2>
-            <p>我们会定期发布新的学习资源，订阅后第一时间获得通知</p>
-            <form className={styles.subscribeForm}>
-              <input type="email" placeholder="输入您的邮箱地址" required />
-              <button type="submit">订阅</button>
-            </form>
-          </div>
-        </div>
-
-        {/* 高级资源（需注册） */}
-        <h2 className={styles.sectionTitle}>高级学习资源</h2>
-        <p className={styles.sectionDescription}>
-          这些高级资源需要注册会员才能下载，包含更深入的技术内容和实验指导
-        </p>
-
-        <div className={styles.premiumResourcesGrid}>
-          {premiumResources.map((resource) => (
-            <div className={styles.premiumCard} key={resource.id}>
-              <div className={styles.premiumImageContainer}>
-                <img
-                  src={resource.image || '/images/resources/premium-default.jpg'}
-                  alt={resource.title}
-                  className={styles.premiumImage}
-                />
-                <div className={styles.premiumTag}>高级资源</div>
-              </div>
-              <div className={styles.premiumContent}>
-                <h3>{resource.title}</h3>
-                <p>{resource.description}</p>
-                <LeadMagnet
-                  title={`获取"${resource.title}"`}
-                  description="填写信息，立即获取此高级资源"
-                  buttonText="立即获取"
-                  type="banner"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 免费教学视频 */}
-        <h2 className={styles.sectionTitle}>免费教学视频</h2>
-        <p className={styles.sectionDescription}>
-          由我们的CCIE讲师录制的精品教学视频，带您深入理解网络技术
-        </p>
-
-        <div className={styles.videoGrid}>
-          {videoResources.map((video) => (
-            <div className={styles.videoCard} key={video.id}>
-              <div className={styles.videoThumbnail}>
-                <img
-                  src={video.image || '/images/resources/video-default.jpg'}
-                  alt={video.title}
-                />
-                <div className={styles.playButton}>
-                  <span>▶</span>
-                </div>
-                <div className={styles.videoDuration}>{video.duration}</div>
-              </div>
-              <div className={styles.videoContent}>
-                <h3>{video.title}</h3>
-                <p>{video.description}</p>
-                <Link href={`/resources/videos/${video.id}`} className={styles.watchButton}>
-                  观看视频
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 底部全宽CTA */}
-        <div className={styles.bottomCTA}>
-          <h2>还没找到您需要的资源？</h2>
-          <p>联系我们的课程顾问，获取更多专业学习资料和定制化学习方案</p>
-          <div className={styles.ctaButtons}>
-            <Link href="/contact" className={styles.primaryButton}>
-              联系课程顾问
-            </Link>
-            <Link href="/courses" className={styles.secondaryButton}>
-              浏览培训课程
+      <section className={styles.resourceGrid}>
+        {resources.map((resource) => (
+          <div key={resource.id} className={styles.resourceCard}>
+            <div className={styles.resourceType}>{resource.type}</div>
+            <h3>{resource.title}</h3>
+            <p>{resource.description}</p>
+            <Link href={`/resources/${resource.id}`} className={styles.resourceButton}>
+              {resource.cta}
             </Link>
           </div>
+        ))}
+      </section>
+
+      <section className={styles.newsletter}>
+        <div className={styles.newsletterContent}>
+          <h2>{t.newsletter.title}</h2>
+          <p>{t.newsletter.description}</p>
+          <form className={styles.subscribeForm}>
+            <input type="email" placeholder={t.newsletter.placeholder} required />
+            <button type="submit" className={styles.subscribeButton}>
+              {t.newsletter.button}
+            </button>
+          </form>
         </div>
-      </div>
-    </Layout>
+      </section>
+
+      <section className={styles.contactSection}>
+        <div className={styles.contactContent}>
+          <h2>{t.contact.title}</h2>
+          <p>{t.contact.description}</p>
+          <Link href="/contact" className={styles.contactButton}>
+            {t.contact.button}
+          </Link>
+        </div>
+      </section>
+    </>
   );
 } 

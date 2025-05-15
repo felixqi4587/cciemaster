@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
+import { useState } from 'react';
 import styles from '../styles/Contact.module.css';
 
 export default function Contact({ language }) {
@@ -8,305 +7,373 @@ export default function Contact({ language }) {
     name: '',
     email: '',
     phone: '',
-    course: '',
+    subject: '',
     message: ''
   });
   
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  
   // 语言文本
   const text = {
     zh: {
-      pageTitle: '联系我们 - CCIE培训中心',
-      pageDescription: '联系CCIE培训中心，获取课程咨询和专业建议',
-      heroTitle: '联系我们',
-      heroDesc: '填写表单获取更多信息，我们的顾问将尽快与您联系',
-      contactInfo: '联系方式',
-      phone: '电话：',
-      phoneNumber: '123-456-7890',
-      email: '邮箱：',
-      emailAddress: 'info@ccie-training.com',
-      workHours: '工作时间：',
-      workHoursDetail: '周一至周五 9:00-18:00',
-      trainingLocations: '培训地址',
-      location1: '北京市海淀区中关村科技园区',
-      location2: '上海市浦东新区张江高科技园区',
-      location3: '深圳市南山区科技园',
-      followUs: '关注我们',
-      wechat: '微信公众号',
-      wechatAccount: 'CCIE培训中心',
-      qqGroup: 'QQ群',
-      qqGroupNumber: '123456789',
-      weibo: '微博',
-      weiboAccount: '@CCIE培训官方',
-      formTitle: '咨询表单',
-      nameLabel: '姓名 *',
-      emailLabel: '邮箱 *',
-      phoneLabel: '电话 *',
-      courseLabel: '感兴趣的课程',
-      courseSelect: '-- 请选择 --',
-      courseEnterprise: 'CCIE企业基础设施',
-      courseSecurity: 'CCIE安全专家',
-      courseServiceProvider: 'CCIE服务提供商',
-      courseDatacenter: 'CCIE数据中心',
-      messageLabel: '留言',
-      submitButton: '提交咨询',
-      successTitle: '提交成功！',
-      successMessage: '感谢您的咨询，我们的培训顾问将在1个工作日内与您联系。',
-      submitAgain: '再次提交',
-      errorMessage: '提交失败，请稍后再试',
-      ourLocation: '我们的位置',
-      mapNote1: '地图将在这里显示',
-      mapNote2: '您可以集成百度地图、高德地图等API'
+      title: 'CCIE培训 - 联系我们',
+      description: '联系CCIE培训中心，获取专业网络认证培训咨询和支持',
+      hero: {
+        title: '联系我们',
+        subtitle: '我们随时准备帮助您开启CCIE认证之旅'
+      },
+      form: {
+        title: '发送消息',
+        name: '姓名',
+        namePlaceholder: '请输入您的姓名',
+        email: '邮箱',
+        emailPlaceholder: '请输入您的邮箱',
+        phone: '电话',
+        phonePlaceholder: '请输入您的电话号码',
+        subject: '主题',
+        subjectPlaceholder: '请选择咨询主题',
+        subjectOptions: [
+          '课程咨询',
+          '技术问题',
+          '价格咨询',
+          '合作洽谈',
+          '其他'
+        ],
+        message: '消息内容',
+        messagePlaceholder: '请详细描述您的需求或问题',
+        submit: '发送消息',
+        success: {
+          title: '消息已发送！',
+          message: '感谢您的留言，我们将在24小时内回复您。',
+          button: '再次留言'
+        },
+        validation: {
+          required: '此项为必填项',
+          invalidEmail: '请输入有效的邮箱地址',
+          invalidPhone: '请输入有效的电话号码'
+        }
+      },
+      contactInfo: {
+        title: '联系方式',
+        address: {
+          label: '地址',
+          value: '北京市海淀区中关村软件园1号楼'
+        },
+        phone: {
+          label: '电话',
+          value: '400-888-CCIE'
+        },
+        email: {
+          label: '邮箱',
+          value: 'contact@ccie-training.com'
+        },
+        hours: {
+          label: '工作时间',
+          value: '周一至周五 9:00 - 18:00'
+        }
+      },
+      social: {
+        title: '关注我们',
+        wechat: '微信公众号',
+        weibo: '微博',
+        zhihu: '知乎',
+        qq: 'QQ群：123456789'
+      },
+      map: {
+        title: '我们的位置',
+        placeholder: '地图加载中...'
+      }
     },
     en: {
-      pageTitle: 'Contact Us - CCIE Training Center',
-      pageDescription: 'Contact CCIE Training Center for course information and professional advice',
-      heroTitle: 'Contact Us',
-      heroDesc: 'Fill out the form for more information, our advisors will contact you shortly',
-      contactInfo: 'Contact Information',
-      phone: 'Phone: ',
-      phoneNumber: '123-456-7890',
-      email: 'Email: ',
-      emailAddress: 'info@ccie-training.com',
-      workHours: 'Working Hours: ',
-      workHoursDetail: 'Monday to Friday 9:00-18:00',
-      trainingLocations: 'Training Locations',
-      location1: 'Zhongguancun Technology Park, Haidian District, Beijing',
-      location2: 'Zhangjiang High-Tech Park, Pudong New Area, Shanghai',
-      location3: 'Science and Technology Park, Nanshan District, Shenzhen',
-      followUs: 'Follow Us',
-      wechat: 'WeChat',
-      wechatAccount: 'CCIE Training Center',
-      qqGroup: 'QQ Group',
-      qqGroupNumber: '123456789',
-      weibo: 'Weibo',
-      weiboAccount: '@CCIE_Training_Official',
-      formTitle: 'Inquiry Form',
-      nameLabel: 'Name *',
-      emailLabel: 'Email *',
-      phoneLabel: 'Phone *',
-      courseLabel: 'Course of Interest',
-      courseSelect: '-- Please Select --',
-      courseEnterprise: 'CCIE Enterprise Infrastructure',
-      courseSecurity: 'CCIE Security',
-      courseServiceProvider: 'CCIE Service Provider',
-      courseDatacenter: 'CCIE Data Center',
-      messageLabel: 'Message',
-      submitButton: 'Submit Inquiry',
-      successTitle: 'Submission Successful!',
-      successMessage: 'Thank you for your inquiry. Our training advisor will contact you within 1 business day.',
-      submitAgain: 'Submit Again',
-      errorMessage: 'Submission failed, please try again later',
-      ourLocation: 'Our Locations',
-      mapNote1: 'Map will be displayed here',
-      mapNote2: 'You can integrate with Google Maps, Baidu Maps, etc.'
+      title: 'CCIE Training - Contact Us',
+      description: 'Contact CCIE Training Center for professional network certification training consultation and support',
+      hero: {
+        title: 'Contact Us',
+        subtitle: 'We are ready to help you start your CCIE certification journey'
+      },
+      form: {
+        title: 'Send Message',
+        name: 'Name',
+        namePlaceholder: 'Enter your name',
+        email: 'Email',
+        emailPlaceholder: 'Enter your email',
+        phone: 'Phone',
+        phonePlaceholder: 'Enter your phone number',
+        subject: 'Subject',
+        subjectPlaceholder: 'Select a subject',
+        subjectOptions: [
+          'Course Inquiry',
+          'Technical Question',
+          'Pricing Information',
+          'Partnership',
+          'Other'
+        ],
+        message: 'Message',
+        messagePlaceholder: 'Describe your needs or questions in detail',
+        submit: 'Send Message',
+        success: {
+          title: 'Message Sent!',
+          message: 'Thank you for your message. We will get back to you within 24 hours.',
+          button: 'Send Another Message'
+        },
+        validation: {
+          required: 'This field is required',
+          invalidEmail: 'Please enter a valid email address',
+          invalidPhone: 'Please enter a valid phone number'
+        }
+      },
+      contactInfo: {
+        title: 'Contact Information',
+        address: {
+          label: 'Address',
+          value: 'Zhongguancun Software Park, Building 1, Haidian District, Beijing'
+        },
+        phone: {
+          label: 'Phone',
+          value: '400-888-CCIE'
+        },
+        email: {
+          label: 'Email',
+          value: 'contact@ccie-training.com'
+        },
+        hours: {
+          label: 'Business Hours',
+          value: 'Monday to Friday, 9:00 AM - 6:00 PM'
+        }
+      },
+      social: {
+        title: 'Follow Us',
+        wechat: 'WeChat Official Account',
+        weibo: 'Weibo',
+        zhihu: 'Zhihu',
+        qq: 'QQ Group: 123456789'
+      },
+      map: {
+        title: 'Our Location',
+        placeholder: 'Map loading...'
+      }
     }
   };
-
+  
+  // 使用当前语言或默认为英文
   const t = text[language || 'en'];
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    setFormData({ ...formData, [name]: value });
     
-    try {
-      // 将表单数据存储到localStorage中，这样网站管理员可以查看
-      const savedInquiries = JSON.parse(localStorage.getItem('contactInquiries') || '[]');
-      const newInquiry = {
-        ...formData,
-        id: Date.now(),
-        date: new Date().toISOString()
-      };
-      savedInquiries.push(newInquiry);
-      localStorage.setItem('contactInquiries', JSON.stringify(savedInquiries));
-      
-      console.log('表单数据:', formData);
-      console.log('已保存的查询:', savedInquiries);
-      
-      // 设置提交成功状态
-      setSubmitted(true);
-    } catch (err) {
-      console.error('提交表单时出错:', err);
-      setError(t.errorMessage);
-    } finally {
-      setLoading(false);
+    // 清除错误提示
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: null });
     }
   };
-
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // 表单验证
+    const newErrors = {};
+    if (!formData.name) newErrors.name = t.form.validation.required;
+    if (!formData.email) {
+      newErrors.email = t.form.validation.required;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = t.form.validation.invalidEmail;
+    }
+    if (!formData.phone) {
+      newErrors.phone = t.form.validation.required;
+    } else if (!/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
+      newErrors.phone = t.form.validation.invalidPhone;
+    }
+    if (!formData.subject) newErrors.subject = t.form.validation.required;
+    if (!formData.message) newErrors.message = t.form.validation.required;
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    // 提交表单
+    // 这里可以添加实际的表单提交逻辑（如API请求）
+    // 实际项目中需要与后端API集成
+    
+    // 模拟提交成功
+    setTimeout(() => {
+      setIsSubmitted(true);
+      
+      // 在本地存储中保存用户提交的信息
+      if (typeof window !== 'undefined') {
+        const savedData = JSON.parse(localStorage.getItem('contactFormSubmissions') || '[]');
+        savedData.push({
+          ...formData,
+          submitTime: new Date().toISOString()
+        });
+        localStorage.setItem('contactFormSubmissions', JSON.stringify(savedData));
+      }
+    }, 1000);
+  };
+  
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    });
+  };
+  
   return (
-    <div className={styles.contactWrapper}>
+    <>
       <Head>
-        <title>{t.pageTitle}</title>
-        <meta name="description" content={t.pageDescription} />
+        <title>{t.title}</title>
+        <meta name="description" content={t.description} />
       </Head>
-
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>{t.heroTitle}</h1>
-          <p>{t.heroDesc}</p>
-        </div>
-      </section>
-
-      <section className={styles.contactSection}>
-        <div className={styles.contactInfo}>
-          <div className={styles.infoCard}>
-            <h3>{t.contactInfo}</h3>
-            <p><strong>{t.phone}</strong>{t.phoneNumber}</p>
-            <p><strong>{t.email}</strong>{t.emailAddress}</p>
-            <p><strong>{t.workHours}</strong>{t.workHoursDetail}</p>
+      
+      <div className={styles.contactWrapper}>
+        <section className={styles.hero}>
+          <div className={styles.heroContent}>
+            <h1>{t.hero.title}</h1>
+            <p>{t.hero.subtitle}</p>
           </div>
-          
-          <div className={styles.infoCard}>
-            <h3>{t.trainingLocations}</h3>
-            <p>{t.location1}</p>
-            <p>{t.location2}</p>
-            <p>{t.location3}</p>
-          </div>
-          
-          <div className={styles.infoCard}>
-            <h3>{t.followUs}</h3>
-            <div className={styles.socialLinks}>
-              <div className={styles.socialItem}>
-                <span>{t.wechat}</span>
-                <span>{t.wechatAccount}</span>
-              </div>
-              <div className={styles.socialItem}>
-                <span>{t.qqGroup}</span>
-                <span>{t.qqGroupNumber}</span>
-              </div>
-              <div className={styles.socialItem}>
-                <span>{t.weibo}</span>
-                <span>{t.weiboAccount}</span>
+        </section>
+        
+        <section className={styles.contactSection}>
+          <div className={styles.contactInfo}>
+            <div className={styles.infoCard}>
+              <h3>{t.contactInfo.title}</h3>
+              <p><strong>{t.contactInfo.address.label}:</strong> {t.contactInfo.address.value}</p>
+              <p><strong>{t.contactInfo.phone.label}:</strong> {t.contactInfo.phone.value}</p>
+              <p><strong>{t.contactInfo.email.label}:</strong> {t.contactInfo.email.value}</p>
+              <p><strong>{t.contactInfo.hours.label}:</strong> {t.contactInfo.hours.value}</p>
+            </div>
+            
+            <div className={styles.infoCard}>
+              <h3>{t.social.title}</h3>
+              <div className={styles.socialLinks}>
+                <div className={styles.socialItem}>
+                  <span>WeChat</span>
+                  <span>{t.social.wechat}</span>
+                </div>
+                <div className={styles.socialItem}>
+                  <span>Weibo</span>
+                  <span>{t.social.weibo}</span>
+                </div>
+                <div className={styles.socialItem}>
+                  <span>Zhihu</span>
+                  <span>{t.social.zhihu}</span>
+                </div>
+                <div className={styles.socialItem}>
+                  <span>QQ</span>
+                  <span>{t.social.qq}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className={styles.contactForm}>
-          {!submitted ? (
-            <>
-              <h2>{t.formTitle}</h2>
-              {error && <div className={styles.errorMessage}>{error}</div>}
-              <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="name">{t.nameLabel}</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                
-                <div className={styles.formRow}>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="email">{t.emailLabel}</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
+          
+          <div className={styles.contactForm}>
+            {!isSubmitted ? (
+              <>
+                <h2>{t.form.title}</h2>
+                <form onSubmit={handleSubmit}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="name">{t.form.name}</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder={t.form.namePlaceholder}
+                      />
+                      {errors.name && <div className={styles.errorMessage}>{errors.name}</div>}
+                    </div>
+                    
+                    <div className={styles.formGroup}>
+                      <label htmlFor="email">{t.form.email}</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder={t.form.emailPlaceholder}
+                      />
+                      {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
+                    </div>
+                  </div>
+                  
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="phone">{t.form.phone}</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder={t.form.phonePlaceholder}
+                      />
+                      {errors.phone && <div className={styles.errorMessage}>{errors.phone}</div>}
+                    </div>
+                    
+                    <div className={styles.formGroup}>
+                      <label htmlFor="subject">{t.form.subject}</label>
+                      <select
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                      >
+                        <option value="">{t.form.subjectPlaceholder}</option>
+                        {t.form.subjectOptions.map((option, index) => (
+                          <option key={index} value={option}>{option}</option>
+                        ))}
+                      </select>
+                      {errors.subject && <div className={styles.errorMessage}>{errors.subject}</div>}
+                    </div>
                   </div>
                   
                   <div className={styles.formGroup}>
-                    <label htmlFor="phone">{t.phoneLabel}</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                    <label htmlFor="message">{t.form.message}</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
-                      required
-                    />
+                      placeholder={t.form.messagePlaceholder}
+                      rows="6"
+                    ></textarea>
+                    {errors.message && <div className={styles.errorMessage}>{errors.message}</div>}
                   </div>
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="course">{t.courseLabel}</label>
-                  <select
-                    id="course"
-                    name="course"
-                    value={formData.course}
-                    onChange={handleChange}
-                  >
-                    <option value="">{t.courseSelect}</option>
-                    <option value="enterprise">{t.courseEnterprise}</option>
-                    <option value="security">{t.courseSecurity}</option>
-                    <option value="service-provider">{t.courseServiceProvider}</option>
-                    <option value="datacenter">{t.courseDatacenter}</option>
-                  </select>
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="message">{t.messageLabel}</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <button 
-                    type="submit" 
-                    className={styles.submitButton}
-                    disabled={loading}
-                  >
-                    {loading ? '...' : t.submitButton}
+                  
+                  <button type="submit" className={styles.submitButton}>
+                    {t.form.submit}
                   </button>
-                </div>
-              </form>
-            </>
-          ) : (
-            <div className={styles.successMessage}>
-              <h2>{t.successTitle}</h2>
-              <p>{t.successMessage}</p>
-              <button 
-                className={styles.resetButton}
-                onClick={() => {
-                  setFormData({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    course: '',
-                    message: ''
-                  });
-                  setSubmitted(false);
-                }}
-              >
-                {t.submitAgain}
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className={styles.mapSection}>
-        <h2>{t.ourLocation}</h2>
-        <div className={styles.mapPlaceholder}>
-          <p>{t.mapNote1}</p>
-          <p>{t.mapNote2}</p>
-        </div>
-      </section>
-    </div>
+                </form>
+              </>
+            ) : (
+              <div className={styles.successMessage}>
+                <h2>{t.form.success.title}</h2>
+                <p>{t.form.success.message}</p>
+                <button onClick={resetForm} className={styles.resetButton}>
+                  {t.form.success.button}
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+        
+        <section className={styles.mapSection}>
+          <h2>{t.map.title}</h2>
+          <div className={styles.mapPlaceholder}>
+            <p>{t.map.placeholder}</p>
+            <p>{t.contactInfo.address.value}</p>
+          </div>
+        </section>
+      </div>
+    </>
   );
 } 

@@ -28,117 +28,115 @@ export default function Layout({ children, title, description, currentLanguage, 
       onLanguageChange(language);
     }
   }, [language, onLanguageChange]);
+  
+  useEffect(() => {
+    if (currentLanguage) {
+      setLanguage(currentLanguage);
+    } else if (typeof window !== 'undefined') {
+      // 如果没有传入当前语言，检查localStorage
+      // 优先使用英文作为默认语言
+      setLanguage('en');
+    }
+  }, [currentLanguage]);
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    // 记录弹窗已显示
+  const handleLanguageToggle = () => {
+    const newLanguage = language === 'zh' ? 'en' : 'zh';
+    setLanguage(newLanguage);
+    
+    // 保存语言偏好到localStorage
     if (typeof window !== 'undefined') {
-      localStorage.setItem('popupShown', 'true');
-      // 24小时后重置
-      setTimeout(() => {
-        localStorage.removeItem('popupShown');
-      }, 24 * 60 * 60 * 1000);
+      localStorage.setItem('preferredLanguage', newLanguage);
     }
   };
-  
-  const toggleLanguage = () => {
-    setLanguage(language === 'zh' ? 'en' : 'zh');
+
+  const closePopup = () => {
+    setShowPopup(false);
+    // 记录弹窗已显示
+    localStorage.setItem('popupShown', 'true');
   };
 
-  const toggleMenu = () => {
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    // 订阅逻辑
+    closePopup();
+  };
+
+  const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  
-  // 语言文本
-  const text = {
+
+  // 菜单文本
+  const menuText = {
     zh: {
-      title: 'CCIE培训中心 - 专业网络认证培训',
-      description: '专业的CCIE培训课程，助您快速成为网络专家',
       home: '首页',
       courses: '课程',
-      resources: '学习资源',
+      resources: '资源',
       about: '关于我们',
-      contact: '联系方式',
-      aboutUs: '关于我们',
-      aboutUsDesc: '专业的CCIE培训机构，致力于培养高级网络人才',
-      experience: '十年教学经验，上千名学员成功通过考试',
-      quickLinks: '快速链接',
-      coursesIntro: '课程介绍',
-      successStories: '成功案例',
-      freeResources: '免费资源',
-      contactUs: '联系方式',
-      phone: '电话：400-888-CCIE',
-      email: '邮箱：contact@ccie-training.com',
-      address: '地址：北京市海淀区中关村软件园',
-      followUs: '关注我们',
-      wechat: '微信公众号',
-      weibo: '微博',
-      zhihu: '知乎',
-      bilibili: 'B站',
-      newsletter: '订阅我们的技术周刊',
-      emailPlaceholder: '输入您的邮箱',
-      subscribe: '订阅',
-      copyright: '版权所有',
-      privacy: '隐私政策',
-      terms: '服务条款',
-      freeResourcesTitle: '免费领取CCIE学习资料包',
-      freeResourcesDesc: '包含路由交换核心知识点、考试重点及真题解析',
-      namePlaceholder: '您的姓名',
-      phonePlaceholder: '手机号码',
-      getResources: '立即领取',
-      alreadyReceived: '已有5000+学员获取',
-      languageToggle: 'English',
-      mobileMenuToggle: '菜单'
+      contact: '联系我们',
+      toggleLanguage: 'English',
+      footerAbout: '关于我们',
+      footerAboutDesc: '我们是专业的CCIE培训机构，拥有多年教学经验和行业实践',
+      footerCourses: '课程目录',
+      footerCoursesEnterprise: 'CCIE企业架构',
+      footerCoursesSecurity: 'CCIE安全',
+      footerCoursesServiceProvider: 'CCIE服务提供商',
+      footerCoursesDatacenter: 'CCIE数据中心',
+      footerContact: '联系我们',
+      footerPhone: '电话: 400-123-4567',
+      footerEmail: '邮箱: contact@cciemaster.com',
+      footerAddress: '地址: 北京市海淀区',
+      footerNewsletter: '订阅我们',
+      footerNewsletterDesc: '获取最新课程信息和行业动态',
+      footerButtonSubscribe: '订阅',
+      footerNewsletterPlaceholder: '您的邮箱地址',
+      footerCopyright: '版权所有',
+      popupTitle: '获取免费学习资料',
+      popupDesc: '订阅我们的邮件，获取CCIE备考指南和学习技巧',
+      popupPlaceholder: '您的邮箱地址',
+      popupButton: '立即获取',
+      popupFooter: '我们不会发送垃圾邮件，您可以随时取消订阅'
     },
     en: {
-      title: 'CCIE Training Center - Professional Network Certification Training',
-      description: 'Professional CCIE training courses to help you become a network expert quickly',
       home: 'Home',
       courses: 'Courses',
       resources: 'Resources',
       about: 'About Us',
-      contact: 'Contact',
-      aboutUs: 'About Us',
-      aboutUsDesc: 'Professional CCIE training institution dedicated to developing advanced network talent',
-      experience: '10 years of teaching experience, thousands of students successfully certified',
-      quickLinks: 'Quick Links',
-      coursesIntro: 'Course Information',
-      successStories: 'Success Stories',
-      freeResources: 'Free Resources',
-      contactUs: 'Contact Us',
-      phone: 'Phone: 400-888-CCIE',
-      email: 'Email: contact@ccie-training.com',
-      address: 'Address: Zhongguancun Software Park, Haidian District, Beijing',
-      followUs: 'Follow Us',
-      wechat: 'WeChat',
-      weibo: 'Weibo',
-      zhihu: 'Zhihu',
-      bilibili: 'Bilibili',
-      newsletter: 'Subscribe to our weekly tech newsletter',
-      emailPlaceholder: 'Enter your email',
-      subscribe: 'Subscribe',
-      copyright: 'All Rights Reserved',
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Service',
-      freeResourcesTitle: 'Get Free CCIE Study Materials',
-      freeResourcesDesc: 'Includes core routing & switching knowledge points, exam focus and solutions',
-      namePlaceholder: 'Your Name',
-      phonePlaceholder: 'Phone Number',
-      getResources: 'Get Now',
-      alreadyReceived: 'Already received by over 5000 students',
-      languageToggle: '中文',
-      mobileMenuToggle: 'Menu'
+      contact: 'Contact Us',
+      toggleLanguage: '中文',
+      footerAbout: 'About Us',
+      footerAboutDesc: 'We are a professional CCIE training institution with years of teaching experience and industry practice',
+      footerCourses: 'Course Catalog',
+      footerCoursesEnterprise: 'CCIE Enterprise',
+      footerCoursesSecurity: 'CCIE Security',
+      footerCoursesServiceProvider: 'CCIE Service Provider',
+      footerCoursesDatacenter: 'CCIE Data Center',
+      footerContact: 'Contact Us',
+      footerPhone: 'Phone: 400-123-4567',
+      footerEmail: 'Email: contact@cciemaster.com',
+      footerAddress: 'Address: Haidian District, Beijing',
+      footerNewsletter: 'Subscribe',
+      footerNewsletterDesc: 'Get the latest course information and industry updates',
+      footerButtonSubscribe: 'Subscribe',
+      footerNewsletterPlaceholder: 'Your email address',
+      footerCopyright: 'All Rights Reserved',
+      popupTitle: 'Get Free Study Materials',
+      popupDesc: 'Subscribe to our newsletter for CCIE exam guides and study tips',
+      popupPlaceholder: 'Your email address',
+      popupButton: 'Get It Now',
+      popupFooter: 'We never send spam, and you can unsubscribe at any time'
     }
   };
-  
-  const t = text[language];
+
+  const t = menuText[language];
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{title || t.title}</title>
-        <meta name="description" content={description || t.description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title || 'CCIE培训 - 专业认证培训中心'}</title>
+        <meta
+          name="description"
+          content={description || '提供专业的CCIE认证培训，帮助您快速通过考试'}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -146,102 +144,112 @@ export default function Layout({ children, title, description, currentLanguage, 
         <div className={styles.headerContainer}>
           <div className={styles.logo}>
             <Link href="/">
-              <h1>CCIE Training</h1>
+              <h1>CCIE Master</h1>
             </Link>
           </div>
-          
-          <button 
-            className={styles.mobileMenuButton} 
-            onClick={toggleMenu}
-            aria-label={t.mobileMenuToggle}
+
+          <button
+            className={styles.mobileMenuButton}
+            onClick={handleMenuToggle}
+            aria-label="Toggle menu"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span style={{ transform: isMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></span>
+            <span style={{ opacity: isMenuOpen ? 0 : 1 }}></span>
+            <span style={{ transform: isMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}></span>
           </button>
-          
+
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <Link href="/" className={styles.navLink}>{t.home}</Link>
-            <Link href="/courses" className={styles.navLink}>{t.courses}</Link>
-            <Link href="/resources" className={styles.navLink}>{t.resources}</Link>
-            <Link href="/about" className={styles.navLink}>{t.about}</Link>
-            <Link href="/contact" className={styles.navLink}>{t.contact}</Link>
-            <button 
-              className={styles.languageToggle} 
-              onClick={toggleLanguage}
-              aria-label={t.languageToggle}
+            <Link href="/" className={styles.navLink}>
+              {t.home}
+            </Link>
+            <Link href="/courses" className={styles.navLink}>
+              {t.courses}
+            </Link>
+            <Link href="/resources" className={styles.navLink}>
+              {t.resources}
+            </Link>
+            <Link href="/about" className={styles.navLink}>
+              {t.about}
+            </Link>
+            <Link href="/contact" className={styles.navLink}>
+              {t.contact}
+            </Link>
+            <button
+              onClick={handleLanguageToggle}
+              className={styles.languageToggle}
             >
-              {t.languageToggle}
+              {t.toggleLanguage}
             </button>
           </nav>
         </div>
       </header>
 
-      <main className={styles.main}>
-        {children}
-      </main>
+      <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
             <div className={styles.footerColumn}>
-              <h3>{t.aboutUs}</h3>
-              <p>{t.aboutUsDesc}</p>
-              <p>{t.experience}</p>
+              <h3>{t.footerAbout}</h3>
+              <p>{t.footerAboutDesc}</p>
             </div>
+
             <div className={styles.footerColumn}>
-              <h3>{t.quickLinks}</h3>
+              <h3>{t.footerCourses}</h3>
               <div className={styles.footerLinks}>
-                <Link href="/courses">{t.coursesIntro}</Link>
-                <Link href="/success-stories">{t.successStories}</Link>
-                <Link href="/resources">{t.freeResources}</Link>
+                <Link href="/courses/enterprise">{t.footerCoursesEnterprise}</Link>
+                <Link href="/courses/security">{t.footerCoursesSecurity}</Link>
+                <Link href="/courses/service-provider">{t.footerCoursesServiceProvider}</Link>
+                <Link href="/courses/datacenter">{t.footerCoursesDatacenter}</Link>
               </div>
             </div>
+
             <div className={styles.footerColumn}>
-              <h3>{t.contactUs}</h3>
-              <p>{t.phone}</p>
-              <p>{t.email}</p>
-              <p>{t.address}</p>
-            </div>
-            <div className={styles.footerColumn}>
-              <h3>{t.followUs}</h3>
+              <h3>{t.footerContact}</h3>
+              <p>{t.footerPhone}</p>
+              <p>{t.footerEmail}</p>
+              <p>{t.footerAddress}</p>
               <div className={styles.socialLinks}>
-                <a href="#" target="_blank" rel="noopener noreferrer">{t.wechat}</a>
-                <a href="#" target="_blank" rel="noopener noreferrer">{t.weibo}</a>
-                <a href="#" target="_blank" rel="noopener noreferrer">{t.zhihu}</a>
-                <a href="#" target="_blank" rel="noopener noreferrer">{t.bilibili}</a>
+                <a href="#">WeChat</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+              </div>
+            </div>
+
+            <div className={styles.footerColumn}>
+              <div className={styles.newsletter}>
+                <h3>{t.footerNewsletter}</h3>
+                <p>{t.footerNewsletterDesc}</p>
+                <form className={styles.subscribeForm}>
+                  <input type="email" placeholder={t.footerNewsletterPlaceholder} required />
+                  <button type="submit">{t.footerButtonSubscribe}</button>
+                </form>
               </div>
             </div>
           </div>
-          <div className={styles.newsletter}>
-            <h3>{t.newsletter}</h3>
-            <form className={styles.subscribeForm}>
-              <input type="email" placeholder={t.emailPlaceholder} required />
-              <button type="submit">{t.subscribe}</button>
-            </form>
-          </div>
+
           <div className={styles.copyright}>
-            &copy; {new Date().getFullYear()} CCIE Training Center {t.copyright} | <Link href="/privacy">{t.privacy}</Link> | <Link href="/terms">{t.terms}</Link>
+            &copy; {new Date().getFullYear()} CCIE Master. {t.footerCopyright}
           </div>
         </div>
       </footer>
 
-      {/* 引流弹窗 */}
       {showPopup && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
-            <button className={styles.closeBtn} onClick={handleClosePopup}>×</button>
-            <h3>{t.freeResourcesTitle}</h3>
-            <p>{t.freeResourcesDesc}</p>
-            <form className={styles.popupForm}>
-              <input type="text" placeholder={t.namePlaceholder} required />
-              <input type="tel" placeholder={t.phonePlaceholder} required />
-              <button type="submit">{t.getResources}</button>
+            <button className={styles.closeBtn} onClick={closePopup}>
+              &times;
+            </button>
+            <h3>{t.popupTitle}</h3>
+            <p>{t.popupDesc}</p>
+            <form className={styles.popupForm} onSubmit={handleSubscribe}>
+              <input type="email" placeholder={t.popupPlaceholder} required />
+              <button type="submit">{t.popupButton}</button>
             </form>
-            <p className={styles.popupFooter}>{t.alreadyReceived}</p>
+            <p className={styles.popupFooter}>{t.popupFooter}</p>
           </div>
         </div>
       )}
     </div>
   );
-} 
+}

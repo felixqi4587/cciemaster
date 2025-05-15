@@ -154,6 +154,7 @@ export default function Home({ language }) {
       </Head>
 
       <main className={styles.main}>
+        {/* 1. 英雄区域 */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
             <h1>{t.heroTitle}</h1>
@@ -170,7 +171,18 @@ export default function Home({ language }) {
           </div>
         </section>
         
-        {/* 核心优势区域 - 最醒目的位置 */}
+        {/* 2. 3个月保障横幅 - 移到最醒目的位置 */}
+        <section className={styles.guaranteeBanner}>
+          <div className={styles.guaranteeContent}>
+            <h2>{t.guaranteeTitle}</h2>
+            <p>{t.guaranteeDesc}</p>
+            <Link href="/guarantee">
+              <button className={styles.guaranteeButton}>{t.guaranteeButton}</button>
+            </Link>
+          </div>
+        </section>
+        
+        {/* 3. 核心优势区域 */}
         <section className={styles.coreAdvantages}>
           <h2>{t.coreAdvantageTitle}</h2>
           <div className={styles.advantageGrid}>
@@ -197,18 +209,8 @@ export default function Home({ language }) {
             </div>
           </div>
         </section>
-        
-        {/* 3个月保障横幅 */}
-        <section className={styles.guaranteeBanner}>
-          <div className={styles.guaranteeContent}>
-            <h2>{t.guaranteeTitle}</h2>
-            <p>{t.guaranteeDesc}</p>
-            <Link href="/guarantee">
-              <button className={styles.guaranteeButton}>{t.guaranteeButton}</button>
-            </Link>
-          </div>
-        </section>
 
+        {/* 4. 特色区域 */}
         <section className={styles.features}>
           <div className={styles.featureCard}>
             <h3>{t.featureTitle1}</h3>
@@ -224,6 +226,7 @@ export default function Home({ language }) {
           </div>
         </section>
 
+        {/* 5. 课程区域 */}
         <section className={styles.courses}>
           <h2>{t.coursesTitle}</h2>
           <div className={styles.courseGrid}>
@@ -245,6 +248,7 @@ export default function Home({ language }) {
           </div>
         </section>
 
+        {/* 6. 学员评价 */}
         <section className={styles.testimonials}>
           <h2>{t.testimonialsTitle}</h2>
           <div className={styles.testimonialGrid}>
@@ -259,6 +263,7 @@ export default function Home({ language }) {
           </div>
         </section>
 
+        {/* 7. 联系部分 */}
         <section className={styles.contact}>
           <h2>{t.contactTitle}</h2>
           <p>{t.contactDesc}</p>
