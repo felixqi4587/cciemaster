@@ -1,0 +1,419 @@
+/* 问答页面头部 */
+.qaHeader {
+  background: linear-gradient(rgba(0, 34, 68, 0.9), rgba(0, 34, 68, 0.9)), url('/images/qa/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.qaHeaderContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.qaHeaderContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.qaHeaderContent p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* 搜索栏 */
+.searchBar {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+}
+
+.searchBar button {
+  padding: 0 1.5rem;
+  background-color: #ff6b00;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchBar button:hover {
+  background-color: #e05c00;
+}
+
+/* 问答容器 */
+.qaContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .qaContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 问答内容区域 */
+.qaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 分类过滤器 */
+.categoryFilter {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.categoryFilter ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.categoryFilter li {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.categoryFilter li:hover {
+  background-color: #f9f9f9;
+  color: #0066cc;
+}
+
+.categoryFilter li.active {
+  border-bottom-color: #0066cc;
+  color: #0066cc;
+  font-weight: 500;
+}
+
+/* 问答列表 */
+.qaList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.qaItem {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.qaQuestion h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #002244;
+  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.qaAnswer {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.qaTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.qaTag {
+  display: inline-block;
+  background-color: #f0f7ff;
+  color: #0066cc;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.qaTag:hover {
+  background-color: #e0f0ff;
+}
+
+/* 无结果显示 */
+.noResults {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.noResults p {
+  color: #666;
+  margin: 0;
+}
+
+/* 引流部分 */
+.leadMagnetSection {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.leadMagnetSection h2 {
+  color: #002244;
+  margin-bottom: 0.5rem;
+}
+
+.leadMagnetSection p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* 侧边栏 */
+.qaSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 提问表单 */
+.askQuestion {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.askQuestion h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #002244;
+}
+
+.askQuestion p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.questionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.formGroup label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.submitButton {
+  padding: 0.8rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #004499;
+}
+
+/* 热门标签 */
+.popularTags {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.popularTags h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #002244;
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tagItem {
+  background-color: #f0f7ff;
+  color: #0066cc;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tagItem:hover {
+  background-color: #e0f0ff;
+}
+
+/* 推荐课程 */
+.recommendedCourse {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.recommendedCourse h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #002244;
+}
+
+.courseCard {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.courseImage {
+  height: 140px;
+  overflow: hidden;
+}
+
+.courseImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.courseContent {
+  padding: 1rem;
+}
+
+.courseContent h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #002244;
+  font-size: 1.1rem;
+}
+
+.courseRating {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.stars {
+  color: #ffaa00;
+}
+
+.coursePrice {
+  margin-bottom: 1rem;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 0.5rem;
+}
+
+.discountPrice {
+  font-weight: bold;
+  color: #ff6b00;
+  font-size: 1.1rem;
+}
+
+.viewCourseButton {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.viewCourseButton:hover {
+  background-color: #004499;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .qaHeaderContent h1 {
+    font-size: 2rem;
+  }
+  
+  .qaHeaderContent p {
+    font-size: 1rem;
+  }
+  
+  .searchBar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .searchBar input {
+    border-radius: 4px;
+  }
+  
+  .searchBar button {
+    border-radius: 4px;
+  }
+  
+  .categoryFilter ul {
+    padding: 0.5rem;
+  }
+  
+  .categoryFilter li {
+    padding: 0.8rem 1rem;
+  }
+} 

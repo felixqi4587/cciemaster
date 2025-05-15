@@ -1,0 +1,104 @@
+.container {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff9500 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+}
+
+.content {
+  text-align: center;
+}
+
+.content h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.timerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.timerItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timerValue {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.8rem;
+  border-radius: 4px;
+  min-width: 3rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.timerLabel {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.timerSeparator {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: -0.5rem;
+}
+
+.expired {
+  background-color: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.expired h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.expired p {
+  margin-bottom: 0;
+  color: #666;
+}
+
+@media (max-width: 576px) {
+  .timerValue {
+    padding: 0.6rem;
+    min-width: 2.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .timerSeparator {
+    font-size: 1.5rem;
+  }
+} 

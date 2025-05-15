@@ -1,0 +1,309 @@
+/* 评估容器 */
+.assessmentContainer {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.assessmentHeader {
+  background: linear-gradient(135deg, #002244 0%, #004080 100%);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.assessmentHeader h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.assessmentHeader p {
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+/* 进度条 */
+.progressBar {
+  background-color: #eee;
+  height: 8px;
+  width: 100%;
+}
+
+.progressFill {
+  background: linear-gradient(to right, #00b4ff, #0066cc);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.stepIndicator {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  background-color: #f8f8f8;
+}
+
+.step {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.step.active {
+  color: #002244;
+  font-weight: bold;
+}
+
+/* 表单容器 */
+.formContainer {
+  padding: 2rem;
+}
+
+.formStep {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.formStep h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #002244;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+}
+
+/* 表单组件 */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="tel"],
+.formGroup input[type="email"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.error {
+  color: #ff3b30;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* 单选组 */
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.radioItem {
+  display: flex;
+  align-items: center;
+  min-width: 100px;
+}
+
+.radioItem input {
+  margin-right: 0.5rem;
+}
+
+/* 复选框组 */
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox input {
+  margin-right: 0.5rem;
+}
+
+/* 按钮组 */
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.backButton,
+.nextButton,
+.submitButton {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.backButton {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.backButton:hover {
+  background-color: #e0e0e0;
+}
+
+.nextButton {
+  background-color: #0066cc;
+  color: white;
+}
+
+.nextButton:hover {
+  background-color: #004499;
+}
+
+.submitButton {
+  background-color: #ff6b00;
+  color: white;
+}
+
+.submitButton:hover {
+  background-color: #e05c00;
+}
+
+/* 结果容器 */
+.resultContainer {
+  animation: fadeIn 0.5s;
+  text-align: center;
+}
+
+.resultHeader {
+  margin-bottom: 2rem;
+}
+
+.resultHeader h3 {
+  margin-bottom: 1rem;
+  color: #002244;
+  font-size: 1.5rem;
+}
+
+.resultIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #4CD964;
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.resultContent {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.resultItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.resultLabel {
+  font-weight: 500;
+  color: #555;
+}
+
+.resultValue {
+  font-weight: bold;
+  color: #002244;
+}
+
+.resultMessage {
+  margin: 2rem 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.resultMessage a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resultMessage a:hover {
+  text-decoration: underline;
+}
+
+.discount {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #FFF8EC;
+  border: 1px dashed #ffaa33;
+  border-radius: 4px;
+  max-width: 350px;
+}
+
+.discountLabel {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.discountCode {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6b00;
+  margin: 0.5rem 0;
+  letter-spacing: 2px;
+}
+
+.discountDesc {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+  .formContainer {
+    padding: 1.5rem;
+  }
+  
+  .checkboxGroup {
+    grid-template-columns: 1fr;
+  }
+  
+  .radioGroup {
+    flex-direction: column;
+  }
+  
+  .buttonGroup {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+  
+  .backButton, .nextButton, .submitButton {
+    width: 100%;
+  }
+} 

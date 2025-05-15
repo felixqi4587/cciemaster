@@ -1,0 +1,345 @@
+/* 头部样式 */
+.header {
+  background: linear-gradient(rgba(0, 34, 68, 0.9), rgba(0, 34, 68, 0.9)), url('/images/success-stories/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.headerContent h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.headerContent p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* 统计部分 */
+.statsSection {
+  margin-bottom: 4rem;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: -5rem;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #002244;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* 区块标题 */
+.sectionTitle {
+  font-size: 2rem;
+  color: #002244;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sectionDescription {
+  text-align: center;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+/* 故事部分 */
+.storiesSection {
+  margin-bottom: 4rem;
+}
+
+.storiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.storyCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.storyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.storyHeader {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.storyImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.storyImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storyMeta {
+  flex: 1;
+}
+
+.storyMeta h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.3rem;
+  color: #002244;
+}
+
+.storyTitle {
+  margin: 0 0 0.2rem;
+  color: #0066cc;
+  font-weight: 500;
+}
+
+.storyCompany {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.storyBody {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.storyText {
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+.storyAchievements {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.achievementItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.achievementLabel {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.achievementValue {
+  font-weight: 500;
+  color: #002244;
+}
+
+/* CTA部分 */
+.ctaSection {
+  margin: 4rem 0;
+}
+
+/* 认证部分 */
+.certificationSection {
+  margin-bottom: 4rem;
+}
+
+.certificationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.certificationCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.certificationCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.certificationCard h3 {
+  color: #002244;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.certificationCard h3::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background-color: #0066cc;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.certificationStats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.certStat {
+  text-align: center;
+}
+
+.certStatValue {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0066cc;
+  margin-bottom: 0.3rem;
+}
+
+.certStatLabel {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 雇主部分 */
+.employersSection {
+  margin-bottom: 4rem;
+}
+
+.employersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.employerItem {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  color: #002244;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+.employerItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 底部CTA */
+.bottomCTA {
+  background: linear-gradient(135deg, #002244 0%, #004080 100%);
+  padding: 3rem;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+}
+
+.bottomCTA h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.bottomCTA p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primaryButton {
+  padding: 0.8rem 1.5rem;
+  background-color: #ff6b00;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.primaryButton:hover {
+  background-color: #e05c00;
+}
+
+.secondaryButton {
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 576px) {
+  .ctaButtons {
+    flex-direction: column;
+  }
+} 
