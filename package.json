@@ -14,7 +14,7 @@
   "description": "CCIE培训网站，用于展示培训信息和引流",
   "dependencies": {
     "@stagewise-plugins/react": "^0.4.8",
-    "@stagewise/toolbar-next": "^0.4.8",
+    "@stagewise/toolbar": "^0.4.8",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
