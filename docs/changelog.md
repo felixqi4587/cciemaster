@@ -2,6 +2,31 @@
 
 本文档记录CCIE培训网站项目的所有重要变更。
 
+## [0.6.0] - 2024-12-19
+
+### 新增Namecheap Node.js部署支持
+- 创建专用的Node.js服务器配置文件（server.js）
+- 添加Next.js生产环境优化配置（next.config.js）
+- 集成Stagewise AI工具栏开发支持
+- 创建详细的Namecheap Node.js部署文档
+- 提供自动化部署脚本（deploy-namecheap.bat）
+
+### 配置文件更新
+- package.json：添加Node.js引擎要求和生产脚本
+- next.config.js：优化生产环境性能和安全设置
+- server.js：兼容Namecheap环境变量的服务器配置
+- .nvmrc：指定Node.js版本16.20.0
+
+### 开发工具集成
+- 集成@stagewise/toolbar用于AI驱动的浏览器编辑
+- 添加VS Code扩展推荐配置
+- 客户端动态加载，仅在开发模式启用
+
+### 文档完善
+- docs/namecheap_nodejs_deployment.md：详细部署指南
+- 包含性能优化、故障排除、安全建议
+- 提供完整的部署流程和维护指南
+
 ## [0.5.2] - 2024-12-19
 
 ### 修复Vercel部署兼容性问题
