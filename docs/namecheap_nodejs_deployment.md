@@ -1,5 +1,201 @@
 # Namecheap Node.js 部署指南
 
+## ⚠️ 重要：Node.js版本要求
+
+**项目要求：Node.js >= 16.0.0**
+**检查您的Namecheap Node.js版本！**
+
+如果您的Namecheap提供的Node.js版本低于16.0.0，请：
+1. 升级到更高版本的Node.js（推荐）
+2. 或使用兼容配置（见下方说明）
+
+## 📋 部署前准备
+
+### 1. 检查Node.js版本
+
+在Namecheap cPanel中：
+1. 进入 "Node.js应用管理"
+2. 查看可用的Node.js版本
+3. 选择16.0.0或更高版本
+
+### 2. 选择部署配置
+
+#### 方案A：标准配置（Node.js >= 16）
+```bash
+# 使用标准配置文件
+package.json      # 主配置文件
+server.js        # 主启动文件
+```
+
+#### 方案B：兼容配置（Node.js v10-v14）
+```bash
+# 使用兼容配置文件
+package-legacy.json  # 兼容配置文件
+app-legacy.js       # 兼容启动文件
+```
+
+如果使用兼容配置，需要：
+```bash
+# 重命名配置文件
+mv package.json package-standard.json
+mv package-legacy.json package.json
+mv app.js app-standard.js  
+mv app-legacy.js app.js
+```
+
+## 🚀 部署步骤
+
+### 步骤1：构建项目
+```bash
+npm run build
+```
+
+### 步骤2：上传文件
+上传以下文件到Namecheap的public_html目录：
+
+**核心文件（必需）：**
+- `package.json`
+- `app.js` (或选择的启动文件)
+- `.next/` 目录（完整）
+- `public/` 目录
+- `next.config.js`
+
+**配置文件（推荐）：**
+- `.nvmrc`
+- `docs/` 目录
+
+### 步骤3：在Namecheap中配置Node.js应用
+
+1. **登录cPanel**
+2. **进入"Node.js Apps"**
+3. **创建新应用**：
+   - Node.js版本：选择16.0.0+（或兼容版本）
+   - 应用根目录：`public_html`
+   - 应用URL：您的域名
+   - 启动文件：`app.js`
+
+4. **安装依赖**：
+```bash
+npm install --production
+```
+
+5. **启动应用**
+
+### 步骤4：验证部署
+
+检查应用状态：
+- 访问您的域名
+- 查看应用日志
+- 确认所有页面正常加载
+
+## 🔧 故障排除
+
+### 常见问题
+
+#### 1. Node.js版本不兼容
+**症状**：应用启动失败，显示版本错误
+**解决**：
+- 升级Node.js版本，或
+- 使用兼容配置（package-legacy.json + app-legacy.js）
+
+#### 2. 503 服务器错误
+**症状**：网站无法访问
+**解决**：
+- 检查.next目录是否完整上传
+- 重新运行 `npm install --production`
+- 查看应用日志获取详细错误
+
+#### 3. 静态资源加载失败
+**症状**：页面样式异常，图片不显示
+**解决**：
+- 确认public目录已上传
+- 检查next.config.js配置
+- 验证CDN设置
+
+### 调试命令
+
+```bash
+# 查看应用状态
+node app.js
+
+# 查看依赖
+npm list
+
+# 检查配置
+cat package.json
+
+# 查看环境信息
+node -v
+npm -v
+```
+
+## 📊 性能优化
+
+### 1. 启用压缩
+在next.config.js中已配置gzip压缩
+
+### 2. 优化图片
+- 使用WebP格式
+- 压缩图片文件
+- 启用lazy loading
+
+### 3. 缓存策略
+- 静态资源长期缓存
+- API响应适当缓存
+- 使用CDN加速
+
+## 🔒 安全配置
+
+### 安全头部
+已在next.config.js中配置：
+- X-Content-Type-Options
+- X-Frame-Options  
+- X-XSS-Protection
+- Referrer-Policy
+
+### 环境变量
+```bash
+NODE_ENV=production
+PORT=3000
+```
+
+## 📝 维护建议
+
+### 定期任务
+- 监控应用性能
+- 更新依赖包
+- 备份重要数据
+- 检查安全更新
+
+### 日志管理
+- 定期清理日志文件
+- 监控错误日志
+- 设置日志轮转
+
+## 🆘 紧急恢复
+
+如果Node.js部署失败，可以快速回退到静态部署：
+
+```bash
+# 导出静态文件
+npm run export
+
+# 上传out目录内容到public_html
+# 删除Node.js应用配置
+```
+
+## 📞 支持联系
+
+遇到问题？
+1. 查看调试日志
+2. 参考故障排除指南
+3. 联系Namecheap技术支持
+
+---
+
+**最后更新：** 2024年1月
+**适用版本：** Next.js 12.x - 14.x
+
 ## 概述
 本指南详细说明如何将CCIE培训网站部署到Namecheap的Node.js托管服务上。
 

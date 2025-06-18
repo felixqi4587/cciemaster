@@ -8,10 +8,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
+    "start:next": "next start",
     "export": "set BUILD_STATIC=true && next build",
     "export-static": "next build && next export",
-    "production": "NODE_ENV=production node server.js",
+    "production": "NODE_ENV=production node .next/standalone/server.js",
     "postinstall": "next build"
   },
   "keywords": ["ccie", "training", "network", "education"],
