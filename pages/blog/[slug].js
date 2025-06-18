@@ -214,7 +214,7 @@ export default function BlogPost() {
   
   // 获取相关文章
   const relatedArticles = post.relatedPosts
-    ? post.relatedPosts.map(relatedSlug => blogPosts[relatedSlug])
+    ? post.relatedPosts.map(relatedSlug => blogPosts[relatedSlug]).filter(Boolean)
     : [];
   
   return (
@@ -325,22 +325,26 @@ export default function BlogPost() {
             <div className={styles.relatedPosts}>
               <h2>相关文章</h2>
               <div className={styles.relatedGrid}>
-                {relatedArticles.map(related => (
-                  <div className={styles.relatedCard} key={related.title}>
-                    <Link href={`/blog/${post.relatedPosts[relatedArticles.indexOf(related)]}`}>
-                      <div className={styles.relatedImageContainer}>
-                        <img src={related.image} alt={related.title} />
-                      </div>
-                      <div className={styles.relatedContent}>
-                        <h3>{related.title}</h3>
-                        <div className={styles.relatedMeta}>
-                          <span>{related.date}</span>
-                          <span>{related.readTime}阅读</span>
+                {relatedArticles.map((related, index) => {
+                  if (!related || !related.image || !related.title) return null;
+                  const originalSlug = post.relatedPosts[post.relatedPosts.findIndex(slug => blogPosts[slug] === related)];
+                  return (
+                    <div className={styles.relatedCard} key={related.title}>
+                      <Link href={`/blog/${originalSlug}`}>
+                        <div className={styles.relatedImageContainer}>
+                          <img src={related.image} alt={related.title} />
                         </div>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                        <div className={styles.relatedContent}>
+                          <h3>{related.title}</h3>
+                          <div className={styles.relatedMeta}>
+                            <span>{related.date}</span>
+                            <span>{related.readTime}阅读</span>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
