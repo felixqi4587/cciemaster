@@ -55,8 +55,8 @@ const nextConfig = {
     ];
   },
   
-  // 输出配置
-  output: 'standalone', // 为Node.js部署优化
+  // 输出配置 - 支持静态导出和Node.js部署
+  output: 'standalone', // 默认Node.js部署，需要静态时手动改为'export'
   
   // 实验性功能
   experimental: {

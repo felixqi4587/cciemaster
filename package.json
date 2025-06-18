@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "set BUILD_STATIC=true && next build",
+    "export-static": "next build && next export",
     "production": "NODE_ENV=production node server.js",
     "postinstall": "next build"
   },
