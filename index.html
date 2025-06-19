@@ -812,6 +812,147 @@
             animation-play-state: paused;
         }
 
+        /* Social Proof & Urgency Section */
+        .social-proof-section {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            padding: 60px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-proof-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="urgency-dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23urgency-dots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .social-proof-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .urgency-banner {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius-large);
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-xl);
+            border: 2px solid #FF6B6B;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .urgency-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .urgency-icon {
+            font-size: 48px;
+            animation: flash 1.5s infinite;
+        }
+
+        @keyframes flash {
+            0%, 50% { opacity: 1; }
+            25%, 75% { opacity: 0.5; }
+        }
+
+        .urgency-text h3 {
+            font-size: 28px;
+            font-weight: var(--font-weight-bold);
+            color: #FF6B6B;
+            margin-bottom: 8px;
+        }
+
+        .urgency-text p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+        }
+
+        #spotsLeft, #countdown {
+            color: #FF6B6B;
+            font-weight: var(--font-weight-bold);
+            font-size: 18px;
+        }
+
+        .urgency-btn {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 16px 32px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: var(--font-weight-bold);
+            font-size: 18px;
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            to { box-shadow: 0 0 30px rgba(255, 107, 107, 0.8); }
+        }
+
+        .urgency-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .trust-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .trust-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .trust-item:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .trust-icon {
+            font-size: 32px;
+            min-width: 40px;
+        }
+
+        .trust-text h4 {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .trust-text p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 120px 32px;
@@ -892,6 +1033,61 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /* Social Proof Notifications */
+        .social-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #34C759, #30D158);
+            color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            animation: slideIn 0.5s ease-out;
+            max-width: 350px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+            min-width: 24px;
+        }
+
+        .notification-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .notification-close {
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav {
@@ -911,6 +1107,7 @@
             .courses,
             .testimonials,
             .recent-success-section,
+            .social-proof-section,
             .cta-section {
                 padding: 80px 20px;
             }
@@ -966,6 +1163,29 @@
 
             .success-info {
                 padding: 20px;
+            }
+
+            /* Social Proof Mobile */
+            .urgency-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .urgency-text h3 {
+                font-size: 24px;
+            }
+
+            .trust-indicators {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .social-notification {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                bottom: 10px;
             }
         }
 
@@ -1053,6 +1273,80 @@
                 <div class="stat-item">
                     <div class="stat-number">Exclusive</div>
                     <div class="stat-label">Exam Materials</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Success Stories Section -->
+    <section class="recent-success-section">
+        <div class="recent-success-container">
+            <div class="section-header">
+                <h2 class="section-title">🎉 Latest CCIE Passes This Week</h2>
+                <p class="section-description">
+                    Fresh success stories! Our students continue to achieve their CCIE dreams every week.
+                </p>
+            </div>
+            
+            <div class="success-carousel">
+                <div class="success-track" id="successTrack">
+                    <!-- Success cards will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="scrollCarousel(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof & Urgency Section -->
+    <section class="social-proof-section">
+        <div class="social-proof-container">
+            <div class="urgency-banner">
+                <div class="urgency-content">
+                    <div class="urgency-icon">⚡</div>
+                    <div class="urgency-text">
+                        <h3>Limited Time: 95% Pass Rate Special</h3>
+                        <p>Only <span id="spotsLeft">7</span> spots remaining this month • Next batch starts in <span id="countdown">15 days</span></p>
+                    </div>
+                    <a href="/contact/" class="urgency-btn">Secure Your Spot Now</a>
+                </div>
+            </div>
+            
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <div class="trust-icon">🏆</div>
+                    <div class="trust-text">
+                        <h4>Industry Leader</h4>
+                        <p>Trusted by Fortune 500 companies</p>
+                    </div>
+                </div>
+                <div class="trust-item" data-guarantee>
+                    <div class="trust-icon">🔒</div>
+                    <div class="trust-text">
+                        <h4>Money-Back Guarantee</h4>
+                        <p>100% refund if you don't pass</p>
+                    </div>
+                </div>
+                <div class="trust-item" data-guarantee>
+                    <div class="trust-icon">⚡</div>
+                    <div class="trust-text">
+                        <h4>Fast Track Success</h4>
+                        <p>Average 3-month completion</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">👥</div>
+                    <div class="trust-text">
+                        <h4>Expert Mentors</h4>
+                        <p>CCIE-certified instructors only</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1358,33 +1652,6 @@
         </div>
     </section>
 
-    <!-- Recent Success Stories Section -->
-    <section class="recent-success-section">
-        <div class="recent-success-container">
-            <div class="section-header">
-                <h2 class="section-title">🎉 Latest CCIE Passes This Week</h2>
-                <p class="section-description">
-                    Fresh success stories! Our students continue to achieve their CCIE dreams every week.
-                </p>
-            </div>
-            
-            <div class="success-carousel">
-                <div class="success-track" id="successTrack">
-                    <!-- Success cards will be dynamically generated here -->
-                </div>
-            </div>
-            
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next" onclick="scrollCarousel(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-container">
@@ -1661,10 +1928,116 @@
             }
         });
 
+        // Urgency and scarcity psychology functions
+        function initUrgencyElements() {
+            // Dynamic spots countdown (scarcity principle)
+            const spotsElement = document.getElementById('spotsLeft');
+            if (spotsElement) {
+                const baseSpots = 7;
+                const variation = Math.floor(Math.random() * 3); // 0-2
+                const currentSpots = Math.max(3, baseSpots - variation);
+                spotsElement.textContent = currentSpots;
+                
+                // Decrease spots every 10 minutes to create urgency
+                setInterval(() => {
+                    const current = parseInt(spotsElement.textContent);
+                    if (current > 2) {
+                        spotsElement.textContent = current - 1;
+                        // Flash effect when spots decrease
+                        spotsElement.style.animation = 'flash 0.5s ease-in-out 3';
+                    }
+                }, 600000); // 10 minutes
+            }
+            
+            // Dynamic countdown timer (urgency principle)
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                function updateCountdown() {
+                    const now = new Date();
+                    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+                    const timeLeft = nextMonth - now;
+                    
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    
+                    if (days > 0) {
+                        countdownElement.textContent = `${days} days`;
+                    } else {
+                        countdownElement.textContent = `${hours} hours`;
+                    }
+                }
+                
+                updateCountdown();
+                setInterval(updateCountdown, 3600000); // Update every hour
+            }
+        }
+
+        // Social proof enhancement
+        function enhanceSocialProof() {
+            // Add viewing activity notifications (social proof)
+            const notifications = [
+                "John from California just enrolled in CCIE Enterprise Infrastructure",
+                "Sarah from Texas passed her CCIE Security exam today",
+                "Mike from New York secured his spot in the next batch",
+                "Lisa from Florida just started her CCDE training",
+                "David from Arizona completed his lab practice session"
+            ];
+            
+            let notificationIndex = 0;
+            
+            function showNotification() {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = 'social-notification';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <div class="notification-icon">👤</div>
+                        <div class="notification-text">${notifications[notificationIndex]}</div>
+                        <div class="notification-close" onclick="this.parentElement.parentElement.remove()">×</div>
+                    </div>
+                `;
+                
+                // Add to page
+                document.body.appendChild(notification);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+                
+                notificationIndex = (notificationIndex + 1) % notifications.length;
+            }
+            
+            // Show first notification after 10 seconds, then every 30 seconds
+            setTimeout(showNotification, 10000);
+            setInterval(showNotification, 30000);
+        }
+
+        // Risk reversal psychology (guarantee emphasis)
+        function emphasizeGuarantee() {
+            const guaranteeElements = document.querySelectorAll('[data-guarantee]');
+            guaranteeElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 8px 25px rgba(52, 199, 89, 0.3)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initSuccessCarousel();
             updateSuccessStories();
+            initUrgencyElements();
+            enhanceSocialProof();
+            emphasizeGuarantee();
         });
     </script>
 </body>
