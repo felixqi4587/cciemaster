@@ -1,21 +1,40 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 生产环境优化
-  compress: true,
-  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
   
-  // 图片优化配置
-  images: {
-    domains: [],
-    unoptimized: true, // Namecheap共享主机可能不支持图片优化
+  // 根据环境变量决定是否使用静态导出
+  output: process.env.BUILD_STATIC === 'true' ? 'export' : 'standalone',
+  
+  // 静态导出配置
+  ...(process.env.BUILD_STATIC === 'true' && {
+    trailingSlash: true,
+    images: {
+      unoptimized: true
+    },
+    // 禁用不支持静态导出的功能
+    experimental: {
+      appDir: false
+    }
+  }),
+  
+  // 生产环境优化
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
   },
   
-  // 静态文件导出配置（备用方案）
-  trailingSlash: true,
+  // 图片域名配置
+  images: {
+    domains: ['cciemaster.com'],
+    ...(process.env.BUILD_STATIC === 'true' && { unoptimized: true })
+  },
   
-  // 环境变量配置
+  // 压缩配置
+  compress: true,
+  
+  // 环境变量
   env: {
-    CUSTOM_KEY: 'CCIE_TRAINING_SITE',
+    CUSTOM_KEY: 'cciemaster',
   },
   
   // 头部安全配置
@@ -54,9 +73,6 @@ const nextConfig = {
       // 可以在这里添加URL重写规则
     ];
   },
-  
-  // 输出配置 - 支持静态导出和Node.js部署
-  output: 'standalone', // 默认Node.js部署，需要静态时手动改为'export'
   
   // 实验性功能
   experimental: {

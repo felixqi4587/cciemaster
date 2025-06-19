@@ -1,118 +1,126 @@
 @echo off
-echo ===================================
-echo CCIE培训网站 - Namecheap部署脚本
-echo ===================================
-echo.
+chcp 65001 >nul
+setlocal enabledelayedexpansion
 
-REM 检查配置文件
-if not exist deploy-config.txt (
-  echo 配置文件不存在，正在创建...
-  echo ftp_server=您的FTP服务器地址 > deploy-config.txt
-  echo ftp_username=您的FTP用户名 >> deploy-config.txt
-  echo ftp_password=您的FTP密码 >> deploy-config.txt
-  echo ftp_directory=/public_html/ >> deploy-config.txt
-  echo.
-  echo 请编辑 deploy-config.txt 文件，填入您的FTP信息，然后重新运行此脚本。
-  echo.
-  pause
-  exit /b
+echo 🚀 CCIE培训网站 - Namecheap部署工具
+echo ================================
+
+rem 检查Node.js环境
+where node >nul 2>nul
+if errorlevel 1 (
+    echo ❌ 请先安装Node.js
+    pause
+    exit /b 1
 )
 
-REM 读取配置信息
-for /f "tokens=1,* delims==" %%a in (deploy-config.txt) do (
-  if "%%a"=="ftp_server" set FTP_SERVER=%%b
-  if "%%a"=="ftp_username" set FTP_USERNAME=%%b
-  if "%%a"=="ftp_password" set FTP_PASSWORD=%%b
-  if "%%a"=="ftp_directory" set FTP_DIRECTORY=%%b
+rem 检查npm
+where npm >nul 2>nul
+if errorlevel 1 (
+    echo ❌ 请先安装npm
+    pause
+    exit /b 1
 )
 
-echo 正在使用以下配置:
-echo 服务器: %FTP_SERVER%
-echo 用户名: %FTP_USERNAME%
-echo 目录: %FTP_DIRECTORY%
-echo.
-
-REM 询问是否继续
-set /p CONTINUE=是否继续部署? (Y/N): 
-if /i "%CONTINUE%" neq "Y" (
-  echo 部署已取消。
-  pause
-  exit /b
-)
-
-echo.
-echo 步骤 1: 安装依赖
+rem 安装依赖
+echo 📦 安装依赖...
 call npm install
-if %errorlevel% neq 0 (
-  echo 安装依赖失败！
-  pause
-  exit /b
+if errorlevel 1 (
+    echo ❌ 依赖安装失败
+    pause
+    exit /b 1
 )
 
+rem 选择部署方式
 echo.
-echo 步骤 2: 构建项目
-call npm run build
-if %errorlevel% neq 0 (
-  echo 构建项目失败！
-  pause
-  exit /b
+echo 请选择部署方式：
+echo 1) 静态站点部署 (推荐，最稳定)
+echo 2) FTP自动上传
+echo 3) 生成压缩包手动上传
+echo 4) 本地预览
+echo.
+
+set /p choice="请输入选择 (1-4): "
+
+if "%choice%"=="1" goto static_deploy
+if "%choice%"=="2" goto ftp_deploy
+if "%choice%"=="3" goto zip_deploy
+if "%choice%"=="4" goto local_preview
+goto invalid_choice
+
+:static_deploy
+echo 🏗️ 构建静态站点...
+call npm run build:static
+if errorlevel 1 (
+    echo ❌ 构建失败
+    pause
+    exit /b 1
 )
 
+echo ✅ 静态站点构建完成！
+echo 📁 文件位置: .\out\
+echo 📋 请手动上传 'out' 目录中的所有文件到Namecheap的 public_html 目录
 echo.
-echo 步骤 3: 导出静态文件
-call npm run export
-if %errorlevel% neq 0 (
-  echo 导出静态文件失败！
-  pause
-  exit /b
+echo 💡 上传步骤：
+echo 1. 登录Namecheap cPanel
+echo 2. 进入文件管理器
+echo 3. 进入 public_html 目录
+echo 4. 上传 out 目录中的所有文件
+echo 5. 等待上传完成
+echo.
+echo 📂 正在打开输出目录...
+start "" "out"
+goto end
+
+:ftp_deploy
+echo 📡 FTP自动上传...
+call npm run deploy:namecheap
+goto end
+
+:zip_deploy
+echo 📦 生成部署压缩包...
+call npm run build:static
+if errorlevel 1 (
+    echo ❌ 构建失败
+    pause
+    exit /b 1
 )
 
-echo.
-echo 步骤 4: 创建.htaccess文件
-echo Options -MultiViews > .\out\.htaccess
-echo RewriteEngine On >> .\out\.htaccess
-echo RewriteCond %%{REQUEST_FILENAME} !-f >> .\out\.htaccess
-echo RewriteCond %%{REQUEST_FILENAME} !-d >> .\out\.htaccess
-echo RewriteRule ^ index.html [QSA,L] >> .\out\.htaccess
-
-echo.
-echo 步骤 5: 通过FTP上传文件
-echo 将文件上传到 %FTP_SERVER%%FTP_DIRECTORY%
-
-REM 使用WinSCP脚本进行上传
-echo option batch abort > winscp_script.txt
-echo option confirm off >> winscp_script.txt
-echo open ftp://%FTP_USERNAME%:%FTP_PASSWORD%@%FTP_SERVER% >> winscp_script.txt
-echo lcd .\out >> winscp_script.txt
-echo cd %FTP_DIRECTORY% >> winscp_script.txt
-echo synchronize remote >> winscp_script.txt
-echo exit >> winscp_script.txt
-
-REM 检查是否安装了WinSCP
-where winscp.com >nul 2>nul
-if %errorlevel% neq 0 (
-  echo 无法找到WinSCP。请确保WinSCP已安装并添加到PATH环境变量中。
-  echo 或者可以手动使用FTP客户端上传out目录中的文件。
-  echo.
-  echo out目录已准备好，可以使用您喜欢的FTP客户端手动上传。
+echo 🗜️ 创建压缩包...
+cd out
+where powershell >nul 2>nul
+if not errorlevel 1 (
+    powershell -command "Compress-Archive -Path * -DestinationPath ..\cciemaster-deploy.zip -Force"
+    echo ✅ 压缩包已创建: cciemaster-deploy.zip
 ) else (
-  winscp.com /script=winscp_script.txt
-  echo.
-  if %errorlevel% equ 0 (
-    echo 部署成功完成！
-  ) else (
-    echo 上传过程中出现错误，请检查FTP凭据和连接。
-  )
-  del winscp_script.txt
+    echo ⚠️ 未找到PowerShell，请手动压缩 out 目录
+)
+cd ..
+echo 📋 请上传压缩包到Namecheap并解压到 public_html 目录
+goto end
+
+:local_preview
+echo 🌐 启动本地预览...
+call npm run build:static
+if errorlevel 1 (
+    echo ❌ 构建失败
+    pause
+    exit /b 1
 )
 
-echo.
-echo 记录部署日志...
-echo ## 部署记录 >> docs\deployment_log.md
-echo - 日期: %date% %time% >> docs\deployment_log.md
-echo - 类型: 手动部署 >> docs\deployment_log.md
-echo. >> docs\deployment_log.md
+echo ✅ 静态站点已构建
+echo 🌐 正在打开预览...
+start "" "out\index.html"
+goto end
 
+:invalid_choice
+echo ❌ 无效选择
+pause
+exit /b 1
+
+:end
 echo.
-echo 部署过程完成。
+echo 🎉 部署完成！
+echo 🌐 网站地址: https://yourdomain.com
+echo.
+echo 📚 部署说明文档: docs/namecheap_deployment.md
 pause 

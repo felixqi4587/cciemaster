@@ -10,12 +10,20 @@
     "build": "next build",
     "start": "node .next/standalone/server.js",
     "start:next": "next start",
-    "export": "set BUILD_STATIC=true && next build",
-    "export-static": "next build && next export",
+    "build:static": "set BUILD_STATIC=true && next build",
+    "build:static-unix": "BUILD_STATIC=true next build",
+    "export": "npm run build:static && next export",
+    "deploy:namecheap": "npm run build:static && node deploy-namecheap.js",
+    "deploy:static": "npm run build:static",
     "production": "NODE_ENV=production node .next/standalone/server.js",
     "postinstall": "next build"
   },
-  "keywords": ["ccie", "training", "network", "education"],
+  "keywords": [
+    "ccie",
+    "training",
+    "network",
+    "education"
+  ],
   "author": "CCIE培训中心",
   "license": "ISC",
   "description": "CCIE培训网站，用于展示培训信息和引流",
@@ -25,5 +33,9 @@
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "ftp": "^0.3.10",
+    "node-ssh": "^13.2.1"
   }
 }

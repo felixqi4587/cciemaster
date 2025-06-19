@@ -1,158 +1,217 @@
-# CCIE培训网站 Namecheap 部署指南
+# Namecheap部署指南
 
-## 简介
+## 概述
 
-本文档介绍如何将CCIE培训网站部署到Namecheap共享主机上，包括手动部署和自动化部署两种方式。
+本文档详细说明如何将CCIE培训网站部署到Namecheap共享主机上。提供多种部署方案以应对不同的技术环境。
 
-## 前提条件
+## 推荐部署方案
 
-- Namecheap 共享主机账户
-- FTP访问凭证
-- Node.js和npm安装在本地开发环境
-- Git和GitHub账户
+### 方案1: 静态站点部署 ⭐⭐⭐⭐⭐ (强烈推荐)
 
-## 手动部署步骤
+这是最稳定、兼容性最好的部署方案。
 
-### 1. 构建生产版本
+#### 特点：
+- ✅ 无需Node.js运行时环境
+- ✅ 加载速度快
+- ✅ 兼容所有共享主机
+- ✅ 安全性高
+- ✅ 维护成本低
 
+#### 部署步骤：
+
+1. **本地构建**
+   ```bash
+   # Windows
+   npm run build:static
+   
+   # macOS/Linux
+   npm run build:static-unix
+   ```
+
+2. **上传文件**
+   - 登录Namecheap cPanel
+   - 进入"文件管理器"
+   - 进入 `public_html` 目录
+   - 上传 `out` 目录中的所有文件
+
+3. **验证部署**
+   - 访问您的域名检查网站是否正常
+
+#### 自动化脚本：
 ```bash
-# 安装依赖
-npm install
+# Windows
+./deploy.bat
 
-# 构建生产版本
-npm run build
-
-# 导出静态网站
-npm run export
+# macOS/Linux
+chmod +x deploy.sh
+./deploy.sh
 ```
 
-构建完成后，将在`out`目录生成静态网站文件。
+### 方案2: FTP自动上传 ⭐⭐⭐⭐
 
-### 2. 通过FTP上传
+适合需要频繁更新的情况。
 
-使用任意FTP客户端(如FileZilla)，将`out`目录中的所有文件上传到Namecheap主机的网站根目录。
+#### 配置FTP信息：
 
-- 主机: ftp.yourdomain.com
-- 用户名: 你的Namecheap FTP用户名
-- 密码: 你的Namecheap FTP密码
-- 端口: 21
+1. 复制配置文件：
+   ```bash
+   cp deploy-namecheap-config.example.js deploy-namecheap-config.js
+   ```
 
-## 自动部署设置
+2. 编辑 `deploy-namecheap-config.js`：
+   ```javascript
+   module.exports = {
+     ftp: {
+       host: 'ftp.yourdomain.com',
+       user: 'your-ftp-username',
+       password: 'your-ftp-password',
+       remotePath: '/public_html'
+     }
+   };
+   ```
 
-为了简化部署流程，我们可以设置GitHub Actions来自动构建和部署网站。
+3. 运行部署：
+   ```bash
+   npm run deploy:namecheap
+   ```
 
-### 1. 配置FTP部署密钥
+### 方案3: 压缩包上传 ⭐⭐⭐
 
-在GitHub仓库中，导航到 Settings > Secrets > Actions，添加以下密钥:
+适合网络不稳定或大文件上传的情况。
 
-- `FTP_SERVER`: 你的FTP服务器地址
-- `FTP_USERNAME`: 你的FTP用户名
-- `FTP_PASSWORD`: 你的FTP密码
-- `FTP_DIRECTORY`: 目标目录 (通常是 `/public_html/` 或根据你的Namecheap设置)
+#### 步骤：
+1. 生成压缩包：
+   ```bash
+   npm run build:static
+   ```
 
-### 2. 创建GitHub Actions配置文件
+2. 创建压缩包（自动或手动）
 
-在项目根目录创建 `.github/workflows/deploy.yml` 文件:
+3. 上传并解压到 `public_html`
 
-```yaml
-name: Deploy to Namecheap
+## Namecheap cPanel操作指南
 
-on:
-  push:
-    branches: [ main ]
+### 1. 登录cPanel
+- 访问：`https://cpanel.yourdomain.com`
+- 或通过Namecheap账户面板进入
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+### 2. 文件管理器操作
+1. 点击"文件管理器"
+2. 进入 `public_html` 目录
+3. 清空现有文件（如有）
+4. 上传新文件
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: 'npm'
+### 3. 域名设置
+- 确保域名正确指向主机
+- 检查DNS设置
+- 可能需要等待DNS传播（最多48小时）
 
-      - name: Install dependencies
-        run: npm ci
+## 问题排查
 
-      - name: Build
-        run: npm run build
+### 常见问题：
 
-      - name: Export static files
-        run: npm run export
+#### 1. Node.js部署失败
+**原因**：Namecheap共享主机通常不支持Node.js或版本太低
+**解决**：使用静态站点部署
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: ${{ secrets.FTP_DIRECTORY }}
-          dangerous-clean-slate: true
+#### 2. 上传后网站显示404
+**原因**：文件路径不正确
+**解决**：
+- 确保文件在 `public_html` 根目录
+- 检查 `index.html` 是否存在
+- 检查文件权限（通常设为644）
+
+#### 3. 样式或图片不显示
+**原因**：路径问题或文件损坏
+**解决**：
+- 重新上传丢失的文件
+- 检查 `.htaccess` 文件配置
+- 清除浏览器缓存
+
+#### 4. FTP上传失败
+**原因**：FTP配置错误或网络问题
+**解决**：
+- 检查FTP凭据
+- 尝试使用SFTP（端口22）
+- 联系Namecheap支持
+
+### .htaccess配置
+
+创建 `.htaccess` 文件（如果需要）：
+```apache
+# 启用Gzip压缩
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# 缓存设置
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+</IfModule>
+
+# 单页应用路由支持
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [QSA,L]
 ```
 
-### 3. 添加导出脚本
+## 性能优化建议
 
-在 `package.json` 文件中添加 export 脚本:
+1. **图片优化**
+   - 使用WebP格式
+   - 压缩图片文件
+   - 使用适当的尺寸
 
-```json
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "export": "next export"
-}
-```
+2. **代码优化**
+   - 启用代码压缩
+   - 移除开发依赖
+   - 使用CDN加速
 
-### 4. 启用GitHub Actions
+3. **缓存策略**
+   - 配置正确的缓存头
+   - 使用浏览器缓存
+   - 启用Gzip压缩
 
-将上述更改推送到GitHub主分支，GitHub Actions将自动运行部署流程。
+## 更新流程
 
-```bash
-git add .
-git commit -m "添加自动部署配置"
-git push origin main
-```
+1. **本地开发和测试**
+2. **构建静态文件**
+3. **备份现有网站**（可选）
+4. **上传新文件**
+5. **测试验证**
 
-## 部署验证
+## 备份策略
 
-1. 检查GitHub仓库中的Actions标签页，查看工作流是否成功运行
-2. 访问你的网站(如 https://yourdomain.com)验证部署是否成功
-3. 检查所有页面是否正常工作，特别是表单提交功能
+建议定期备份：
+- 网站文件
+- 数据库（如有）
+- 配置文件
 
-## 故障排除
+## 支持联系方式
 
-如果部署过程中遇到问题:
+如果遇到问题：
+1. 查看本文档的问题排查部分
+2. 联系Namecheap技术支持
+3. 查看项目的GitHub Issues
 
-1. 检查GitHub Actions日志以查看详细错误信息
-2. 确认FTP凭证是否正确
-3. 检查Namecheap主机设置，确保支持所需的文件类型
-4. 联系Namecheap支持以获取更多帮助
+---
 
-## 更新网站
-
-对网站进行更改后，只需将更改推送到GitHub主分支，自动部署将处理其余工作:
-
-```bash
-git add .
-git commit -m "更新网站内容"
-git push origin main
-```
-
-GitHub Actions会自动构建新版本并部署到Namecheap主机。
-
-## 安全注意事项
-
-- 永远不要在代码中硬编码FTP凭证
-- 定期更新GitHub Actions依赖
-- 考虑在生产环境中实施内容安全策略(CSP)
-- 为Namecheap账户启用两因素认证
-
-## 资源链接
-
-- [Namecheap帮助中心](https://www.namecheap.com/support/)
-- [Next.js静态导出文档](https://nextjs.org/docs/advanced-features/static-html-export)
-- [cPanel用户指南](https://docs.cpanel.net/cpanel/) 
+**最后更新**: {当前日期}
+**版本**: 1.0
+**状态**: 生产就绪 
