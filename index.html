@@ -1553,31 +1553,6 @@
 
                 <div class="course-card">
                     <div class="course-header">
-                        <div class="course-level">Service Provider</div>
-                        <h3 class="course-title">CCIE Service Provider</h3>
-                        <p class="course-subtitle">SP technologies & BGP mastery</p>
-                    </div>
-                    <div class="course-body">
-                        <ul class="course-features">
-                            <li><i class="fas fa-check"></i> 180+ hours of SP content</li>
-                            <li><i class="fas fa-check"></i> 45+ BGP & MPLS labs</li>
-                            <li><i class="fas fa-check"></i> Real SP scenarios</li>
-                            <li><i class="fas fa-check"></i> Exclusive exam materials</li>
-                            <li><i class="fas fa-check"></i> 95% pass guarantee</li>
-                        </ul>
-                        <div class="course-price">
-                            <span class="price-amount">$3,499</span>
-                            <span class="price-period">one-time payment</span>
-                            <span class="price-save">Save $1,000</span>
-                        </div>
-                        <a href="/courses/" class="btn-primary" style="width: 100%;">
-                            Start Training
-                        </a>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-header">
                         <div class="course-level">Expert Level</div>
                         <h3 class="course-title">CCDE Design Expert</h3>
                         <p class="course-subtitle">Network design mastery</p>
@@ -1753,11 +1728,11 @@
         // Success Stories Data Generator
         const ccieTrackNames = [
             "Enterprise Infrastructure", "Security", "Data Center", "Collaboration", 
-            "Service Provider", "Wireless", "Enterprise Wireless"
+            "Service Provider", "Enterprise Wireless"
         ];
 
-        const ccdeTrackNames = [
-            "CCDE Design Expert"
+        const expertTrackNames = [
+            "CCDE Design Expert", "DevNet Expert"
         ];
 
         const studentNames = [
@@ -1791,10 +1766,10 @@
                 const daysAgo = Math.floor(Math.random() * 7);
                 const passDate = new Date(now - daysAgo * 24 * 60 * 60 * 1000);
                 
-                // Mix CCIE and CCDE certifications
-                const allTracks = [...ccieTrackNames, ...ccdeTrackNames];
+                // Mix CCIE and Expert certifications
+                const allTracks = [...ccieTrackNames, ...expertTrackNames];
                 const selectedTrack = allTracks[Math.floor(Math.random() * allTracks.length)];
-                const isCCDE = ccdeTrackNames.includes(selectedTrack);
+                const isExpert = expertTrackNames.includes(selectedTrack);
                 
                 const story = {
                     name: studentNames[Math.floor(Math.random() * studentNames.length)],
@@ -1808,7 +1783,7 @@
                     quote: quotes[Math.floor(Math.random() * quotes.length)],
                     attempts: 1, // Always first attempt (95% success rate)
                     studyMonths: Math.floor(Math.random() * 2) + 2, // 2-3 months
-                    certType: isCCDE ? 'CCDE' : 'CCIE'
+                    certType: isExpert ? (selectedTrack.includes('CCDE') ? 'CCDE' : 'DevNet Expert') : 'CCIE'
                 };
                 stories.push(story);
             }
@@ -1992,9 +1967,16 @@
             const notifications = [
                 "John from California just enrolled in CCIE Enterprise Infrastructure",
                 "Sarah from Texas passed her CCIE Security exam today",
-                "Mike from New York secured his spot in the next batch",
-                "Lisa from Florida just started her CCDE training",
-                "David from Arizona completed his lab practice session"
+                "Mike from New York secured his spot in CCIE Data Center",
+                "Lisa from Florida just started her CCDE Design Expert training",
+                "David from Arizona completed his CCIE Collaboration lab practice",
+                "Emma from Seattle passed her CCIE Service Provider exam",
+                "Alex from Chicago enrolled in CCIE Enterprise Wireless",
+                "Maria from Miami started her DevNet Expert certification",
+                "Kevin from Boston just passed CCIE Enterprise Infrastructure",
+                "Jennifer from Denver completed her CCIE Security training",
+                "Robert from Phoenix secured his CCDE Design Expert spot",
+                "Amanda from Portland passed her DevNet Expert exam"
             ];
             
             let notificationIndex = 0;
