@@ -586,31 +586,38 @@
         .footer {
             background: var(--color-background-dark);
             color: var(--color-text-light);
-            padding: 60px 32px 32px;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 48px 32px 24px;
             text-align: center;
         }
 
-        .footer-content {
-            margin-bottom: 32px;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 24px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 16px;
+            color: var(--color-primary-light);
+        }
+
+        .footer-content h3 i {
+            margin-right: 8px;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 32px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--color-text-light);
             text-decoration: none;
-            font-size: 14px;
+            font-weight: var(--font-weight-medium);
             transition: var(--transition-fast);
         }
 
@@ -621,8 +628,85 @@
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 24px;
-            color: rgba(255, 255, 255, 0.6);
             font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* WhatsApp Modal */
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .whatsapp-modal-content {
+            background-color: var(--color-background);
+            margin: 5% auto;
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+        }
+
+        .whatsapp-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .whatsapp-modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .whatsapp-modal h3 {
+            color: #25D366;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        .whatsapp-modal img {
+            width: 250px;
+            height: 250px;
+            border-radius: var(--border-radius);
+            margin: 16px 0;
+            border: 3px solid var(--color-border);
+        }
+
+        .whatsapp-modal-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            transition: var(--transition-fast);
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+            transform: translateY(-1px);
         }
 
         /* Responsive Design */
@@ -752,6 +836,21 @@
                             <h3>Email Support</h3>
                             <p><a href="mailto:cciemasternode@gmail.com">cciemasternode@gmail.com</a></p>
                             <p>Best for detailed questions and course inquiries</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon" style="color: #25D366;">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp Support</h3>
+                            <p><a href="https://wa.me/16034861896" target="_blank" style="color: #25D366; font-weight: var(--font-weight-semibold);">+1 (603) 486-1896</a></p>
+                            <p>Instant messaging and voice calls available</p>
+                            <div style="margin-top: 12px;">
+                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code" style="width: 120px; height: 120px; border-radius: var(--border-radius); border: 2px solid var(--color-border); cursor: pointer;" onclick="openWhatsAppModal()">
+                                <p style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 4px;">Scan QR code to chat</p>
+                            </div>
                         </div>
                     </div>
 
@@ -971,6 +1070,26 @@
         </div>
     </section>
 
+    <!-- WhatsApp QR Code Modal -->
+    <div id="whatsappModal" class="whatsapp-modal">
+        <div class="whatsapp-modal-content">
+            <span class="whatsapp-modal-close" onclick="closeWhatsAppModal()">&times;</span>
+            <h3><i class="fab fa-whatsapp"></i> WhatsApp Contact</h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: 16px;">
+                Scan the QR code with your phone to start chatting with us on WhatsApp
+            </p>
+            <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code">
+            <p style="color: var(--color-text-secondary); font-size: 14px; margin: 16px 0;">
+                Or click the button below to open WhatsApp directly
+            </p>
+            <div class="whatsapp-modal-buttons">
+                <a href="https://wa.me/16034861896" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Open WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -1069,6 +1188,32 @@
             input.addEventListener('focus', function() {
                 this.style.borderColor = 'var(--color-primary)';
             });
+        });
+
+        // WhatsApp Modal Functions
+        function openWhatsAppModal() {
+            document.getElementById('whatsappModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsappModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('whatsappModal');
+            if (event.target === modal) {
+                closeWhatsAppModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeWhatsAppModal();
+            }
         });
     </script>
 </body>
