@@ -1729,18 +1729,59 @@
             // Dynamic spots countdown (scarcity principle)
             const spotsElement = document.getElementById('spotsLeft');
             if (spotsElement) {
-                const baseSpots = 7;
-                const variation = Math.floor(Math.random() * 3); // 0-2
-                const currentSpots = Math.max(3, baseSpots - variation);
-                spotsElement.textContent = currentSpots;
+                // Get or initialize persistent spots count
+                const today = new Date().toDateString();
+                const storedData = localStorage.getItem('spotsData');
+                let spotsData;
                 
-                // Decrease spots every 10 minutes to create urgency
-                setInterval(() => {
-                    const current = parseInt(spotsElement.textContent);
-                    if (current > 2) {
-                        spotsElement.textContent = current - 1;
+                if (storedData) {
+                    spotsData = JSON.parse(storedData);
+                    // Reset if it's a new month
+                    const lastUpdate = new Date(spotsData.lastUpdate);
+                    const now = new Date();
+                    if (lastUpdate.getMonth() !== now.getMonth() || lastUpdate.getFullYear() !== now.getFullYear()) {
+                        spotsData = {
+                            count: Math.floor(Math.random() * 3) + 5, // 5-7
+                            lastUpdate: now.toISOString(),
+                            lastDecrease: now.toISOString()
+                        };
                     }
-                }, 600000); // 10 minutes
+                } else {
+                    spotsData = {
+                        count: Math.floor(Math.random() * 3) + 5, // 5-7
+                        lastUpdate: new Date().toISOString(),
+                        lastDecrease: new Date().toISOString()
+                    };
+                }
+                
+                // Check if we need to decrease spots (every 30 minutes in reality)
+                const lastDecrease = new Date(spotsData.lastDecrease);
+                const now = new Date();
+                const timeSinceDecrease = now - lastDecrease;
+                const decreaseInterval = 30 * 60 * 1000; // 30 minutes
+                
+                if (timeSinceDecrease >= decreaseInterval && spotsData.count > 2) {
+                    const decreases = Math.floor(timeSinceDecrease / decreaseInterval);
+                    spotsData.count = Math.max(2, spotsData.count - decreases);
+                    spotsData.lastDecrease = now.toISOString();
+                }
+                
+                spotsElement.textContent = spotsData.count;
+                localStorage.setItem('spotsData', JSON.stringify(spotsData));
+                
+                // Set up periodic decrease (check every minute)
+                setInterval(() => {
+                    const currentData = JSON.parse(localStorage.getItem('spotsData'));
+                    const lastDecrease = new Date(currentData.lastDecrease);
+                    const now = new Date();
+                    
+                    if (now - lastDecrease >= decreaseInterval && currentData.count > 2) {
+                        currentData.count--;
+                        currentData.lastDecrease = now.toISOString();
+                        spotsElement.textContent = currentData.count;
+                        localStorage.setItem('spotsData', JSON.stringify(currentData));
+                    }
+                }, 60000); // Check every minute
             }
             
             // Dynamic countdown timer (urgency principle)
