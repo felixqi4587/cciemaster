@@ -608,6 +608,210 @@
             opacity: 0.8;
         }
 
+        /* Recent Success Stories Section */
+        .recent-success-section {
+            background: var(--color-background-secondary);
+            padding: 80px 32px;
+            overflow: hidden;
+        }
+
+        .recent-success-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .success-carousel {
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+            border-radius: var(--border-radius-large);
+        }
+
+        .success-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.5s ease;
+            padding: 20px 0;
+        }
+
+        .success-card {
+            flex: 0 0 320px;
+            background: var(--color-background);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-medium);
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .success-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .success-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.6;
+        }
+
+        .exam-certificate {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cert-header {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .cert-title {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .cert-date {
+            font-size: 14px;
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 8px;
+        }
+
+        .cert-score {
+            font-size: 12px;
+            color: var(--color-success);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .success-info {
+            padding: 24px;
+        }
+
+        .success-name {
+            font-size: 18px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .success-track-info {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .success-quote {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .success-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: var(--color-background);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Auto-scroll animation */
+        @keyframes scrollCarousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .success-track.auto-scroll {
+            animation: scrollCarousel 60s linear infinite;
+        }
+
+        .success-track.auto-scroll:hover {
+            animation-play-state: paused;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 120px 32px;
@@ -706,6 +910,7 @@
             .features,
             .courses,
             .testimonials,
+            .recent-success-section,
             .cta-section {
                 padding: 80px 20px;
             }
@@ -725,6 +930,42 @@
             .btn-secondary {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            /* Success Stories Mobile Responsive */
+            .success-card {
+                flex: 0 0 280px;
+            }
+
+            .success-track {
+                gap: 16px;
+            }
+
+            .carousel-controls {
+                display: none; /* Hide controls on mobile, use touch swipe */
+            }
+
+            .success-carousel {
+                -webkit-overflow-scrolling: touch;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .success-track {
+                padding: 20px 20px 20px 0;
+            }
+
+            .success-track.auto-scroll {
+                animation: none; /* Disable auto-scroll on mobile */
+            }
+
+            .exam-certificate {
+                margin: 15px;
+                padding: 15px;
+            }
+
+            .success-info {
+                padding: 20px;
             }
         }
 
@@ -1072,6 +1313,33 @@
         </div>
     </section>
 
+    <!-- Recent Success Stories Section -->
+    <section class="recent-success-section">
+        <div class="recent-success-container">
+            <div class="section-header">
+                <h2 class="section-title">🎉 Latest CCIE Passes This Week</h2>
+                <p class="section-description">
+                    Fresh success stories! Our students continue to achieve their CCIE dreams every week.
+                </p>
+            </div>
+            
+            <div class="success-carousel">
+                <div class="success-track" id="successTrack">
+                    <!-- Success cards will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="scrollCarousel(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-container">
@@ -1154,6 +1422,157 @@
     </footer>
 
     <script>
+        // Success Stories Data Generator
+        const ccieTrackNames = [
+            "Enterprise Infrastructure", "Security", "Data Center", "Collaboration", 
+            "Service Provider", "Wireless", "Enterprise Wireless"
+        ];
+
+        const studentNames = [
+            "Alex Chen", "Sarah Johnson", "Michael Rodriguez", "Emily Zhang", 
+            "David Kim", "Jessica Liu", "Ryan Patel", "Amanda Wong", 
+            "James Lee", "Maria Garcia", "Kevin Wu", "Lisa Wang",
+            "John Smith", "Anna Taylor", "Chris Brown", "Sophie Davis",
+            "Mark Wilson", "Rachel Green", "Tom Anderson", "Maya Singh"
+        ];
+
+        const quotes = [
+            "Amazing training program! Passed on first attempt.",
+            "The hands-on labs made all the difference.",
+            "Best investment in my IT career.",
+            "Exceeded my expectations completely.",
+            "Outstanding support from instructors.",
+            "Worth every penny and more!",
+            "Finally achieved my CCIE dream!",
+            "Professional training at its finest.",
+            "Highly recommend to everyone.",
+            "Life-changing certification journey."
+        ];
+
+        // Generate success story data
+        function generateSuccessStories(count = 12) {
+            const stories = [];
+            const now = new Date();
+            
+            for (let i = 0; i < count; i++) {
+                // Generate recent dates (within last 7 days)
+                const daysAgo = Math.floor(Math.random() * 7);
+                const passDate = new Date(now - daysAgo * 24 * 60 * 60 * 1000);
+                
+                const story = {
+                    name: studentNames[Math.floor(Math.random() * studentNames.length)],
+                    track: ccieTrackNames[Math.floor(Math.random() * ccieTrackNames.length)],
+                    date: passDate.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                    }),
+                    score: Math.floor(Math.random() * 15) + 85, // 85-100 score
+                    quote: quotes[Math.floor(Math.random() * quotes.length)],
+                    attempts: Math.floor(Math.random() * 2) + 1, // 1-2 attempts
+                    studyMonths: Math.floor(Math.random() * 4) + 2 // 2-5 months
+                };
+                stories.push(story);
+            }
+            return stories;
+        }
+
+        // Create success card HTML
+        function createSuccessCard(story) {
+            return `
+                <div class="success-card">
+                    <div class="success-image">
+                        <div class="exam-certificate">
+                            <div class="cert-header">CISCO CERTIFIED</div>
+                            <div class="cert-title">CCIE ${story.track}</div>
+                            <div class="cert-date">Passed: ${story.date}</div>
+                            <div class="cert-score">Score: ${story.score}%</div>
+                        </div>
+                    </div>
+                    <div class="success-info">
+                        <div class="success-name">${story.name}</div>
+                        <div class="success-track-info">CCIE ${story.track}</div>
+                        <div class="success-quote">"${story.quote}"</div>
+                        <div class="success-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${story.attempts}</div>
+                                <div class="stat-label">Attempts</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${story.studyMonths}</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${story.score}%</div>
+                                <div class="stat-label">Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize success stories carousel
+        function initSuccessCarousel() {
+            const successTrack = document.getElementById('successTrack');
+            if (!successTrack) return;
+
+            const stories = generateSuccessStories(12);
+            
+            // Create cards HTML
+            const cardsHTML = stories.map(story => createSuccessCard(story)).join('');
+            
+            // Duplicate for seamless loop
+            successTrack.innerHTML = cardsHTML + cardsHTML;
+            
+            // Start auto-scroll
+            successTrack.classList.add('auto-scroll');
+        }
+
+        // Carousel control variables
+        let currentIndex = 0;
+        let isAutoScrolling = true;
+
+        // Scroll carousel function
+        function scrollCarousel(direction) {
+            const successTrack = document.getElementById('successTrack');
+            if (!successTrack) return;
+
+            const cardWidth = 344; // 320px + 24px gap
+            const maxIndex = 6; // Half of total cards for seamless loop
+
+            // Stop auto-scroll when manually controlling
+            successTrack.classList.remove('auto-scroll');
+            isAutoScrolling = false;
+
+            currentIndex += direction;
+            
+            if (currentIndex > maxIndex) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = maxIndex;
+
+            successTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+            // Restart auto-scroll after 5 seconds
+            setTimeout(() => {
+                if (!isAutoScrolling) {
+                    successTrack.classList.add('auto-scroll');
+                    isAutoScrolling = true;
+                }
+            }, 5000);
+        }
+
+        // Update success stories weekly
+        function updateSuccessStories() {
+            const lastUpdate = localStorage.getItem('lastSuccessUpdate');
+            const now = Date.now();
+            const oneWeek = 7 * 24 * 60 * 60 * 1000;
+
+            if (!lastUpdate || (now - parseInt(lastUpdate)) > oneWeek) {
+                initSuccessCarousel();
+                localStorage.setItem('lastSuccessUpdate', now.toString());
+            }
+        }
+
         // Language toggle functionality
         function toggleLanguage() {
             const currentLang = document.documentElement.lang;
@@ -1187,6 +1606,12 @@
             } else {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initSuccessCarousel();
+            updateSuccessStories();
         });
     </script>
 </body>
