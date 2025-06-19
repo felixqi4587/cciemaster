@@ -679,11 +679,13 @@
         }
 
         .whatsapp-modal img {
-            width: 250px;
-            height: 250px;
+            max-width: 280px;
+            width: 100%;
+            height: auto;
             border-radius: var(--border-radius);
             margin: 16px 0;
             border: 3px solid var(--color-border);
+            object-fit: contain;
         }
 
         .whatsapp-modal-buttons {
@@ -800,7 +802,7 @@
                     <span class="stat-label">Support Available</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">&lt; 2h</span>
+                    <span class="stat-number">&lt; 3h</span>
                     <span class="stat-label">Response Time</span>
                 </div>
                 <div class="stat-item">
@@ -824,7 +826,7 @@
 
                 <div class="response-time">
                     <div class="response-time-title">⚡ Quick Response Guarantee</div>
-                    <div class="response-time-text">We typically respond within 2 hours during business hours</div>
+                    <div class="response-time-text">We typically respond within 3 hours</div>
                 </div>
 
                 <div class="contact-methods">
@@ -846,33 +848,11 @@
                         <div class="contact-details">
                             <h3>WhatsApp Support</h3>
                             <p><a href="https://wa.me/16034861896" target="_blank" style="color: #25D366; font-weight: var(--font-weight-semibold);">+1 (603) 486-1896</a></p>
-                            <p>Instant messaging and voice calls available</p>
+                            <p>Instant messaging, voice calls, free consultation & live chat available</p>
                             <div style="margin-top: 12px;">
-                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code" style="width: 120px; height: 120px; border-radius: var(--border-radius); border: 2px solid var(--color-border); cursor: pointer;" onclick="openWhatsAppModal()">
-                                <p style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 4px;">Scan QR code to chat</p>
+                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code" style="width: 140px; height: auto; max-height: 140px; object-fit: contain; border-radius: var(--border-radius); border: 2px solid var(--color-border); cursor: pointer;" onclick="openWhatsAppModal()">
+                                <p style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 4px;">Scan QR code to start chatting</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Free Consultation</h3>
-                            <p>Schedule a 30-minute call with our experts</p>
-                            <p>Perfect for career guidance and course selection</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Live Chat</h3>
-                            <p>Available 24/7 for instant support</p>
-                            <p>Quick answers to common questions</p>
                         </div>
                     </div>
 
@@ -891,13 +871,11 @@
                 <div style="background: var(--color-background-secondary); padding: 24px; border-radius: var(--border-radius-large); border: 1px solid var(--color-border);">
                     <h3 style="font-size: 16px; font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: 12px;">
                         <i class="fas fa-clock" style="color: var(--color-primary); margin-right: 8px;"></i>
-                        Business Hours
+                        Support Hours
                     </h3>
                     <div style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.6;">
-                        <p><strong>Monday - Friday:</strong> 9:00 AM - 8:00 PM (EST)</p>
-                        <p><strong>Saturday:</strong> 10:00 AM - 6:00 PM (EST)</p>
-                        <p><strong>Sunday:</strong> 12:00 PM - 5:00 PM (EST)</p>
-                        <p style="margin-top: 8px; font-style: italic;">Emergency support available 24/7</p>
+                        <p style="font-weight: var(--font-weight-semibold); color: var(--color-success); font-size: 16px;">24/7 Support Available</p>
+                        <p style="margin-top: 8px;">Our expert team is always ready to help you succeed with your CCIE journey</p>
                     </div>
                 </div>
             </div>
@@ -905,7 +883,7 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h2 class="form-title">Send Us a Message</h2>
-                <p class="form-subtitle">Fill out the form below and we'll get back to you within 2 hours</p>
+                <p class="form-subtitle">Fill out the form below and we'll get back to you within 3 hours</p>
 
                 <form id="contactForm" action="#" method="POST">
                     <div class="form-row">
