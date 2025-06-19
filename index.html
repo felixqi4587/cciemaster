@@ -30,9 +30,9 @@
     
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
     
@@ -1104,34 +1104,36 @@
             }
         }
 
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
         }
 
-        .notification-icon {
-            font-size: 20px;
-            min-width: 24px;
+        /* 促销倒计时样式 */
+        .promotion-countdown {
+            animation: pulse 2s infinite;
         }
 
-        .notification-text {
-            flex: 1;
-            font-size: 14px;
-            line-height: 1.4;
+        /* 原价显示样式 */
+        .original-price {
+            text-decoration: line-through !important;
+            color: #999 !important;
+            font-size: 14px !important;
+            margin-right: 8px !important;
         }
 
-        .notification-close {
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        .notification-close:hover {
-            opacity: 1;
+        /* 折扣标签增强 */
+        .price-save {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53) !important;
+            color: white !important;
+            font-weight: bold !important;
+            animation: pulse 1.5s infinite;
         }
 
         /* Responsive Design */
@@ -1255,7 +1257,83 @@
         .hero-content > *:nth-child(3) { animation-delay: 0.2s; }
         .hero-content > *:nth-child(4) { animation-delay: 0.3s; }
         .hero-content > *:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+            min-width: 24px;
+        }
+
+        .notification-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .notification-close {
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        /* 促销倒计时样式 */
+        .promotion-countdown {
+            animation: pulse 2s infinite;
+        }
+
+        /* 原价显示样式 */
+        .original-price {
+            text-decoration: line-through !important;
+            color: #999 !important;
+            font-size: 14px !important;
+            margin-right: 8px !important;
+        }
+
+        /* 折扣标签增强 */
+        .price-save {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53) !important;
+            color: white !important;
+            font-weight: bold !important;
+            animation: pulse 1.5s infinite;
+        }
     </style>
+    
+    <!-- 促销配置文件 -->
+    <script src="/js/promotions-config.js"></script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -1653,6 +1731,142 @@
     </main>
 
     <script>
+        // 使用外部配置文件的促销系统
+        const MONTHLY_PROMOTIONS = window.CCIE_PROMOTIONS_CONFIG || {
+            // 备用配置（如果外部文件加载失败）
+            basePrices: {
+                'Enterprise Infrastructure': 3999,
+                'Security': 4299,
+                'Data Center': 4199,
+                'CCDE Design Expert': 5999
+            },
+            promotions: {
+                6: { // 当前月份的默认配置
+                    theme: "Father's Day & Graduation",
+                    title: "Father's Day Career Gift",
+                    emoji: "👔",
+                    discount: 21,
+                    description: "The best gift for dads: career advancement",
+                    urgencyText: "Father's Day special pricing ends soon"
+                }
+            }
+        };
+
+        // 获取当前月份的促销信息
+        function getCurrentPromotion() {
+            const currentMonth = new Date().getMonth() + 1; // JavaScript月份从0开始
+            return MONTHLY_PROMOTIONS.promotions[currentMonth] || MONTHLY_PROMOTIONS.promotions[6]; // 默认使用6月配置
+        }
+
+        // 计算折扣后价格
+        function calculateDiscountedPrice(courseName, originalPrice = null) {
+            const promotion = getCurrentPromotion();
+            const basePrice = originalPrice || MONTHLY_PROMOTIONS.basePrices[courseName];
+            if (!basePrice) return null;
+            
+            const discountAmount = Math.round(basePrice * promotion.discount / 100);
+            const finalPrice = basePrice - discountAmount;
+            
+            return {
+                originalPrice: basePrice,
+                discount: promotion.discount,
+                discountAmount: discountAmount,
+                finalPrice: finalPrice,
+                savings: discountAmount
+            };
+        }
+
+        // 更新页面上的促销信息
+        function updatePromotionDisplay() {
+            const promotion = getCurrentPromotion();
+            
+            // 更新主要促销横幅
+            const urgencyTitle = document.querySelector('.urgency-text h3');
+            if (urgencyTitle) {
+                urgencyTitle.innerHTML = `${promotion.emoji} ${promotion.title}`;
+            }
+            
+            const urgencyDescription = document.querySelector('.urgency-text p');
+            if (urgencyDescription) {
+                const spotsText = urgencyDescription.innerHTML;
+                urgencyDescription.innerHTML = spotsText.replace(/Next batch starts in/, promotion.urgencyText + ' • Next batch starts in');
+            }
+            
+            // 更新课程价格
+            updateCoursePrices();
+        }
+
+        // 更新所有课程价格
+        function updateCoursePrices() {
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach((card, index) => {
+                const courseTitle = card.querySelector('.course-title').textContent.replace('CCIE ', '');
+                const priceInfo = calculateDiscountedPrice(courseTitle);
+                
+                if (priceInfo) {
+                    const priceAmount = card.querySelector('.price-amount');
+                    const priceSave = card.querySelector('.price-save');
+                    
+                    if (priceAmount) {
+                        priceAmount.textContent = `$${priceInfo.finalPrice.toLocaleString()}`;
+                    }
+                    
+                    if (priceSave) {
+                        priceSave.textContent = `Save $${priceInfo.savings.toLocaleString()} (${priceInfo.discount}% OFF)`;
+                        priceSave.style.background = 'linear-gradient(135deg, #FF6B6B, #FF8E53)';
+                        priceSave.style.color = 'white';
+                        priceSave.style.fontWeight = 'bold';
+                    }
+                    
+                    // 添加原价显示
+                    let originalPriceSpan = card.querySelector('.original-price');
+                    if (!originalPriceSpan) {
+                        originalPriceSpan = document.createElement('span');
+                        originalPriceSpan.className = 'original-price';
+                        originalPriceSpan.style.textDecoration = 'line-through';
+                        originalPriceSpan.style.color = '#999';
+                        originalPriceSpan.style.fontSize = '14px';
+                        originalPriceSpan.style.marginRight = '8px';
+                        priceAmount.parentNode.insertBefore(originalPriceSpan, priceAmount);
+                    }
+                    originalPriceSpan.textContent = `$${priceInfo.originalPrice.toLocaleString()}`;
+                }
+            });
+        }
+
+        // 添加促销倒计时功能
+        function addPromotionCountdown() {
+            const promotion = getCurrentPromotion();
+            
+            // 在页面中添加促销倒计时
+            const promotionBanner = document.querySelector('.urgency-banner');
+            if (promotionBanner && !document.querySelector('.promotion-countdown')) {
+                const countdownDiv = document.createElement('div');
+                countdownDiv.className = 'promotion-countdown';
+                countdownDiv.style.cssText = `
+                    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+                    color: white;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: bold;
+                    margin-top: 8px;
+                    text-align: center;
+                    animation: pulse 2s infinite;
+                `;
+                
+                // 计算到月底的剩余时间
+                const now = new Date();
+                const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                const timeLeft = endOfMonth - now;
+                const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+                
+                countdownDiv.innerHTML = `${promotion.emoji} ${promotion.description} • ${daysLeft} days left!`;
+                promotionBanner.appendChild(countdownDiv);
+            }
+        }
+
         // Success Stories Data Generator
         const ccieTrackNames = [
             "Enterprise Infrastructure", "Security", "Data Center", "Collaboration", 
@@ -1993,6 +2207,10 @@
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化月度促销系统
+            updatePromotionDisplay();
+            addPromotionCountdown();
+            
             initSuccessCarousel();
             updateSuccessStories();
             initUrgencyElements();
