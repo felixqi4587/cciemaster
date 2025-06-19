@@ -885,7 +885,11 @@
                 <h2 class="form-title">Send Us a Message</h2>
                 <p class="form-subtitle">Fill out the form below and we'll get back to you within 3 hours</p>
 
-                <form id="contactForm" action="#" method="POST">
+                <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - CCIE Master">
+                    <input type="hidden" name="_cc" value="cciemasternode@gmail.com">
+                    <input type="hidden" name="_next" value="https://cciemaster.com/contact/?success=true">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName" class="form-label">First Name *</label>
@@ -921,7 +925,7 @@
 
                     <div class="form-group">
                         <label for="interest" class="form-label">Course Interest</label>
-                        <select id="interest" name="interest" class="form-select">
+                        <select id="interest" name="courseInterest" class="form-select">
                             <option value="">Select a course</option>
                             <option value="enterprise">CCIE Enterprise Infrastructure</option>
                             <option value="security">CCIE Security</option>
@@ -950,7 +954,7 @@
                     </div>
 
                     <div class="form-checkbox">
-                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <input type="checkbox" id="newsletter" name="newsletter" value="yes">
                         <label for="newsletter">
                             I'd like to receive updates about new courses, study tips, and special offers via email. 
                             You can unsubscribe at any time.
@@ -1111,8 +1115,6 @@
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
@@ -1120,14 +1122,57 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-                alert('Thank you for your message! We\'ll get back to you within 2 hours.');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // The form will submit naturally to Formspree
+            // No need to prevent default for real submission
         });
+
+        // Check for success parameter in URL
+        function checkForSuccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                showSuccessMessage();
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        // Show success message
+        function showSuccessMessage() {
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--color-success);
+                color: white;
+                padding: 16px 24px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-lg);
+                z-index: 3000;
+                max-width: 400px;
+            `;
+            successMessage.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-check-circle" style="font-size: 20px;"></i>
+                    <div>
+                        <strong>Message Sent Successfully!</strong><br>
+                        <small>We'll get back to you within 3 hours.</small>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; margin-left: auto;">&times;</button>
+                </div>
+            `;
+            document.body.appendChild(successMessage);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (successMessage.parentElement) {
+                    successMessage.remove();
+                }
+            }, 5000);
+        }
+
+        // Initialize success check when page loads
+        document.addEventListener('DOMContentLoaded', checkForSuccess);
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
