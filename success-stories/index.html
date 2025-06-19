@@ -144,24 +144,6 @@
             gap: 16px;
         }
 
-        .lang-toggle {
-            background: var(--color-background-secondary);
-            border: 1px solid var(--color-border);
-            padding: 8px 16px;
-            border-radius: var(--border-radius);
-            font-weight: var(--font-weight-medium);
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            color: var(--color-text);
-        }
-
-        .lang-toggle:hover {
-            background: var(--color-primary);
-            color: var(--color-text-light);
-            border-color: var(--color-primary);
-        }
-
         .btn-header {
             background: var(--color-primary);
             color: var(--color-text-light);
@@ -720,9 +702,6 @@
                 <li><a href="/contact/">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="lang-toggle" onclick="toggleLanguage()">
-                    <i class="fas fa-globe"></i> EN
-                </button>
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
             </div>
         </nav>
@@ -1073,18 +1052,6 @@
     </footer>
 
     <script>
-        // Language toggle functionality
-        function toggleLanguage() {
-            const currentLang = document.documentElement.lang;
-            if (currentLang === 'en') {
-                document.documentElement.lang = 'zh';
-                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> 中文';
-            } else {
-                document.documentElement.lang = 'en';
-                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> EN';
-            }
-        }
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

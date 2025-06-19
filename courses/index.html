@@ -144,23 +144,7 @@
             gap: 16px;
         }
 
-        .lang-toggle {
-            background: var(--color-background-secondary);
-            border: 1px solid var(--color-border);
-            padding: 8px 16px;
-            border-radius: var(--border-radius);
-            font-weight: var(--font-weight-medium);
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            color: var(--color-text);
-        }
 
-        .lang-toggle:hover {
-            background: var(--color-primary);
-            color: var(--color-text-light);
-            border-color: var(--color-primary);
-        }
 
         .btn-header {
             background: var(--color-primary);
@@ -1400,18 +1384,6 @@
     </footer>
 
     <script>
-        // Language toggle functionality
-        function toggleLanguage() {
-            const currentLang = document.documentElement.lang;
-            if (currentLang === 'en') {
-                document.documentElement.lang = 'zh';
-                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> 中文';
-            } else {
-                document.documentElement.lang = 'en';
-                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> EN';
-            }
-        }
-
         // Course filtering
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {

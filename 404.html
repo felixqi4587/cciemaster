@@ -114,21 +114,7 @@
             color: var(--color-accent);
         }
 
-        .lang-toggle {
-            background: var(--color-background-secondary);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: var(--font-weight-medium);
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            color: var(--color-text);
-        }
 
-        .lang-toggle:hover {
-            background: var(--color-border);
-        }
 
         /* Main Content */
         .main {
@@ -351,7 +337,7 @@
                 <li><a href="/courses">Courses</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
-            <button class="lang-toggle" onclick="toggleLanguage()">中文</button>
+            
         </nav>
     </header>
 
@@ -414,17 +400,6 @@
     </footer>
 
     <script>
-        function toggleLanguage() {
-            const btn = document.querySelector('.lang-toggle');
-            if (btn.textContent === '中文') {
-                btn.textContent = 'EN';
-                // Add Chinese content switching logic here
-            } else {
-                btn.textContent = '中文';
-                // Add English content switching logic here
-            }
-        }
-
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
