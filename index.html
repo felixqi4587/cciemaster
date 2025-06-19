@@ -7,20 +7,47 @@
     <meta name="description" content="Professional CCIE certification training. Pass your exam in 3 months with our proven system.">
     <link rel="icon" href="/favicon.ico">
     <style>
-        /* Apple-inspired Design System */
+        /* Apple-inspired Clean Design System */
         :root {
-            --color-primary: #007AFF;
-            --color-primary-dark: #0056CC;
-            --color-secondary: #34C759;
+            /* Primary Colors - More subtle and clean */
+            --color-primary: #000000;
+            --color-primary-light: #1c1c1e;
+            --color-accent: #007AFF;
+            --color-success: #34C759;
+            --color-warning: #FF9500;
+            
+            /* Background Colors */
             --color-background: #FFFFFF;
             --color-background-secondary: #F2F2F7;
+            --color-background-tertiary: #FFFFFF;
+            
+            /* Text Colors */
             --color-text: #1D1D1F;
             --color-text-secondary: #86868B;
-            --color-border: #D2D2D7;
-            --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --color-text-tertiary: #C7C7CC;
+            
+            /* System Colors */
+            --color-border: #D1D1D6;
+            --color-separator: #C6C6C8;
+            
+            /* Typography */
+            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            /* Spacing */
             --border-radius: 12px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius-large: 16px;
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.1);
+            
+            /* Transitions */
+            --transition-fast: all 0.2s ease;
+            --transition-medium: all 0.3s ease;
+            --transition-slow: all 0.4s ease;
         }
 
         * {
@@ -35,13 +62,14 @@
             color: var(--color-text);
             background: var(--color-background);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Header */
         .header {
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
@@ -58,27 +86,29 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: var(--font-weight-semibold);
             color: var(--color-text);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--color-text);
             text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
+            font-weight: var(--font-weight-regular);
+            font-size: 17px;
+            transition: var(--transition-fast);
         }
 
         .nav-links a:hover {
-            color: var(--color-primary);
+            color: var(--color-accent);
         }
 
         .lang-toggle {
@@ -86,9 +116,11 @@
             border: none;
             padding: 8px 16px;
             border-radius: 20px;
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
+            font-size: 14px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: var(--transition-fast);
+            color: var(--color-text);
         }
 
         .lang-toggle:hover {
@@ -97,29 +129,36 @@
 
         /* Hero Section */
         .hero {
-            padding: 120px 24px 80px;
+            padding: 80px 24px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: clamp(48px, 8vw, 72px);
-            font-weight: 700;
+            font-size: clamp(48px, 7vw, 64px);
+            font-weight: var(--font-weight-bold);
             line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 20px;
+            color: var(--color-text);
+            letter-spacing: -2px;
         }
 
-        .hero p {
-            font-size: 24px;
-            font-weight: 400;
+        .hero .subtitle {
+            font-size: 28px;
+            font-weight: var(--font-weight-medium);
             color: var(--color-text-secondary);
-            max-width: 800px;
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .hero .description {
+            font-size: 21px;
+            font-weight: var(--font-weight-regular);
+            color: var(--color-text-secondary);
+            max-width: 600px;
             margin: 0 auto 48px;
+            line-height: 1.5;
         }
 
         .cta-buttons {
@@ -135,65 +174,64 @@
             padding: 16px 32px;
             border-radius: var(--border-radius);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: var(--transition);
+            font-weight: var(--font-weight-semibold);
+            font-size: 17px;
+            transition: var(--transition-medium);
             border: none;
             cursor: pointer;
+            min-width: 160px;
         }
 
         .btn-primary:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            background: var(--color-primary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-medium);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--color-primary);
+            color: var(--color-accent);
             padding: 16px 32px;
-            border: 2px solid var(--color-primary);
+            border: 1px solid var(--color-border);
             border-radius: var(--border-radius);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: var(--transition);
+            font-weight: var(--font-weight-semibold);
+            font-size: 17px;
+            transition: var(--transition-medium);
+            min-width: 160px;
         }
 
         .btn-secondary:hover {
-            background: var(--color-primary);
-            color: white;
-            transform: translateY(-2px);
+            background: var(--color-background-secondary);
+            border-color: var(--color-accent);
+            transform: translateY(-1px);
         }
 
-        /* Guarantee Banner */
+        /* Guarantee Section */
         .guarantee {
-            background: linear-gradient(135deg, var(--color-secondary) 0%, #30D158 100%);
-            color: white;
-            padding: 60px 24px;
-            text-align: center;
+            background: var(--color-background-secondary);
+            padding: 80px 24px;
             margin: 80px 0;
+        }
+
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .guarantee h2 {
             font-size: 36px;
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             margin-bottom: 16px;
+            color: var(--color-text);
         }
 
         .guarantee p {
-            font-size: 20px;
+            font-size: 21px;
+            color: var(--color-text-secondary);
             margin-bottom: 32px;
-            opacity: 0.9;
-        }
-
-        .guarantee .btn-primary {
-            background: white;
-            color: var(--color-secondary);
-        }
-
-        .guarantee .btn-primary:hover {
-            background: var(--color-background-secondary);
+            line-height: 1.5;
         }
 
         /* Features Section */
@@ -204,53 +242,57 @@
         }
 
         .features h2 {
-            font-size: 48px;
-            font-weight: 700;
+            font-size: 40px;
+            font-weight: var(--font-weight-bold);
             text-align: center;
             margin-bottom: 64px;
+            color: var(--color-text);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
         }
 
         .feature-card {
             background: var(--color-background);
             border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            padding: 40px;
+            border-radius: var(--border-radius-large);
+            padding: 40px 32px;
             text-align: center;
-            transition: var(--transition);
+            transition: var(--transition-medium);
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-large);
+            border-color: var(--color-separator);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
+            width: 64px;
+            height: 64px;
             margin: 0 auto 24px;
             background: var(--color-background-secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 28px;
         }
 
         .feature-card h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 16px;
+            font-size: 22px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 12px;
+            color: var(--color-text);
         }
 
         .feature-card p {
             color: var(--color-text-secondary);
-            font-size: 16px;
+            font-size: 17px;
+            line-height: 1.5;
         }
 
         /* Courses Section */
@@ -265,52 +307,58 @@
         }
 
         .courses h2 {
-            font-size: 48px;
-            font-weight: 700;
+            font-size: 40px;
+            font-weight: var(--font-weight-bold);
             text-align: center;
             margin-bottom: 64px;
+            color: var(--color-text);
         }
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
         .course-card {
-            background: white;
-            border-radius: var(--border-radius);
+            background: var(--color-background);
+            border-radius: var(--border-radius-large);
             padding: 32px;
-            transition: var(--transition);
+            transition: var(--transition-medium);
+            border: 1px solid var(--color-border);
         }
 
         .course-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
         }
 
         .course-card h3 {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: var(--font-weight-semibold);
             margin-bottom: 12px;
+            color: var(--color-text);
         }
 
         .course-card p {
             color: var(--color-text-secondary);
             margin-bottom: 24px;
+            font-size: 17px;
+            line-height: 1.5;
         }
 
         .course-card a {
-            color: var(--color-primary);
+            color: var(--color-accent);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: var(--font-weight-semibold);
+            font-size: 17px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
         .course-card a:hover {
-            color: var(--color-primary-dark);
+            color: var(--color-primary);
         }
 
         /* Contact Section */
@@ -322,22 +370,24 @@
         }
 
         .contact h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-size: 40px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 20px;
+            color: var(--color-text);
         }
 
         .contact p {
-            font-size: 20px;
+            font-size: 21px;
             color: var(--color-text-secondary);
             margin-bottom: 48px;
+            line-height: 1.5;
         }
 
         /* Footer */
         .footer {
-            background: var(--color-text);
-            color: white;
+            background: var(--color-background-secondary);
             padding: 60px 24px 32px;
+            border-top: 1px solid var(--color-border);
         }
 
         .footer-content {
@@ -350,21 +400,22 @@
         }
 
         .footer-column h3 {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: var(--font-weight-semibold);
             margin-bottom: 16px;
+            color: var(--color-text);
         }
 
         .footer-column p,
         .footer-column a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--color-text-secondary);
             text-decoration: none;
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.6;
         }
 
         .footer-column a:hover {
-            color: white;
+            color: var(--color-text);
         }
 
         .footer-links {
@@ -376,8 +427,8 @@
         .copyright {
             text-align: center;
             padding-top: 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
             font-size: 14px;
         }
 
@@ -388,7 +439,19 @@
             }
 
             .hero {
-                padding: 80px 24px 60px;
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero .subtitle {
+                font-size: 24px;
+            }
+
+            .hero .description {
+                font-size: 19px;
             }
 
             .cta-buttons {
@@ -399,12 +462,31 @@
             .btn-primary,
             .btn-secondary {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
             }
 
             .features-grid,
             .courses-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .guarantee,
+            .features,
+            .courses,
+            .contact {
+                padding: 60px 24px;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-background: #000000;
+                --color-background-secondary: #1c1c1e;
+                --color-text: #FFFFFF;
+                --color-text-secondary: #8E8E93;
+                --color-border: #38383A;
+                --color-separator: #48484A;
             }
         }
     </style>
@@ -426,18 +508,21 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Pass CCIE Fast</h1>
-        <p>Professional certification training with 3-month guarantee. Join thousands of successful engineers.</p>
+        <p class="subtitle">3-Month Guarantee Program</p>
+        <p class="description">Professional certification training with proven results. Join thousands of successful engineers.</p>
         <div class="cta-buttons">
-            <a href="/contact" class="btn-primary">Start Your Journey</a>
+            <a href="/contact" class="btn-primary">Start Learning</a>
             <a href="/courses" class="btn-secondary">View Courses</a>
         </div>
     </section>
 
-    <!-- Guarantee Banner -->
+    <!-- Guarantee Section -->
     <section class="guarantee">
-        <h2>3-Month Pass Guarantee</h2>
-        <p>Complete training system with lab access, expert guidance, and exam materials. Pass or retake free.</p>
-        <a href="/contact" class="btn-primary">Get Started Today</a>
+        <div class="guarantee-content">
+            <h2>3-Month Pass Guarantee</h2>
+            <p>Complete training system with lab access, expert guidance, and exam materials. Pass or retake free.</p>
+            <a href="/contact" class="btn-primary">Get Started Today</a>
+        </div>
     </section>
 
     <!-- Features Section -->
@@ -492,7 +577,7 @@
         <p>Join our proven training program and fast-track your CCIE certification success.</p>
         <div class="cta-buttons">
             <a href="/contact" class="btn-primary">Contact Us Today</a>
-            <a href="tel:+1-400-123-4567" class="btn-secondary">Call Now</a>
+            <a href="mailto:cciemasternode@gmail.com" class="btn-secondary">Email Us</a>
         </div>
     </section>
 
@@ -514,8 +599,7 @@
             </div>
             <div class="footer-column">
                 <h3>Contact</h3>
-                <p>Phone: +1-400-123-4567</p>
-                <p>Email: info@cciemaster.com</p>
+                <p>Email: cciemasternode@gmail.com</p>
                 <p>Available 24/7 for support</p>
             </div>
             <div class="footer-column">
@@ -549,19 +633,23 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
-        // Add scroll effect to header
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.9)';
+                header.style.background = 'rgba(255, 255, 255, 0.8)';
             }
         });
     </script>
