@@ -1126,8 +1126,24 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
+            // Reset button state after a delay (in case user comes back)
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+            
             // The form will submit naturally to Formspree
             // No need to prevent default for real submission
+        });
+
+        // Reset form state when page loads (for back button scenarios)
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitBtn = document.querySelector('#contactForm button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                submitBtn.disabled = false;
+            }
+            checkForSuccess();
         });
 
         // Check for success parameter in URL
@@ -1174,9 +1190,6 @@
                 }
             }, 5000);
         }
-
-        // Initialize success check when page loads
-        document.addEventListener('DOMContentLoaded', checkForSuccess);
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
