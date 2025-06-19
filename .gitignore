@@ -10,6 +10,9 @@
 /.next/
 /out/
 
+# 生产环境构建文件（保留.next用于Node.js部署）
+# /.next/standalone
+
 # 生产环境构建文件
 /build
 

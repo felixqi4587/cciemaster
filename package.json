@@ -1,18 +1,27 @@
 {
   "name": "cciemaster",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "export": "next build && next export"
+    "start": "node .next/standalone/server.js",
+    "start:next": "next start",
+    "export": "set BUILD_STATIC=true && next build",
+    "export-static": "next build && next export",
+    "production": "NODE_ENV=production node .next/standalone/server.js",
+    "postinstall": "next build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["ccie", "training", "network", "education"],
+  "author": "CCIE培训中心",
   "license": "ISC",
   "description": "CCIE培训网站，用于展示培训信息和引流",
   "dependencies": {
+    "@stagewise-plugins/react": "^0.4.8",
+    "@stagewise/toolbar": "^0.4.8",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
