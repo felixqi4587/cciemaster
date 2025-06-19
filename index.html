@@ -1859,9 +1859,6 @@
             if (!lastUpdateDate || lastUpdateDate < startOfWeek) {
                 initSuccessCarousel();
                 localStorage.setItem('lastSuccessUpdate', now.getTime().toString());
-                console.log('✅ Success stories updated for this week!');
-            } else {
-                console.log('📅 Success stories are current for this week');
             }
         }
 
@@ -1900,8 +1897,6 @@
                     const current = parseInt(spotsElement.textContent);
                     if (current > 2) {
                         spotsElement.textContent = current - 1;
-                        // Flash effect when spots decrease
-                        spotsElement.style.animation = 'flash 0.5s ease-in-out 3';
                     }
                 }, 600000); // 10 minutes
             }
