@@ -18,7 +18,7 @@ fi
 echo "[SUCCESS] 系统要求检查通过"
 
 # 更新文档中的日期
-echo "[INFO] 更新文档中的日期..."
+echo "[INFO] 更新README.md中的日期..."
 current_date=$(date +"%Y年%m月%d日")
 
 # 更新README.md中的日期
@@ -26,8 +26,7 @@ if [ -f "README.md" ]; then
     sed -i '' "s/最后更新.*：.*年.*月.*日/最后更新**：${current_date}/g" README.md
 fi
 
-# 更新其他文档中的日期
-find . -name "*.md" -not -path "./.git/*" -exec sed -i '' "s/2024年/2025年/g" {} \;
+# 更新其他文件中的日期
 find . -name "*.html" -not -path "./.git/*" -exec sed -i '' "s/2024年/2025年/g" {} \;
 
 echo "[SUCCESS] 日期更新完成"
@@ -62,30 +61,6 @@ else
         exit 1
     fi
 fi
-
-# 生成部署报告
-echo "[INFO] 生成部署报告..."
-report_file="deployment-report-$(date +%Y%m%d-%H%M).txt"
-
-cat > "$report_file" << EOF
-CCIE Master 网站部署报告
-========================
-部署时间: $(date)
-部署方式: Git Push
-提交信息: $commit_message
-
-文件统计:
-$(find . -name "*.html" -not -path "./.git/*" | wc -l | tr -d ' ') 个 HTML 文件
-$(find . -name "*.md" -not -path "./.git/*" | wc -l | tr -d ' ') 个 Markdown 文件
-$(find . -name "*.sh" -not -path "./.git/*" | wc -l | tr -d ' ') 个 脚本文件
-
-Git 状态:
-$(git log --oneline -5)
-
-部署状态: ✅ 成功
-EOF
-
-echo "[SUCCESS] 部署报告已生成: $report_file"
 
 echo ""
 echo "[SUCCESS] 🎉 部署完成！"
