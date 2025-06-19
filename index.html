@@ -383,17 +383,20 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .feature-card {
             background: var(--color-text-light);
-            padding: 40px;
+            padding: 32px 24px;
             border-radius: var(--border-radius-large);
             box-shadow: var(--shadow-md);
             transition: var(--transition-medium);
             border: 1px solid var(--color-border);
+            text-align: center;
         }
 
         .feature-card:hover {
@@ -402,45 +405,60 @@
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
             border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            font-size: 24px;
+            margin: 0 auto 20px;
+            font-size: 20px;
             color: var(--color-text-light);
         }
 
         .feature-title {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: var(--font-weight-bold);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             color: var(--color-text);
         }
 
         .feature-description {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--color-text-secondary);
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.5;
+            margin-bottom: 16px;
         }
 
         .feature-link {
             color: var(--color-primary);
             text-decoration: none;
             font-weight: var(--font-weight-semibold);
-            font-size: 14px;
+            font-size: 13px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: var(--transition-fast);
         }
 
         .feature-link:hover {
             color: var(--color-primary-dark);
+        }
+
+        /* Responsive for features */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
         /* Courses Section */
@@ -1378,26 +1396,11 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="feature-title">Expert Video Training</h3>
-                    <p class="feature-description">
-                        Learn from industry experts with 500+ hours of high-quality video content covering all CCIE tracks. 
-                        Updated regularly to match the latest exam blueprints.
-                    </p>
-                    <a href="/courses/" class="feature-link">
-                        Explore Courses <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
                         <i class="fas fa-flask"></i>
                     </div>
-                    <h3 class="feature-title">Real Exam Lab Scenarios</h3>
+                    <h3 class="feature-title">Real Exam Labs</h3>
                     <p class="feature-description">
-                        Practice with actual exam lab scenarios and configurations. Our exclusive lab access 
-                        includes real exam topologies and insider scenarios that guarantee your success.
+                        Practice with actual exam scenarios and insider lab topologies for guaranteed success.
                     </p>
                     <a href="/courses/" class="feature-link">
                         Try Labs <i class="fas fa-arrow-right"></i>
@@ -1406,26 +1409,11 @@
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="feature-title">Expert Mentorship</h3>
-                    <p class="feature-description">
-                        Get personalized guidance from CCIE-certified instructors. Weekly office hours, 
-                        1-on-1 sessions, and community support to keep you on track.
-                    </p>
-                    <a href="/contact/" class="feature-link">
-                        Get Support <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
-                    <h3 class="feature-title">Exclusive Exam Materials</h3>
+                    <h3 class="feature-title">95% Pass Rate</h3>
                     <p class="feature-description">
-                        Access insider exam materials, real question patterns, and proven strategies. Our exclusive 
-                        resources and practice materials guarantee 95% first-attempt pass rate.
+                        Exclusive exam materials and proven strategies guarantee first-attempt success.
                     </p>
                     <a href="/courses/" class="feature-link">
                         Start Prep <i class="fas fa-arrow-right"></i>
@@ -1434,15 +1422,14 @@
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="feature-title">Flexible Learning</h3>
+                    <h3 class="feature-title">Expert Mentors</h3>
                     <p class="feature-description">
-                        Learn at your own pace with lifetime access to all content. Mobile-friendly platform 
-                        lets you study anywhere, anytime that fits your schedule.
+                        CCIE-certified instructors provide personalized guidance and weekly support.
                     </p>
-                    <a href="/courses/" class="feature-link">
-                        Learn More <i class="fas fa-arrow-right"></i>
+                    <a href="/contact/" class="feature-link">
+                        Get Support <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 
@@ -1452,11 +1439,10 @@
                     </div>
                     <h3 class="feature-title">Success Guarantee</h3>
                     <p class="feature-description">
-                        We're so confident in our training that we offer a pass guarantee. 
-                        If you don't pass, we'll provide additional support until you do.
+                        Pass guarantee with additional support until you achieve certification.
                     </p>
                     <a href="/contact/" class="feature-link">
-                        Learn About Guarantee <i class="fas fa-arrow-right"></i>
+                        Learn More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
