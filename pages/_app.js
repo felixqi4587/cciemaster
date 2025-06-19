@@ -13,17 +13,6 @@ function MyApp({ Component, pageProps }) {
     if (savedLanguage) {
       setLanguage(savedLanguage);
     }
-    
-    // 只在客户端且开发模式下初始化stagewise工具栏
-    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-      import('@stagewise/toolbar').then(({ initToolbar }) => {
-        import('@stagewise-plugins/react').then(({ ReactPlugin }) => {
-          initToolbar({
-            plugins: [ReactPlugin()],
-          });
-        });
-      });
-    }
   }, []);
   
   // 处理语言变更

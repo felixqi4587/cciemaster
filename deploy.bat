@@ -2,7 +2,7 @@
 chcp 65001 >nul
 setlocal enabledelayedexpansion
 
-echo 🚀 CCIE培训网站 - Namecheap部署工具
+echo 🚀 CCIE培训网站 - 静态部署工具
 echo ================================
 
 rem 检查Node.js环境
@@ -33,23 +33,25 @@ if errorlevel 1 (
 rem 选择部署方式
 echo.
 echo 请选择部署方式：
-echo 1) 静态站点部署 (推荐，最稳定)
+echo 1) 构建静态文件 (推荐)
 echo 2) FTP自动上传
-echo 3) 生成压缩包手动上传
+echo 3) 生成压缩包
 echo 4) 本地预览
+echo 5) 清理构建文件
 echo.
 
-set /p choice="请输入选择 (1-4): "
+set /p choice="请输入选择 (1-5): "
 
-if "%choice%"=="1" goto static_deploy
+if "%choice%"=="1" goto static_build
 if "%choice%"=="2" goto ftp_deploy
 if "%choice%"=="3" goto zip_deploy
 if "%choice%"=="4" goto local_preview
+if "%choice%"=="5" goto clean_build
 goto invalid_choice
 
-:static_deploy
+:static_build
 echo 🏗️ 构建静态站点...
-call npm run build:static
+call npm run build:windows
 if errorlevel 1 (
     echo ❌ 构建失败
     pause
@@ -58,14 +60,12 @@ if errorlevel 1 (
 
 echo ✅ 静态站点构建完成！
 echo 📁 文件位置: .\out\
-echo 📋 请手动上传 'out' 目录中的所有文件到Namecheap的 public_html 目录
-echo.
-echo 💡 上传步骤：
+echo 📋 上传步骤：
 echo 1. 登录Namecheap cPanel
-echo 2. 进入文件管理器
-echo 3. 进入 public_html 目录
-echo 4. 上传 out 目录中的所有文件
-echo 5. 等待上传完成
+echo 2. 进入文件管理器 → public_html
+echo 3. 上传 out 目录中的所有文件
+echo.
+echo 💡 提示：上传文件，不要上传out文件夹本身
 echo.
 echo 📂 正在打开输出目录...
 start "" "out"
@@ -78,7 +78,7 @@ goto end
 
 :zip_deploy
 echo 📦 生成部署压缩包...
-call npm run build:static
+call npm run build:windows
 if errorlevel 1 (
     echo ❌ 构建失败
     pause
@@ -89,27 +89,23 @@ echo 🗜️ 创建压缩包...
 cd out
 where powershell >nul 2>nul
 if not errorlevel 1 (
-    powershell -command "Compress-Archive -Path * -DestinationPath ..\cciemaster-deploy.zip -Force"
-    echo ✅ 压缩包已创建: cciemaster-deploy.zip
+    powershell -command "Compress-Archive -Path * -DestinationPath ..\cciemaster-static.zip -Force"
+    echo ✅ 压缩包已创建: cciemaster-static.zip
 ) else (
     echo ⚠️ 未找到PowerShell，请手动压缩 out 目录
 )
 cd ..
-echo 📋 请上传压缩包到Namecheap并解压到 public_html 目录
 goto end
 
 :local_preview
-echo 🌐 启动本地预览...
-call npm run build:static
-if errorlevel 1 (
-    echo ❌ 构建失败
-    pause
-    exit /b 1
-)
+echo 🌐 本地预览...
+call npm run preview
+goto end
 
-echo ✅ 静态站点已构建
-echo 🌐 正在打开预览...
-start "" "out\index.html"
+:clean_build
+echo 🧹 清理构建文件...
+call npm run clean:windows
+echo ✅ 清理完成
 goto end
 
 :invalid_choice
@@ -119,8 +115,6 @@ exit /b 1
 
 :end
 echo.
-echo 🎉 部署完成！
-echo 🌐 网站地址: https://yourdomain.com
+echo 🎉 操作完成！
 echo.
-echo 📚 部署说明文档: docs/namecheap_deployment.md
 pause 

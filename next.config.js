@@ -3,30 +3,21 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   
-  // 根据环境变量决定是否使用静态导出
-  output: process.env.BUILD_STATIC === 'true' ? 'export' : 'standalone',
+  // 强制静态导出
+  output: 'export',
   
   // 静态导出配置
-  ...(process.env.BUILD_STATIC === 'true' && {
-    trailingSlash: true,
-    images: {
-      unoptimized: true
-    },
-    // 禁用不支持静态导出的功能
-    experimental: {
-      appDir: false
-    }
-  }),
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+  
+  // 图片优化配置（静态导出不支持Next.js图片优化）
+  images: {
+    unoptimized: true
+  },
   
   // 生产环境优化
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
-  },
-  
-  // 图片域名配置
-  images: {
-    domains: ['cciemaster.com'],
-    ...(process.env.BUILD_STATIC === 'true' && { unoptimized: true })
   },
   
   // 压缩配置
@@ -34,7 +25,8 @@ const nextConfig = {
   
   // 环境变量
   env: {
-    CUSTOM_KEY: 'cciemaster',
+    SITE_NAME: 'CCIE培训中心',
+    SITE_DESCRIPTION: 'CCIE培训网站，静态部署版本'
   },
   
   // 头部安全配置
@@ -72,11 +64,6 @@ const nextConfig = {
     return [
       // 可以在这里添加URL重写规则
     ];
-  },
-  
-  // 实验性功能
-  experimental: {
-    // 根据需要启用
   },
 };
 
