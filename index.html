@@ -3,46 +3,54 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CCIE Master - Pass Your Certification Fast</title>
-    <meta name="description" content="Professional CCIE certification training. Pass your exam in 3 months with our proven system.">
+    <title>CCIE Master - Expert IT Training & Certification</title>
+    <meta name="description" content="Professional CCIE certification training with hands-on labs, expert instructors, and guaranteed results. Pass your exam in 3 months with our proven system.">
     <link rel="icon" href="/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Apple-inspired Clean Design System */
+        /* Professional Training Website Design System */
         :root {
-            /* Primary Colors - More subtle and clean */
-            --color-primary: #000000;
-            --color-primary-light: #1c1c1e;
-            --color-accent: #007AFF;
-            --color-success: #34C759;
-            --color-warning: #FF9500;
+            /* Primary Colors - Professional Training Theme */
+            --color-primary: #2563eb;
+            --color-primary-dark: #1d4ed8;
+            --color-primary-light: #3b82f6;
+            --color-secondary: #10b981;
+            --color-accent: #f59e0b;
+            --color-warning: #ef4444;
+            --color-success: #22c55e;
             
             /* Background Colors */
-            --color-background: #FFFFFF;
-            --color-background-secondary: #F2F2F7;
-            --color-background-tertiary: #FFFFFF;
+            --color-background: #ffffff;
+            --color-background-secondary: #f8fafc;
+            --color-background-tertiary: #f1f5f9;
+            --color-background-dark: #0f172a;
             
             /* Text Colors */
-            --color-text: #1D1D1F;
-            --color-text-secondary: #86868B;
-            --color-text-tertiary: #C7C7CC;
+            --color-text: #1e293b;
+            --color-text-secondary: #64748b;
+            --color-text-tertiary: #94a3b8;
+            --color-text-light: #ffffff;
             
             /* System Colors */
-            --color-border: #D1D1D6;
-            --color-separator: #C6C6C8;
+            --color-border: #e2e8f0;
+            --color-separator: #cbd5e1;
             
             /* Typography */
-            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
             --font-weight-semibold: 600;
             --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
             
             /* Spacing */
-            --border-radius: 12px;
+            --border-radius: 8px;
             --border-radius-large: 16px;
-            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --border-radius-xl: 24px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             
             /* Transitions */
             --transition-fast: all 0.2s ease;
@@ -69,53 +77,76 @@
         .header {
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
-            height: 64px;
+            padding: 0 32px;
+            height: 72px;
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
+            font-size: 28px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
             text-decoration: none;
             letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 48px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--color-text);
             text-decoration: none;
-            font-weight: var(--font-weight-regular);
-            font-size: 17px;
+            font-weight: var(--font-weight-medium);
+            font-size: 16px;
             transition: var(--transition-fast);
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         .lang-toggle {
             background: var(--color-background-secondary);
-            border: none;
+            border: 1px solid var(--color-border);
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             font-weight: var(--font-weight-medium);
             font-size: 14px;
             cursor: pointer;
@@ -124,425 +155,767 @@
         }
 
         .lang-toggle:hover {
-            background: var(--color-border);
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+        }
+
+        .btn-header {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            font-size: 14px;
+            transition: var(--transition-medium);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-header:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         /* Hero Section */
         .hero {
-            padding: 80px 24px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-text-light);
+            padding: 120px 32px 80px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
         }
 
         .hero h1 {
-            font-size: clamp(48px, 7vw, 64px);
-            font-weight: var(--font-weight-bold);
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: var(--font-weight-extrabold);
             line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--color-text);
-            letter-spacing: -2px;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
         }
 
         .hero .subtitle {
-            font-size: 28px;
+            font-size: clamp(20px, 3vw, 28px);
             font-weight: var(--font-weight-medium);
-            color: var(--color-text-secondary);
             margin-bottom: 32px;
             line-height: 1.3;
+            opacity: 0.9;
         }
 
         .hero .description {
-            font-size: 21px;
+            font-size: 18px;
             font-weight: var(--font-weight-regular);
-            color: var(--color-text-secondary);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 48px;
-            line-height: 1.5;
+            line-height: 1.6;
+            opacity: 0.8;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 64px;
         }
 
         .btn-primary {
-            background: var(--color-primary);
-            color: white;
-            padding: 16px 32px;
+            background: var(--color-text-light);
+            color: var(--color-primary);
+            padding: 18px 36px;
             border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: var(--font-weight-semibold);
-            font-size: 17px;
+            font-size: 16px;
             transition: var(--transition-medium);
             border: none;
             cursor: pointer;
-            min-width: 160px;
+            min-width: 180px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-primary:hover {
-            background: var(--color-primary-light);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-medium);
+            background: var(--color-background-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--color-accent);
-            padding: 16px 32px;
-            border: 1px solid var(--color-border);
+            color: var(--color-text-light);
+            padding: 18px 36px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: var(--font-weight-semibold);
-            font-size: 17px;
+            font-size: 16px;
             transition: var(--transition-medium);
-            min-width: 160px;
+            min-width: 180px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-secondary:hover {
-            background: var(--color-background-secondary);
-            border-color: var(--color-accent);
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
 
-        /* Guarantee Section */
-        .guarantee {
-            background: var(--color-background-secondary);
-            padding: 80px 24px;
-            margin: 80px 0;
+        /* Stats Section */
+        .stats {
+            background: var(--color-text-light);
+            padding: 40px 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: -1px;
         }
 
-        .guarantee-content {
-            max-width: 800px;
+        .stats-grid {
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
             text-align: center;
         }
 
-        .guarantee h2 {
-            font-size: 36px;
-            font-weight: var(--font-weight-bold);
-            margin-bottom: 16px;
-            color: var(--color-text);
+        .stat-item {
+            color: var(--color-primary);
         }
 
-        .guarantee p {
-            font-size: 21px;
-            color: var(--color-text-secondary);
-            margin-bottom: 32px;
-            line-height: 1.5;
+        .stat-number {
+            font-size: 48px;
+            font-weight: var(--font-weight-extrabold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
         }
 
         /* Features Section */
         .features {
-            padding: 80px 24px;
-            max-width: 1200px;
+            padding: 120px 32px;
+            background: var(--color-background-secondary);
+        }
+
+        .features-container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .features h2 {
-            font-size: 40px;
-            font-weight: var(--font-weight-bold);
+        .section-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: var(--font-weight-extrabold);
+            line-height: 1.2;
+            margin-bottom: 24px;
             color: var(--color-text);
+        }
+
+        .section-description {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .feature-card {
-            background: var(--color-background);
-            border: 1px solid var(--color-border);
+            background: var(--color-text-light);
+            padding: 40px;
             border-radius: var(--border-radius-large);
-            padding: 40px 32px;
-            text-align: center;
+            box-shadow: var(--shadow-md);
             transition: var(--transition-medium);
+            border: 1px solid var(--color-border);
         }
 
         .feature-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-large);
-            border-color: var(--color-separator);
+            box-shadow: var(--shadow-xl);
         }
 
         .feature-icon {
             width: 64px;
             height: 64px;
-            margin: 0 auto 24px;
-            background: var(--color-background-secondary);
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            margin-bottom: 24px;
+            font-size: 24px;
+            color: var(--color-text-light);
         }
 
-        .feature-card h3 {
-            font-size: 22px;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: 12px;
+        .feature-title {
+            font-size: 24px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 16px;
             color: var(--color-text);
         }
 
-        .feature-card p {
+        .feature-description {
+            font-size: 16px;
             color: var(--color-text-secondary);
-            font-size: 17px;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .feature-link:hover {
+            color: var(--color-primary-dark);
         }
 
         /* Courses Section */
         .courses {
-            background: var(--color-background-secondary);
-            padding: 80px 24px;
+            padding: 120px 32px;
+            background: var(--color-background);
         }
 
         .courses-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .courses h2 {
-            font-size: 40px;
-            font-weight: var(--font-weight-bold);
-            text-align: center;
-            margin-bottom: 64px;
-            color: var(--color-text);
         }
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 64px;
         }
 
         .course-card {
-            background: var(--color-background);
+            background: var(--color-text-light);
             border-radius: var(--border-radius-large);
-            padding: 32px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
             transition: var(--transition-medium);
             border: 1px solid var(--color-border);
         }
 
         .course-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .course-card h3 {
-            font-size: 22px;
+        .course-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            padding: 32px;
+            color: var(--color-text-light);
+            text-align: center;
+        }
+
+        .course-level {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
             font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .course-title {
+            font-size: 24px;
+            font-weight: var(--font-weight-bold);
             margin-bottom: 12px;
+        }
+
+        .course-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .course-body {
+            padding: 32px;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .course-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .course-features i {
+            color: var(--color-success);
+            font-size: 16px;
+        }
+
+        .course-price {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .price-amount {
+            font-size: 32px;
+            font-weight: var(--font-weight-extrabold);
             color: var(--color-text);
         }
 
-        .course-card p {
+        .price-period {
+            font-size: 14px;
             color: var(--color-text-secondary);
-            margin-bottom: 24px;
-            font-size: 17px;
-            line-height: 1.5;
         }
 
-        .course-card a {
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: var(--font-weight-semibold);
-            font-size: 17px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        /* Testimonials Section */
+        .testimonials {
+            padding: 120px 32px;
+            background: var(--color-background-dark);
+            color: var(--color-text-light);
         }
 
-        .course-card a:hover {
-            color: var(--color-primary);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 24px;
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: var(--border-radius-large);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-content {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-bold);
+            font-size: 18px;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 4px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 32px;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+            color: var(--color-text-light);
+            text-align: center;
+        }
+
+        .cta-container {
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .contact h2 {
-            font-size: 40px;
-            font-weight: var(--font-weight-bold);
-            margin-bottom: 20px;
-            color: var(--color-text);
+        .cta-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: var(--font-weight-extrabold);
+            margin-bottom: 24px;
+            line-height: 1.2;
         }
 
-        .contact p {
-            font-size: 21px;
-            color: var(--color-text-secondary);
+        .cta-description {
+            font-size: 20px;
             margin-bottom: 48px;
-            line-height: 1.5;
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
         /* Footer */
         .footer {
-            background: var(--color-background-secondary);
-            padding: 60px 24px 32px;
-            border-top: 1px solid var(--color-border);
+            background: var(--color-background-dark);
+            color: var(--color-text-light);
+            padding: 80px 32px 32px;
         }
 
-        .footer-content {
-            max-width: 1200px;
+        .footer-container {
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
-        .footer-column h3 {
-            font-size: 17px;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: 16px;
-            color: var(--color-text);
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 20px;
+            color: var(--color-text-light);
         }
 
-        .footer-column p,
-        .footer-column a {
-            color: var(--color-text-secondary);
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 15px;
             line-height: 1.6;
+            transition: var(--transition-fast);
         }
 
-        .footer-column a:hover {
-            color: var(--color-text);
+        .footer-section a:hover {
+            color: var(--color-primary-light);
         }
 
         .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            list-style: none;
         }
 
-        .copyright {
-            text-align: center;
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 32px;
-            border-top: 1px solid var(--color-border);
-            color: var(--color-text-secondary);
-            font-size: 14px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Mobile Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .nav {
+                padding: 0 20px;
+                height: 64px;
+            }
+            
             .nav-links {
                 display: none;
             }
-
+            
             .hero {
-                padding: 60px 24px;
+                padding: 80px 20px 60px;
             }
-
-            .hero h1 {
-                font-size: 42px;
+            
+            .features,
+            .courses,
+            .testimonials,
+            .cta-section {
+                padding: 80px 20px;
             }
-
-            .hero .subtitle {
-                font-size: 24px;
+            
+            .features-grid,
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
-
-            .hero .description {
-                font-size: 19px;
-            }
-
+            
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
+            
             .btn-primary,
             .btn-secondary {
                 width: 100%;
-                max-width: 280px;
-            }
-
-            .features-grid,
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .guarantee,
-            .features,
-            .courses,
-            .contact {
-                padding: 60px 24px;
+                max-width: 300px;
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-background: #000000;
-                --color-background-secondary: #1c1c1e;
-                --color-text: #FFFFFF;
-                --color-text-secondary: #8E8E93;
-                --color-border: #38383A;
-                --color-separator: #48484A;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-content > *:nth-child(2) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="/" class="logo">CCIE Master</a>
+            <a href="/" class="logo">
+                <i class="fas fa-graduation-cap"></i> CCIE Master
+            </a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/courses/">Courses</a></li>
+                <li><a href="/success-stories/">Success Stories</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
-            <button class="lang-toggle" onclick="toggleLanguage()">中文</button>
+            <div class="nav-actions">
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i> EN
+                </button>
+                <a href="/contact/" class="btn-header">Start Free Trial</a>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Pass CCIE Fast</h1>
-        <p class="subtitle">3-Month Guarantee Program</p>
-        <p class="description">Professional certification training with proven results. Join thousands of successful engineers.</p>
-        <div class="cta-buttons">
-            <a href="/contact" class="btn-primary">Start Learning</a>
-            <a href="/courses" class="btn-secondary">View Courses</a>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                <span>Trusted by 10,000+ IT Professionals</span>
+            </div>
+            <h1>Master Your CCIE Certification</h1>
+            <p class="subtitle">Pass Your Exam in 3 Months with Expert Training</p>
+            <p class="description">
+                Join thousands of successful IT professionals who achieved their CCIE certification with our proven training system. 
+                Get hands-on labs, expert instruction, and guaranteed results.
+            </p>
+            <div class="cta-buttons">
+                <a href="/courses/" class="btn-primary">
+                    <i class="fas fa-play"></i>
+                    Start Learning Now
+                </a>
+                <a href="/success-stories/" class="btn-secondary">
+                    <i class="fas fa-users"></i>
+                    View Success Stories
+                </a>
+            </div>
         </div>
-    </section>
-
-    <!-- Guarantee Section -->
-    <section class="guarantee">
-        <div class="guarantee-content">
-            <h2>3-Month Pass Guarantee</h2>
-            <p>Complete training system with lab access, expert guidance, and exam materials. Pass or retake free.</p>
-            <a href="/contact" class="btn-primary">Get Started Today</a>
+        
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Pass Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Students Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Hours of Content</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Expert Support</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
-        <h2>Why Choose Us</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
-                <h3>Real Lab Environment</h3>
-                <p>Practice on equipment identical to actual CCIE exam labs. Build confidence before test day.</p>
+        <div class="features-container">
+            <div class="section-header">
+                <div class="section-badge">Why Choose Us</div>
+                <h2 class="section-title">Everything You Need to Pass Your CCIE</h2>
+                <p class="section-description">
+                    Our comprehensive training platform combines expert instruction, hands-on labs, 
+                    and personalized support to ensure your certification success.
+                </p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Complete Materials</h3>
-                <p>Comprehensive study guides, practice exams, and exclusive resources for all CCIE tracks.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🏫</div>
-                <h3>Expert Instructors</h3>
-                <p>Learn from certified CCIE professionals with real-world experience and proven teaching methods.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="feature-title">Expert Video Training</h3>
+                    <p class="feature-description">
+                        Learn from industry experts with 500+ hours of high-quality video content covering all CCIE tracks. 
+                        Updated regularly to match the latest exam blueprints.
+                    </p>
+                    <a href="/courses/" class="feature-link">
+                        Explore Courses <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="feature-title">Hands-On Labs</h3>
+                    <p class="feature-description">
+                        Practice with real equipment through our virtual labs. No need for expensive hardware - 
+                        get hands-on experience with enterprise-grade network simulations.
+                    </p>
+                    <a href="/courses/" class="feature-link">
+                        Try Labs <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Expert Mentorship</h3>
+                    <p class="feature-description">
+                        Get personalized guidance from CCIE-certified instructors. Weekly office hours, 
+                        1-on-1 sessions, and community support to keep you on track.
+                    </p>
+                    <a href="/contact/" class="feature-link">
+                        Get Support <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="feature-title">Exam Preparation</h3>
+                    <p class="feature-description">
+                        Practice exams, study guides, and exam strategies from instructors who have helped 
+                        thousands pass their CCIE certification on the first attempt.
+                    </p>
+                    <a href="/courses/" class="feature-link">
+                        Start Prep <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Flexible Learning</h3>
+                    <p class="feature-description">
+                        Learn at your own pace with lifetime access to all content. Mobile-friendly platform 
+                        lets you study anywhere, anytime that fits your schedule.
+                    </p>
+                    <a href="/courses/" class="feature-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Success Guarantee</h3>
+                    <p class="feature-description">
+                        We're so confident in our training that we offer a pass guarantee. 
+                        If you don't pass, we'll provide additional support until you do.
+                    </p>
+                    <a href="/contact/" class="feature-link">
+                        Learn About Guarantee <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -550,82 +923,249 @@
     <!-- Courses Section -->
     <section class="courses">
         <div class="courses-container">
-            <h2>CCIE Certifications</h2>
+            <div class="section-header">
+                <div class="section-badge">Training Tracks</div>
+                <h2 class="section-title">Choose Your CCIE Track</h2>
+                <p class="section-description">
+                    Specialized training programs for every CCIE certification track, 
+                    designed by experts who know what it takes to pass.
+                </p>
+            </div>
+            
             <div class="courses-grid">
                 <div class="course-card">
-                    <h3>Enterprise Infrastructure</h3>
-                    <p>Master enterprise networking technologies and pass your CCIE Enterprise certification.</p>
-                    <a href="/courses">Learn More →</a>
+                    <div class="course-header">
+                        <div class="course-level">Most Popular</div>
+                        <h3 class="course-title">CCIE Enterprise Infrastructure</h3>
+                        <p class="course-subtitle">Complete certification training</p>
+                    </div>
+                    <div class="course-body">
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 200+ hours of video content</li>
+                            <li><i class="fas fa-check"></i> 50+ hands-on labs</li>
+                            <li><i class="fas fa-check"></i> Practice exams & assessments</li>
+                            <li><i class="fas fa-check"></i> Expert mentorship included</li>
+                            <li><i class="fas fa-check"></i> Lifetime access</li>
+                        </ul>
+                        <div class="course-price">
+                            <span class="price-amount">$2,999</span>
+                            <span class="price-period">one-time payment</span>
+                        </div>
+                        <a href="/courses/" class="btn-primary" style="width: 100%;">
+                            Start Training
+                        </a>
+                    </div>
                 </div>
+                
                 <div class="course-card">
-                    <h3>Security</h3>
-                    <p>Become a network security expert with comprehensive CCIE Security training.</p>
-                    <a href="/courses">Learn More →</a>
+                    <div class="course-header">
+                        <div class="course-level">Advanced</div>
+                        <h3 class="course-title">CCIE Security</h3>
+                        <p class="course-subtitle">Cybersecurity expertise</p>
+                    </div>
+                    <div class="course-body">
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 180+ hours of video content</li>
+                            <li><i class="fas fa-check"></i> 40+ security labs</li>
+                            <li><i class="fas fa-check"></i> Real-world scenarios</li>
+                            <li><i class="fas fa-check"></i> Threat analysis training</li>
+                            <li><i class="fas fa-check"></i> Industry case studies</li>
+                        </ul>
+                        <div class="course-price">
+                            <span class="price-amount">$3,299</span>
+                            <span class="price-period">one-time payment</span>
+                        </div>
+                        <a href="/courses/" class="btn-primary" style="width: 100%;">
+                            Start Training
+                        </a>
+                    </div>
                 </div>
+                
                 <div class="course-card">
-                    <h3>Service Provider</h3>
-                    <p>Specialize in service provider technologies and advanced routing protocols.</p>
-                    <a href="/courses">Learn More →</a>
+                    <div class="course-header">
+                        <div class="course-level">Specialized</div>
+                        <h3 class="course-title">CCIE Data Center</h3>
+                        <p class="course-subtitle">Data center technologies</p>
+                    </div>
+                    <div class="course-body">
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 160+ hours of video content</li>
+                            <li><i class="fas fa-check"></i> 35+ data center labs</li>
+                            <li><i class="fas fa-check"></i> Virtualization training</li>
+                            <li><i class="fas fa-check"></i> Storage networking</li>
+                            <li><i class="fas fa-check"></i> Cloud integration</li>
+                        </ul>
+                        <div class="course-price">
+                            <span class="price-amount">$3,199</span>
+                            <span class="price-period">one-time payment</span>
+                        </div>
+                        <a href="/courses/" class="btn-primary" style="width: 100%;">
+                            Start Training
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="/courses/" class="btn-secondary" style="background: var(--color-primary); color: var(--color-text-light); border: none;">
+                    <i class="fas fa-th-large"></i>
+                    View All Courses
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <div class="section-badge" style="background: var(--color-secondary);">Success Stories</div>
+                <h2 class="section-title" style="color: var(--color-text-light);">What Our Students Say</h2>
+                <p class="section-description" style="color: rgba(255, 255, 255, 0.8);">
+                    Join thousands of IT professionals who have successfully passed their CCIE certification with our training.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        "CCIE Master's training program was exactly what I needed. The hands-on labs and expert guidance 
+                        helped me pass my CCIE Enterprise Infrastructure exam on the first try. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Michael Johnson</h4>
+                            <p>Network Engineer, Cisco</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        "The quality of instruction and the depth of content is unmatched. I tried other training providers 
+                        but CCIE Master's approach to practical learning made all the difference."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah Liu</h4>
+                            <p>Senior Network Architect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        "After failing my first attempt with another provider, CCIE Master helped me understand the concepts 
+                        properly. Passed my CCIE Security exam with confidence. Worth every penny!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Robert Kim</h4>
+                            <p>Cybersecurity Specialist</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact">
-        <h2>Ready to Get Certified?</h2>
-        <p>Join our proven training program and fast-track your CCIE certification success.</p>
-        <div class="cta-buttons">
-            <a href="/contact" class="btn-primary">Contact Us Today</a>
-            <a href="mailto:cciemasternode@gmail.com" class="btn-secondary">Email Us</a>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Start Your CCIE Journey?</h2>
+            <p class="cta-description">
+                Join thousands of successful IT professionals who have achieved their CCIE certification with our proven training system. 
+                Start your free trial today and see the difference expert training makes.
+            </p>
+            <div class="cta-buttons">
+                <a href="/contact/" class="btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Start Free Trial
+                </a>
+                <a href="/courses/" class="btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>CCIE Master</h3>
-                <p>Professional CCIE certification training with proven results. Fast-track your networking career with our expert-led programs.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Courses</h3>
-                <div class="footer-links">
-                    <a href="/courses">CCIE Enterprise</a>
-                    <a href="/courses">CCIE Security</a>
-                    <a href="/courses">CCIE Service Provider</a>
-                    <a href="/courses">CCIE Data Center</a>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> CCIE Master</h3>
+                    <p>
+                        Professional CCIE certification training with hands-on labs, expert instructors, 
+                        and guaranteed results. Your success is our mission.
+                    </p>
+                    <br>
+                    <p>
+                        <i class="fas fa-envelope"></i> 
+                        <a href="mailto:cciemasternode@gmail.com">cciemasternode@gmail.com</a>
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Training</h3>
+                    <ul class="footer-links">
+                        <li><a href="/courses/">All Courses</a></li>
+                        <li><a href="/courses/">CCIE Enterprise Infrastructure</a></li>
+                        <li><a href="/courses/">CCIE Security</a></li>
+                        <li><a href="/courses/">CCIE Data Center</a></li>
+                        <li><a href="/courses/">CCIE Collaboration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="/success-stories/">Success Stories</a></li>
+                        <li><a href="/courses/">Practice Labs</a></li>
+                        <li><a href="/contact/">Expert Support</a></li>
+                        <li><a href="/courses/">Study Guides</a></li>
+                        <li><a href="/contact/">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="/contact/">Contact Us</a></li>
+                        <li><a href="/success-stories/">About</a></li>
+                        <li><a href="/contact/">Support</a></li>
+                        <li><a href="/contact/">Partnership</a></li>
+                        <li><a href="/contact/">Careers</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <p>Email: cciemasternode@gmail.com</p>
-                <p>Available 24/7 for support</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CCIE Master. All rights reserved. | 
+                   <a href="/contact/">Privacy Policy</a> | 
+                   <a href="/contact/">Terms of Service</a>
+                </p>
             </div>
-            <div class="footer-column">
-                <h3>Resources</h3>
-                <div class="footer-links">
-                    <a href="/blog">Technical Blog</a>
-                    <a href="/resources">Study Materials</a>
-                    <a href="/success-stories">Success Stories</a>
-                    <a href="/qa">FAQ</a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2025 CCIE Master. All rights reserved.
         </div>
     </footer>
 
     <script>
+        // Language toggle functionality
         function toggleLanguage() {
-            const btn = document.querySelector('.lang-toggle');
-            if (btn.textContent === '中文') {
-                btn.textContent = 'EN';
-                // Add Chinese content switching logic here
+            const currentLang = document.documentElement.lang;
+            if (currentLang === 'en') {
+                // Switch to Chinese
+                document.documentElement.lang = 'zh';
+                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> 中文';
+                // Add Chinese translations here
             } else {
-                btn.textContent = '中文';
-                // Add English content switching logic here
+                // Switch to English
+                document.documentElement.lang = 'en';
+                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> EN';
             }
         }
 
@@ -633,23 +1173,19 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Header scroll effect
-        let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.8)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
     </script>

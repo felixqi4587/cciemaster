@@ -4,45 +4,53 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact Us - CCIE Master Training</title>
-    <meta name="description" content="Contact CCIE Master for professional network certification training consultation and support. Get started with your CCIE journey today.">
+    <meta name="description" content="Get in touch with our CCIE training experts. Free consultation, course guidance, and 24/7 support available.">
     <link rel="icon" href="/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Apple-inspired Clean Design System */
+        /* Professional Training Website Design System */
         :root {
-            /* Primary Colors - More subtle and clean */
-            --color-primary: #000000;
-            --color-primary-light: #1c1c1e;
-            --color-accent: #007AFF;
-            --color-success: #34C759;
-            --color-warning: #FF9500;
+            /* Primary Colors - Professional Training Theme */
+            --color-primary: #2563eb;
+            --color-primary-dark: #1d4ed8;
+            --color-primary-light: #3b82f6;
+            --color-secondary: #10b981;
+            --color-accent: #f59e0b;
+            --color-warning: #ef4444;
+            --color-success: #22c55e;
             
             /* Background Colors */
-            --color-background: #FFFFFF;
-            --color-background-secondary: #F2F2F7;
-            --color-background-tertiary: #FFFFFF;
+            --color-background: #ffffff;
+            --color-background-secondary: #f8fafc;
+            --color-background-tertiary: #f1f5f9;
+            --color-background-dark: #0f172a;
             
             /* Text Colors */
-            --color-text: #1D1D1F;
-            --color-text-secondary: #86868B;
-            --color-text-tertiary: #C7C7CC;
+            --color-text: #1e293b;
+            --color-text-secondary: #64748b;
+            --color-text-tertiary: #94a3b8;
+            --color-text-light: #ffffff;
             
             /* System Colors */
-            --color-border: #D1D1D6;
-            --color-separator: #C6C6C8;
+            --color-border: #e2e8f0;
+            --color-separator: #cbd5e1;
             
             /* Typography */
-            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
             --font-weight-semibold: 600;
             --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
             
             /* Spacing */
-            --border-radius: 12px;
+            --border-radius: 8px;
             --border-radius-large: 16px;
-            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --border-radius-xl: 24px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             
             /* Transitions */
             --transition-fast: all 0.2s ease;
@@ -69,54 +77,78 @@
         .header {
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
-            height: 64px;
+            padding: 0 32px;
+            height: 72px;
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
+            font-size: 28px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
             text-decoration: none;
             letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 48px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--color-text);
             text-decoration: none;
-            font-weight: var(--font-weight-regular);
-            font-size: 17px;
+            font-weight: var(--font-weight-medium);
+            font-size: 16px;
             transition: var(--transition-fast);
+            position: relative;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         .lang-toggle {
             background: var(--color-background-secondary);
-            border: none;
+            border: 1px solid var(--color-border);
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             font-weight: var(--font-weight-medium);
             font-size: 14px;
             cursor: pointer;
@@ -125,336 +157,541 @@
         }
 
         .lang-toggle:hover {
-            background: var(--color-border);
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+        }
+
+        .btn-header {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            font-size: 14px;
+            transition: var(--transition-medium);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-header:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         /* Hero Section */
         .hero {
-            padding: 80px 24px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-text-light);
+            padding: 120px 32px 80px;
             text-align: center;
-            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .breadcrumb a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 6vw, 56px);
-            font-weight: var(--font-weight-bold);
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: var(--font-weight-extrabold);
             line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--color-text);
-            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
         }
 
-        .hero p {
-            font-size: 24px;
+        .hero .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
             font-weight: var(--font-weight-medium);
-            color: var(--color-text-secondary);
-            margin-bottom: 48px;
-            line-height: 1.3;
+            margin-bottom: 32px;
+            line-height: 1.4;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: var(--font-weight-extrabold);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 80px 24px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 80px 32px;
+            background: var(--color-background);
         }
 
-        .contact-grid {
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: start;
         }
 
-        /* Contact Info */
         .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+            position: sticky;
+            top: 120px;
         }
 
-        .info-card {
-            background: var(--color-background);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius-large);
-            padding: 32px;
-            transition: var(--transition-medium);
-        }
-
-        .info-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .info-card h3 {
-            font-size: 22px;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: 16px;
+        .contact-title {
+            font-size: 36px;
+            font-weight: var(--font-weight-extrabold);
             color: var(--color-text);
+            margin-bottom: 24px;
+            line-height: 1.2;
         }
 
-        .info-card p {
-            font-size: 17px;
+        .contact-description {
+            font-size: 18px;
             color: var(--color-text-secondary);
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .info-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .info-card strong {
-            color: var(--color-text);
-            font-weight: var(--font-weight-semibold);
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
 
         .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 24px;
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
         .contact-method {
             display: flex;
             align-items: center;
             gap: 16px;
-            padding: 16px;
+            padding: 20px;
             background: var(--color-background-secondary);
-            border-radius: var(--border-radius);
-            transition: var(--transition-fast);
+            border-radius: var(--border-radius-large);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-medium);
         }
 
         .contact-method:hover {
-            background: var(--color-border);
+            background: var(--color-background-tertiary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .contact-method-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--color-accent);
-            border-radius: 50%;
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 18px;
+            font-size: 20px;
+            color: var(--color-text-light);
             flex-shrink: 0;
         }
 
-        .contact-method-text {
-            flex: 1;
-        }
-
-        .contact-method-text h4 {
-            font-size: 17px;
+        .contact-details h3 {
+            font-size: 16px;
             font-weight: var(--font-weight-semibold);
             color: var(--color-text);
             margin-bottom: 4px;
         }
 
-        .contact-method-text p {
-            font-size: 15px;
+        .contact-details p {
+            font-size: 14px;
             color: var(--color-text-secondary);
-            margin: 0;
         }
 
-        .contact-method-text a {
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: var(--font-weight-medium);
-        }
-
-        .contact-method-text a:hover {
+        .contact-details a {
             color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .response-time {
+            background: var(--color-success);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius-large);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .response-time-title {
+            font-size: 18px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 4px;
+        }
+
+        .response-time-text {
+            font-size: 14px;
+            opacity: 0.9;
         }
 
         /* Contact Form */
         .contact-form {
             background: var(--color-background);
             border: 1px solid var(--color-border);
-            border-radius: var(--border-radius-large);
-            padding: 40px;
+            border-radius: var(--border-radius-xl);
+            padding: 48px;
+            box-shadow: var(--shadow-lg);
         }
 
-        .contact-form h2 {
+        .form-title {
             font-size: 28px;
             font-weight: var(--font-weight-bold);
-            margin-bottom: 24px;
             color: var(--color-text);
-            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
-            margin-bottom: 24px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            font-size: 15px;
-            font-weight: var(--font-weight-semibold);
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
             color: var(--color-text);
             margin-bottom: 8px;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
             padding: 16px;
             border: 1px solid var(--color-border);
             border-radius: var(--border-radius);
-            font-size: 17px;
+            font-size: 16px;
             font-family: var(--font-system);
             color: var(--color-text);
             background: var(--color-background);
             transition: var(--transition-fast);
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
             outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        .form-group textarea {
+        .form-textarea {
             resize: vertical;
             min-height: 120px;
         }
 
-        .submit-button {
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .form-checkbox input {
+            margin-top: 2px;
+        }
+
+        .form-checkbox label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .form-checkbox a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .form-checkbox a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary {
             background: var(--color-primary);
-            color: white;
+            color: var(--color-text-light);
             padding: 16px 32px;
-            border: none;
             border-radius: var(--border-radius);
-            font-size: 17px;
+            text-decoration: none;
             font-weight: var(--font-weight-semibold);
-            font-family: var(--font-system);
-            cursor: pointer;
+            font-size: 16px;
             transition: var(--transition-medium);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             width: 100%;
         }
 
-        .submit-button:hover {
-            background: var(--color-primary-light);
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
             transform: translateY(-1px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-md);
         }
 
-        .submit-button:active {
-            transform: translateY(0);
+        .btn-primary:disabled {
+            background: var(--color-text-tertiary);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--color-background-secondary);
+            padding: 80px 32px;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: var(--font-weight-extrabold);
+            color: var(--color-text);
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            transition: var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background: var(--color-background-secondary);
+        }
+
+        .faq-icon {
+            font-size: 16px;
+            color: var(--color-primary);
+            transition: var(--transition-fast);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 24px 24px;
+        }
+
+        .faq-answer p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
         }
 
         /* Footer */
         .footer {
-            background: var(--color-background-secondary);
-            padding: 60px 24px 32px;
-            border-top: 1px solid var(--color-border);
-            margin-top: 80px;
+            background: var(--color-background-dark);
+            color: var(--color-text-light);
+            padding: 60px 32px 32px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 17px;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: 16px;
-            color: var(--color-text);
-        }
-
-        .footer-column p,
-        .footer-column a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .footer-column a:hover {
-            color: var(--color-text);
+            margin-bottom: 32px;
         }
 
         .footer-links {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
 
-        .copyright {
-            text-align: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--color-border);
-            color: var(--color-text-secondary);
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 14px;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 60px 24px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 20px;
-            }
-
-            .contact-grid {
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .contact-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 60px;
             }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 32px 24px;
-            }
-
-            .contact-section {
-                padding: 60px 24px;
+            
+            .contact-info {
+                position: static;
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-background: #000000;
-                --color-background-secondary: #1c1c1e;
-                --color-text: #FFFFFF;
-                --color-text-secondary: #8E8E93;
-                --color-border: #38383A;
-                --color-separator: #48484A;
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 20px;
+                height: 64px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 80px 20px 60px;
+            }
+            
+            .hero-stats {
+                gap: 24px;
+            }
+            
+            .contact-section,
+            .faq-section {
+                padding: 60px 20px;
+            }
+            
+            .contact-form {
+                padding: 32px 24px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-methods {
+                gap: 16px;
+            }
+            
+            .contact-method {
+                padding: 16px;
             }
         }
     </style>
@@ -463,189 +700,408 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="/" class="logo">CCIE Master</a>
+            <a href="/" class="logo">
+                <i class="fas fa-graduation-cap"></i> CCIE Master
+            </a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/contact" class="active">Contact</a></li>
+                <li><a href="/courses/">Courses</a></li>
+                <li><a href="/success-stories/">Success Stories</a></li>
+                <li><a href="/contact/" class="active">Contact</a></li>
             </ul>
-            <button class="lang-toggle" onclick="toggleLanguage()">中文</button>
+            <div class="nav-actions">
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i> EN
+                </button>
+                <a href="/contact/" class="btn-header">Start Free Trial</a>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Contact Us</h1>
-        <p>Ready to start your CCIE certification journey? Get in touch with our expert team.</p>
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Contact</span>
+            </div>
+            <h1>Get Expert Guidance</h1>
+            <p class="subtitle">
+                Ready to start your CCIE journey? Our expert team is here to help you choose the right path 
+                and answer all your questions about our training programs.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support Available</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">&lt; 2h</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfaction Rate</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section">
-        <div class="contact-grid">
-            <!-- Contact Info -->
+        <div class="contact-container">
+            <!-- Contact Information -->
             <div class="contact-info">
-                <div class="info-card">
-                    <h3>Get in Touch</h3>
-                    <p>Have questions about our CCIE training programs? Our team is here to help you choose the right path for your networking career.</p>
-                    <p><strong>Response Time:</strong> We typically respond within 24 hours</p>
-                    <p><strong>Support Hours:</strong> Available 24/7 for urgent inquiries</p>
+                <h2 class="contact-title">Let's Connect</h2>
+                <p class="contact-description">
+                    Whether you need course guidance, technical support, or want to discuss your career goals, 
+                    our team of CCIE-certified experts is ready to help you succeed.
+                </p>
+
+                <div class="response-time">
+                    <div class="response-time-title">⚡ Quick Response Guarantee</div>
+                    <div class="response-time-text">We typically respond within 2 hours during business hours</div>
                 </div>
 
                 <div class="contact-methods">
                     <div class="contact-method">
-                        <div class="contact-method-icon">✉</div>
-                        <div class="contact-method-text">
-                            <h4>Email Us</h4>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Support</h3>
                             <p><a href="mailto:cciemasternode@gmail.com">cciemasternode@gmail.com</a></p>
+                            <p>Best for detailed questions and course inquiries</p>
                         </div>
                     </div>
 
                     <div class="contact-method">
-                        <div class="contact-method-icon">💬</div>
-                        <div class="contact-method-text">
-                            <h4>Quick Response</h4>
-                            <p>Get answers to your questions within 24 hours</p>
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Free Consultation</h3>
+                            <p>Schedule a 30-minute call with our experts</p>
+                            <p>Perfect for career guidance and course selection</p>
                         </div>
                     </div>
 
                     <div class="contact-method">
-                        <div class="contact-method-icon">🎯</div>
-                        <div class="contact-method-text">
-                            <h4>Course Consultation</h4>
-                            <p>Free personalized course recommendations</p>
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Live Chat</h3>
+                            <p>Available 24/7 for instant support</p>
+                            <p>Quick answers to common questions</p>
                         </div>
                     </div>
 
                     <div class="contact-method">
-                        <div class="contact-method-icon">🚀</div>
-                        <div class="contact-method-text">
-                            <h4>Fast Track Support</h4>
-                            <p>Accelerated learning paths for busy professionals</p>
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
+                        <div class="contact-details">
+                            <h3>Student Portal</h3>
+                            <p>Access your courses and materials</p>
+                            <p>Track progress and get personalized support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-background-secondary); padding: 24px; border-radius: var(--border-radius-large); border: 1px solid var(--color-border);">
+                    <h3 style="font-size: 16px; font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: 12px;">
+                        <i class="fas fa-clock" style="color: var(--color-primary); margin-right: 8px;"></i>
+                        Business Hours
+                    </h3>
+                    <div style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.6;">
+                        <p><strong>Monday - Friday:</strong> 9:00 AM - 8:00 PM (EST)</p>
+                        <p><strong>Saturday:</strong> 10:00 AM - 6:00 PM (EST)</p>
+                        <p><strong>Sunday:</strong> 12:00 PM - 5:00 PM (EST)</p>
+                        <p style="margin-top: 8px; font-style: italic;">Emergency support available 24/7</p>
                     </div>
                 </div>
             </div>
 
             <!-- Contact Form -->
             <div class="contact-form">
-                <h2>Send Us a Message</h2>
-                <form action="mailto:cciemasternode@gmail.com" method="post" enctype="text/plain">
+                <h2 class="form-title">Send Us a Message</h2>
+                <p class="form-subtitle">Fill out the form below and we'll get back to you within 2 hours</p>
+
+                <form id="contactForm" action="#" method="POST">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            <label for="firstName" class="form-label">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <label for="lastName" class="form-label">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" required>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a topic</option>
-                                <option value="Course Inquiry">Course Inquiry</option>
-                                <option value="Technical Question">Technical Question</option>
-                                <option value="Pricing Information">Pricing Information</option>
-                                <option value="Partnership">Partnership Opportunity</option>
-                                <option value="Support">Technical Support</option>
-                                <option value="Other">Other</option>
+                            <label for="experience" class="form-label">Experience Level</label>
+                            <select id="experience" name="experience" class="form-select">
+                                <option value="">Select your level</option>
+                                <option value="beginner">Beginner (0-2 years)</option>
+                                <option value="intermediate">Intermediate (2-5 years)</option>
+                                <option value="advanced">Advanced (5+ years)</option>
+                                <option value="expert">Expert/CCIE holder</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="form-group full-width">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your CCIE goals, current experience level, and any specific questions you have..." required></textarea>
+                    <div class="form-group">
+                        <label for="interest" class="form-label">Course Interest</label>
+                        <select id="interest" name="interest" class="form-select">
+                            <option value="">Select a course</option>
+                            <option value="enterprise">CCIE Enterprise Infrastructure</option>
+                            <option value="security">CCIE Security</option>
+                            <option value="datacenter">CCIE Data Center</option>
+                            <option value="collaboration">CCIE Collaboration</option>
+                            <option value="multiple">Multiple Courses</option>
+                            <option value="consultation">Need Consultation</option>
+                        </select>
                     </div>
 
-                    <button type="submit" class="submit-button">Send Message</button>
+                    <div class="form-group">
+                        <label for="timeline" class="form-label">When do you plan to start?</label>
+                        <select id="timeline" name="timeline" class="form-select">
+                            <option value="">Select timeline</option>
+                            <option value="immediately">Immediately</option>
+                            <option value="1month">Within 1 month</option>
+                            <option value="3months">Within 3 months</option>
+                            <option value="6months">Within 6 months</option>
+                            <option value="later">Later this year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your goals, questions, or how we can help you..." required></textarea>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">
+                            I'd like to receive updates about new courses, study tips, and special offers via email. 
+                            You can unsubscribe at any time.
+                        </label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">
+                            I agree to the <a href="/privacy">Privacy Policy</a> and understand that my information 
+                            will be used to respond to my inquiry and provide relevant course information. *
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">
+                    Quick answers to common questions about our training programs and support.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How quickly can I expect a response to my inquiry?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically respond to all inquiries within 2 hours during business hours (9 AM - 8 PM EST, Monday-Friday). For urgent matters, our 24/7 live chat support is available for immediate assistance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer free consultations?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer free 30-minute consultation calls with our CCIE-certified experts. This is perfect for discussing your career goals, choosing the right course, and getting personalized study recommendations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What support is available after I enroll?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our students get comprehensive support including: 24/7 access to instructors, weekly office hours, peer study groups, technical lab support, and career guidance. We're committed to your success throughout your entire journey.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I speak with current students or graduates?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We can connect you with current students and recent graduates who can share their experiences. We also have regular alumni webinars and a private community where you can network and ask questions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer payment plans or financing options?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer flexible payment plans to make our training accessible. Options include monthly installments, employer sponsorship assistance, and early-bird discounts. Contact us to discuss the best option for your situation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What makes your training different from other providers?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our training combines real-world experience with structured learning. All instructors are active CCIE professionals, we provide unlimited lab access, offer a pass guarantee, and maintain small class sizes for personalized attention.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>CCIE Master</h3>
-                <p>Professional CCIE certification training with proven results. Fast-track your networking career with our expert-led programs.</p>
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3><i class="fas fa-graduation-cap"></i> CCIE Master</h3>
+                <p style="margin-bottom: 24px; opacity: 0.8;">
+                    Professional CCIE certification training with guaranteed results.
+                </p>
             </div>
-            <div class="footer-column">
-                <h3>Courses</h3>
-                <div class="footer-links">
-                    <a href="/courses">CCIE Enterprise</a>
-                    <a href="/courses">CCIE Security</a>
-                    <a href="/courses">CCIE Service Provider</a>
-                    <a href="/courses">CCIE Data Center</a>
-                </div>
+            
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/courses/">Courses</a>
+                <a href="/success-stories/">Success Stories</a>
+                <a href="/contact/">Contact</a>
+                <a href="mailto:cciemasternode@gmail.com">Email Us</a>
             </div>
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <p>Email: cciemasternode@gmail.com</p>
-                <p>Available 24/7 for support</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CCIE Master. All rights reserved.</p>
             </div>
-            <div class="footer-column">
-                <h3>Resources</h3>
-                <div class="footer-links">
-                    <a href="/blog">Technical Blog</a>
-                    <a href="/resources">Study Materials</a>
-                    <a href="/success-stories">Success Stories</a>
-                    <a href="/qa">FAQ</a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2025 CCIE Master. All rights reserved.
         </div>
     </footer>
 
     <script>
+        // Language toggle functionality
         function toggleLanguage() {
-            const btn = document.querySelector('.lang-toggle');
-            if (btn.textContent === '中文') {
-                btn.textContent = 'EN';
-                // Add Chinese content switching logic here
+            const currentLang = document.documentElement.lang;
+            if (currentLang === 'en') {
+                document.documentElement.lang = 'zh';
+                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> 中文';
             } else {
-                btn.textContent = '中文';
-                // Add English content switching logic here
+                document.documentElement.lang = 'en';
+                document.querySelector('.lang-toggle').innerHTML = '<i class="fas fa-globe"></i> EN';
             }
         }
 
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you within 2 hours.');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         // Header scroll effect
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.8)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
 
-        // Form enhancement
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Create email body
-            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0ASubject: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-            
-            // Open email client
-            window.location.href = `mailto:cciemasternode@gmail.com?subject=CCIE Training Inquiry - ${subject}&body=${emailBody}`;
+        // Form validation enhancements
+        const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = 'var(--color-warning)';
+                } else {
+                    this.style.borderColor = 'var(--color-border)';
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.style.borderColor = 'var(--color-primary)';
+            });
         });
     </script>
 </body>
