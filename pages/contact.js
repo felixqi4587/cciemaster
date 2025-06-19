@@ -13,6 +13,8 @@ export default function Contact({ language }) {
   
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   
   // 语言文本
   const text = {
@@ -43,10 +45,16 @@ export default function Contact({ language }) {
         message: '消息内容',
         messagePlaceholder: '请详细描述您的需求或问题',
         submit: '发送消息',
+        submitting: '正在提交...',
         success: {
           title: '消息已发送！',
           message: '感谢您的留言，我们将在24小时内回复您。',
           button: '再次留言'
+        },
+        error: {
+          title: '提交失败',
+          message: '很抱歉，提交过程中出现错误，请稍后再试。',
+          button: '重试'
         },
         validation: {
           required: '此项为必填项',
@@ -112,10 +120,16 @@ export default function Contact({ language }) {
         message: 'Message',
         messagePlaceholder: 'Describe your needs or questions in detail',
         submit: 'Send Message',
+        submitting: 'Submitting...',
         success: {
           title: 'Message Sent!',
           message: 'Thank you for your message. We will get back to you within 24 hours.',
           button: 'Send Another Message'
+        },
+        error: {
+          title: 'Submission Failed',
+          message: 'Sorry, there was an error submitting your message. Please try again later.',
+          button: 'Try Again'
         },
         validation: {
           required: 'This field is required',
@@ -169,7 +183,7 @@ export default function Contact({ language }) {
     }
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // 表单验证
@@ -193,15 +207,35 @@ export default function Contact({ language }) {
       return;
     }
     
-    // 提交表单
-    // 这里可以添加实际的表单提交逻辑（如API请求）
-    // 实际项目中需要与后端API集成
+    // 提交表单到API
+    setIsSubmitting(true);
+    setSubmitError(null);
     
-    // 模拟提交成功
-    setTimeout(() => {
-      setIsSubmitted(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
       
-      // 在本地存储中保存用户提交的信息
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.message || '提交表单时出错');
+      }
+      
+      // 同时将数据保存到submissions API
+      await fetch('/api/submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      // 本地存储也保留，作为备份
       if (typeof window !== 'undefined') {
         const savedData = JSON.parse(localStorage.getItem('contactFormSubmissions') || '[]');
         savedData.push({
@@ -210,11 +244,19 @@ export default function Contact({ language }) {
         });
         localStorage.setItem('contactFormSubmissions', JSON.stringify(savedData));
       }
-    }, 1000);
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('提交表单时出错:', error);
+      setSubmitError(error.message || t.form.error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   const resetForm = () => {
     setIsSubmitted(false);
+    setSubmitError(null);
     setFormData({
       name: '',
       email: '',
@@ -276,6 +318,11 @@ export default function Contact({ language }) {
             {!isSubmitted ? (
               <>
                 <h2>{t.form.title}</h2>
+                {submitError && (
+                  <div className={styles.errorAlert}>
+                    <p>{submitError}</p>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
@@ -349,8 +396,12 @@ export default function Contact({ language }) {
                     {errors.message && <div className={styles.errorMessage}>{errors.message}</div>}
                   </div>
                   
-                  <button type="submit" className={styles.submitButton}>
-                    {t.form.submit}
+                  <button 
+                    type="submit" 
+                    className={styles.submitButton}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? t.form.submitting : t.form.submit}
                   </button>
                 </form>
               </>

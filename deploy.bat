@@ -1,88 +1,118 @@
 @echo off
-echo === CCIE培训网站部署脚本 ===
+echo ===================================
+echo CCIE培训网站 - Namecheap部署脚本
+echo ===================================
+echo.
 
-:: 设置FTP服务器信息（首次使用请编辑）
-set FTP_SERVER=ftp.yournamecheapdomain.com
-set FTP_USER=your_ftp_username
-set FTP_PASSWORD=your_ftp_password
-set REMOTE_DIR=/public_html/
-
-:: 检查环境变量
-if "%FTP_SERVER%"=="ftp.yournamecheapdomain.com" (
-  echo 错误：请先编辑此脚本，设置正确的FTP服务器信息
-  echo 退出部署...
+REM 检查配置文件
+if not exist deploy-config.txt (
+  echo 配置文件不存在，正在创建...
+  echo ftp_server=您的FTP服务器地址 > deploy-config.txt
+  echo ftp_username=您的FTP用户名 >> deploy-config.txt
+  echo ftp_password=您的FTP密码 >> deploy-config.txt
+  echo ftp_directory=/public_html/ >> deploy-config.txt
+  echo.
+  echo 请编辑 deploy-config.txt 文件，填入您的FTP信息，然后重新运行此脚本。
+  echo.
   pause
-  exit /b 1
+  exit /b
 )
 
-:: 记录开始时间
-echo 开始时间: %time%
+REM 读取配置信息
+for /f "tokens=1,* delims==" %%a in (deploy-config.txt) do (
+  if "%%a"=="ftp_server" set FTP_SERVER=%%b
+  if "%%a"=="ftp_username" set FTP_USERNAME=%%b
+  if "%%a"=="ftp_password" set FTP_PASSWORD=%%b
+  if "%%a"=="ftp_directory" set FTP_DIRECTORY=%%b
+)
 
-:: 构建静态文件
-echo === 清理旧的构建文件 ===
-if exist out rmdir /s /q out
+echo 正在使用以下配置:
+echo 服务器: %FTP_SERVER%
+echo 用户名: %FTP_USERNAME%
+echo 目录: %FTP_DIRECTORY%
+echo.
 
-echo === 安装依赖 ===
+REM 询问是否继续
+set /p CONTINUE=是否继续部署? (Y/N): 
+if /i "%CONTINUE%" neq "Y" (
+  echo 部署已取消。
+  pause
+  exit /b
+)
+
+echo.
+echo 步骤 1: 安装依赖
 call npm install
-
-echo === 构建网站 ===
-call npm run export
-
-if not exist out (
-  echo 错误：构建失败，未生成out目录
-  echo 退出部署...
+if %errorlevel% neq 0 (
+  echo 安装依赖失败！
   pause
-  exit /b 1
+  exit /b
 )
 
-:: 部署前更新变更日志
-echo === 更新更改日志 ===
-echo [%date% %time%] 部署网站 >> docs/deployment_log.md
+echo.
+echo 步骤 2: 构建项目
+call npm run build
+if %errorlevel% neq 0 (
+  echo 构建项目失败！
+  pause
+  exit /b
+)
 
-:: 上传到FTP服务器
-echo === 部署到Namecheap服务器 ===
-cd out
+echo.
+echo 步骤 3: 导出静态文件
+call npm run export
+if %errorlevel% neq 0 (
+  echo 导出静态文件失败！
+  pause
+  exit /b
+)
 
-:: 创建FTP命令文件
-echo open %FTP_SERVER% > ftpcmd.txt
-echo %FTP_USER%>> ftpcmd.txt
-echo %FTP_PASSWORD%>> ftpcmd.txt
-echo cd %REMOTE_DIR%>> ftpcmd.txt
-echo binary>> ftpcmd.txt
-echo prompt>> ftpcmd.txt
-echo mput *.*>> ftpcmd.txt
+echo.
+echo 步骤 4: 创建.htaccess文件
+echo Options -MultiViews > .\out\.htaccess
+echo RewriteEngine On >> .\out\.htaccess
+echo RewriteCond %%{REQUEST_FILENAME} !-f >> .\out\.htaccess
+echo RewriteCond %%{REQUEST_FILENAME} !-d >> .\out\.htaccess
+echo RewriteRule ^ index.html [QSA,L] >> .\out\.htaccess
 
-:: 创建子目录并上传内容的脚本
-echo === 创建并上传子目录 ===
-for /d %%D in (*) do (
-  echo mkdir %%D>> ftpcmd.txt
-  echo cd %%D>> ftpcmd.txt
-  echo mput %%D\*.*>> ftpcmd.txt
-  
-  :: 处理二级子目录
-  for /d %%S in (%%D\*) do (
-    echo mkdir %%S>> ftpcmd.txt
-    echo cd %%S>> ftpcmd.txt
-    echo mput %%S\*.*>> ftpcmd.txt
-    echo cd ..>> ftpcmd.txt
+echo.
+echo 步骤 5: 通过FTP上传文件
+echo 将文件上传到 %FTP_SERVER%%FTP_DIRECTORY%
+
+REM 使用WinSCP脚本进行上传
+echo option batch abort > winscp_script.txt
+echo option confirm off >> winscp_script.txt
+echo open ftp://%FTP_USERNAME%:%FTP_PASSWORD%@%FTP_SERVER% >> winscp_script.txt
+echo lcd .\out >> winscp_script.txt
+echo cd %FTP_DIRECTORY% >> winscp_script.txt
+echo synchronize remote >> winscp_script.txt
+echo exit >> winscp_script.txt
+
+REM 检查是否安装了WinSCP
+where winscp.com >nul 2>nul
+if %errorlevel% neq 0 (
+  echo 无法找到WinSCP。请确保WinSCP已安装并添加到PATH环境变量中。
+  echo 或者可以手动使用FTP客户端上传out目录中的文件。
+  echo.
+  echo out目录已准备好，可以使用您喜欢的FTP客户端手动上传。
+) else (
+  winscp.com /script=winscp_script.txt
+  echo.
+  if %errorlevel% equ 0 (
+    echo 部署成功完成！
+  ) else (
+    echo 上传过程中出现错误，请检查FTP凭据和连接。
   )
-  
-  echo cd ..>> ftpcmd.txt
+  del winscp_script.txt
 )
 
-echo disconnect>> ftpcmd.txt
-echo bye>> ftpcmd.txt
+echo.
+echo 记录部署日志...
+echo ## 部署记录 >> docs\deployment_log.md
+echo - 日期: %date% %time% >> docs\deployment_log.md
+echo - 类型: 手动部署 >> docs\deployment_log.md
+echo. >> docs\deployment_log.md
 
-:: 执行FTP上传
-ftp -s:ftpcmd.txt
-
-:: 清理临时文件
-del ftpcmd.txt
-
-cd ..
-
-:: 记录结束时间
-echo 结束时间: %time%
-echo === 部署完成 ===
-
+echo.
+echo 部署过程完成。
 pause 

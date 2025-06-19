@@ -70,7 +70,6 @@ export default function Layout({ children, title, description, currentLanguage, 
     zh: {
       home: '首页',
       courses: '课程',
-      resources: '资源',
       about: '关于我们',
       contact: '联系我们',
       toggleLanguage: 'English',
@@ -99,7 +98,6 @@ export default function Layout({ children, title, description, currentLanguage, 
     en: {
       home: 'Home',
       courses: 'Courses',
-      resources: 'Resources',
       about: 'About Us',
       contact: 'Contact Us',
       toggleLanguage: '中文',
@@ -132,10 +130,10 @@ export default function Layout({ children, title, description, currentLanguage, 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{title || 'CCIE培训 - 专业认证培训中心'}</title>
+        <title>{title || (language === 'zh' ? 'CCIE培训 - 专业认证培训中心' : 'CCIE Training - Professional Certification Center')}</title>
         <meta
           name="description"
-          content={description || '提供专业的CCIE认证培训，帮助您快速通过考试'}
+          content={description || (language === 'zh' ? '提供专业的CCIE认证培训，帮助您快速通过考试' : 'Professional CCIE certification training to help you pass your exam quickly')}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -164,9 +162,6 @@ export default function Layout({ children, title, description, currentLanguage, 
             </Link>
             <Link href="/courses" className={styles.navLink}>
               {t.courses}
-            </Link>
-            <Link href="/resources" className={styles.navLink}>
-              {t.resources}
             </Link>
             <Link href="/about" className={styles.navLink}>
               {t.about}
@@ -210,9 +205,9 @@ export default function Layout({ children, title, description, currentLanguage, 
               <p>{t.footerEmail}</p>
               <p>{t.footerAddress}</p>
               <div className={styles.socialLinks}>
-                <a href="#">WeChat</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
+                <a href="#" aria-label="WeChat">WeChat</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
               </div>
             </div>
 
@@ -237,7 +232,7 @@ export default function Layout({ children, title, description, currentLanguage, 
       {showPopup && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
-            <button className={styles.closeBtn} onClick={closePopup}>
+            <button className={styles.closeBtn} onClick={closePopup} aria-label="Close popup">
               &times;
             </button>
             <h3>{t.popupTitle}</h3>

@@ -123,4 +123,30 @@
 - 项目初始化
 - 创建基础Next.js应用
 - 设置Git仓库
-- 添加基础依赖包 
+- 添加基础依赖包
+
+## [0.6.0] - 2024-05-24
+
+### 新增
+- 实现获取用户咨询表单信息的功能:
+  - 创建API端点处理联系表单提交 (pages/api/contact.js)
+  - 创建API端点存储表单数据 (pages/api/submissions.js)
+  - 创建管理员界面查看表单数据 (pages/admin/submissions.js)
+  - 添加相关样式文件和组件 (styles/Admin.module.css)
+- 完善自动部署到Namecheap共享主机的步骤:
+  - 创建GitHub Actions工作流配置 (.github/workflows/deploy.yml)
+  - 创建Windows批处理文件进行手动部署 (deploy.bat)
+  - 添加配置文件处理和错误处理机制
+
+### 改进
+- 更新联系表单处理逻辑，添加API提交功能
+- 统一网站视觉效果，使用Apple/Google设计美学:
+  - 更新Layout组件样式 (styles/Layout.module.css)
+  - 创建统一的联系页面样式 (styles/Contact.module.css)
+  - 统一管理界面设计风格 (styles/Admin.module.css)
+- 优化表单验证和错误处理
+- 添加多语言支持到新组件
+
+### 修复
+- 修复表单提交数据保存的问题
+- 解决API端点数据格式不一致的问题 

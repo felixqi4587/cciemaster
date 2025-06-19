@@ -1,0 +1,237 @@
+/* 管理页面样式 */
+.adminContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.adminHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.adminHeader h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.adminActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionButton:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.actionButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dangerButton {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.dangerButton:hover {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+}
+
+.errorAlert {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+}
+
+.errorAlert p {
+  color: #b91c1c;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.tabContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 1rem;
+}
+
+.tabButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tabButton:hover {
+  color: #374151;
+}
+
+.activeTab {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #3b82f6;
+}
+
+.tabContent {
+  padding: 1.5rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.noData {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.submissionsTable {
+  overflow-x: auto;
+}
+
+.submissionsTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.submissionsTable th {
+  background-color: #f9fafb;
+  color: #374151;
+  font-weight: 500;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.submissionsTable td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+  font-size: 0.875rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.submissionsTable tr:hover td {
+  background-color: #f9fafb;
+}
+
+.messageCell {
+  max-width: 300px;
+}
+
+.messageContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.adminFooter {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.adminFooter p {
+  margin: 0.5rem 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .adminContainer {
+    padding: 1rem;
+  }
+  
+  .adminHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .tabs {
+    padding: 0;
+  }
+  
+  .tabButton {
+    padding: 0.75rem 1rem;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .submissionsTable th,
+  .submissionsTable td {
+    padding: 0.5rem;
+  }
+  
+  .messageCell {
+    max-width: 150px;
+  }
+} 

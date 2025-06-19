@@ -1,68 +1,93 @@
-# CCIE培训网站部署方案总结
+# CCIE培训网站 - Namecheap部署摘要
 
-## 部署平台
-Namecheap共享Web主机服务，作为静态网站托管平台。
+本文档简要总结了CCIE培训网站部署到Namecheap共享主机的步骤和注意事项。
 
-## 部署方案特点
+## 部署方式
 
-1. **以静态网站方式部署**
-   - 使用Next.js的`export`功能生成纯静态HTML/CSS/JS文件
-   - 不需要服务器端渲染，降低主机要求，提高加载速度
+我们提供了两种部署方式：
 
-2. **自动化部署选项**
-   - **GitHub Actions自动部署**: 代码推送到GitHub仓库后自动构建和部署
-   - **本地批处理脚本**: 在本地构建后使用FTP自动上传到Namecheap服务器
+1. **自动部署** - 使用GitHub Actions
+2. **手动部署** - 使用Windows批处理脚本
 
-3. **便于维护**
-   - 部署日志自动记录
-   - 简化的操作流程，无需手动执行复杂步骤
+## 自动部署 (GitHub Actions)
 
-## 部署文件说明
+### 配置步骤
 
-| 文件路径 | 说明 |
-|---------|------|
-| `deploy.bat` | Windows本地部署批处理脚本，自动执行构建和FTP上传 |
-| `.github/workflows/deploy.yml` | GitHub Actions工作流配置，用于自动部署 |
-| `docs/deployment_log.md` | 部署历史记录文件 |
-| `docs/namecheap_deployment.md` | 详细部署步骤和方案文档 |
+1. 在GitHub仓库中，转到 Settings > Secrets > Actions，添加以下密钥：
+   - `FTP_SERVER`: 您的FTP服务器地址 (例如: ftp.yourdomain.com)
+   - `FTP_USERNAME`: 您的FTP用户名
+   - `FTP_PASSWORD`: 您的FTP密码
+   - `FTP_DIRECTORY`: 目标目录 (通常是 `/public_html/`)
 
-## 部署前准备
+2. 将代码推送到main分支，GitHub Actions将自动运行部署流程。
 
-1. **Namecheap账户设置**
-   - 购买共享主机服务
-   - 设置FTP账户和密码
-   - 配置域名指向
+### 确认部署状态
 
-2. **GitHub仓库设置**
-   - 创建私有仓库
-   - 添加Repository Secrets:
-     - `FTP_SERVER`: Namecheap FTP服务器地址
-     - `FTP_USERNAME`: FTP用户名
-     - `FTP_PASSWORD`: FTP密码
+- 在GitHub仓库的Actions标签页中查看部署日志
+- 访问您的网站确认部署是否成功
 
-## 使用方法
+## 手动部署 (Windows)
 
-### 方法一：GitHub Actions自动部署
+### 部署步骤
 
-1. 将代码推送到GitHub仓库main分支
-2. GitHub Actions自动触发部署流程
-3. 查看Actions标签页中的部署状态和日志
+1. 首次运行 `deploy.bat` 脚本，系统将创建配置文件 `deploy-config.txt`
+2. 编辑配置文件，输入FTP服务器信息
+3. 再次运行 `deploy.bat` 脚本进行部署
+4. 脚本将自动：
+   - 安装依赖
+   - 构建项目
+   - 导出静态文件
+   - 创建必要的.htaccess文件
+   - 通过FTP上传文件
+   - 记录部署日志
 
-### 方法二：本地批处理脚本部署
+### 注意事项
 
-1. 编辑`deploy.bat`文件，填入正确的FTP服务器信息
-2. 双击运行该批处理脚本
-3. 等待脚本自动完成构建和部署
+- 需要安装WinSCP并添加到PATH环境变量
+- 如果没有WinSCP，脚本会准备好文件，但需要手动上传
+- 每次部署会记录到 `docs/deployment_log.md` 文件中
 
-## 维护与监控
+## Namecheap主机配置
 
-1. 定期查看`docs/deployment_log.md`了解部署历史
-2. 使用Namecheap控制面板中的监控工具监控网站状态
-3. 每次更新后记得在`docs/changelog.md`中记录更新内容
+### 必要设置
 
-## 优势
+1. **启用对.htaccess的支持**
+   - 在Namecheap cPanel中，找到 "Apache处理器" 或类似选项
+   - 确保已启用对.htaccess的支持
 
-1. **简单易用**: 无需复杂的服务器配置，适合小型团队或个人开发
-2. **成本低廉**: Namecheap共享主机服务价格合理
-3. **自动化程度高**: 减少手动操作，降低错误风险
-4. **版本可追溯**: 自动记录部署历史，便于追踪问题 
+2. **配置域名DNS**
+   - 确保您的域名指向Namecheap共享主机IP
+   - 如果使用子域名，请正确设置子域名记录
+
+## 测试部署
+
+部署完成后，测试以下功能：
+
+1. 网站各页面是否正常加载
+2. 表单提交功能是否正常工作
+3. 语言切换功能是否正常
+4. 管理员页面是否可以访问并查看表单提交数据
+
+## 日志记录
+
+- 每次部署都会在 `docs/deployment_log.md` 中记录
+- 自动部署记录包含提交哈希值、触发者和日期
+- 手动部署记录包含日期和时间信息
+
+## 故障排除
+
+如遇部署问题：
+
+1. 检查FTP凭据是否正确
+2. 确认Namecheap主机上的PHP版本支持所需功能
+3. 查看GitHub Actions日志以获取更详细的错误信息
+4. 检查.htaccess文件是否已正确上传和配置
+
+## 更新部署
+
+更新网站内容时：
+
+1. 自动部署：推送更改到main分支即可触发部署
+2. 手动部署：重新运行 `deploy.bat` 脚本
+
+详情请参阅完整的部署文档：[docs/namecheap_deployment.md](./namecheap_deployment.md) 
