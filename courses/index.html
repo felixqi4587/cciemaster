@@ -1267,8 +1267,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$4,199</div>
-                                <div class="price-amount">$3,199</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$3,199</div>
+                                    <div class="price-original">$4,199</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1327,8 +1329,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$3,799</div>
-                                <div class="price-amount">$2,899</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$2,899</div>
+                                    <div class="price-original">$3,799</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1387,8 +1391,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$4,499</div>
-                                <div class="price-amount">$3,499</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$3,499</div>
+                                    <div class="price-original">$4,499</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1447,8 +1453,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$4,199</div>
-                                <div class="price-amount">$3,199</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$3,199</div>
+                                    <div class="price-original">$4,199</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1507,8 +1515,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$4,799</div>
-                                <div class="price-amount">$3,799</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$3,799</div>
+                                    <div class="price-original">$4,799</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1567,8 +1577,10 @@
 
                         <div class="course-footer">
                             <div class="course-price">
-                                <div class="price-original">$5,999</div>
-                                <div class="price-amount">$4,999</div>
+                                <div class="price-header">
+                                    <div class="price-amount">$4,999</div>
+                                    <div class="price-original">$5,999</div>
+                                </div>
                                 <div class="price-period">one-time payment</div>
                             </div>
                             <a href="/contact/" class="btn-primary">
@@ -1646,10 +1658,6 @@
                     <i class="fas fa-rocket"></i>
                     Start Free Trial
                 </a>
-                <a href="/contact/" class="btn-secondary" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: white;">
-                    <i class="fas fa-phone"></i>
-                    Talk to Expert
-                </a>
             </div>
         </div>
     </section>
@@ -1711,16 +1719,7 @@
 
         // 获取基础价格配置
         function getBasePrices() {
-            return window.CCIE_PROMOTIONS_CONFIG?.basePrices || {
-                'Enterprise Infrastructure': 3999,
-                'Security': 4299,
-                'Data Center': 4199,
-                'Collaboration': 3799,
-                'Service Provider': 4499,
-                'Wireless': 4199,
-                'DevNet Expert': 4799,
-                'CCDE Design Expert': 5999
-            };
+            return window.CCIE_PROMOTIONS_CONFIG?.basePrices || {};
         }
 
         // 更新课程价格显示

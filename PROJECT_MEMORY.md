@@ -460,3 +460,201 @@ cciemaster/
 文档最后更新：2025-06-19
 项目当前版本：v2.7.7
 状态：促销显示格式优化完成 ✅ 
+
+## 项目版本历史
+
+### v2.7.9 (2025-06-19 19:54)
+#### 主页价格布局统一优化
+- **问题**：用户希望主页的课程价格布局与courses页面保持一致
+- **解决方案**：
+  - 重新设计主页的课程价格CSS样式，使其与courses页面一致
+  - 修改`.course-price`样式：添加背景色、边框、内边距
+  - 创建新的`.price-header`布局：现价、原价、标签横向排列
+  - 更新`updateCoursePrices()`函数：重新构建HTML结构而非单独更新元素
+  - 保持两行折扣标签格式：节日名称 + 节省金额信息
+
+- **技术实现**：
+  ```css
+  .course-price {
+      background: var(--color-background-secondary);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      border: 1px solid var(--color-border);
+  }
+  
+  .price-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+  }
+  ```
+
+- **JavaScript修改**：
+  ```javascript
+  priceContainer.innerHTML = `
+      <div class="price-header">
+          <span class="price-amount">$${discountedPrice.toLocaleString()}</span>
+          <span class="price-original">$${originalPrice.toLocaleString()}</span>
+          <span class="price-crossed">Regular Price</span>
+      </div>
+      <div class="price-period">one-time payment</div>
+      <div class="price-save">
+          <div class="holiday-line">${promotion.holidayName} Special</div>
+          <div class="savings-line">Save $${savings.toLocaleString()} (${discountPercent}% OFF)</div>
+      </div>
+  `;
+  ```
+
+- **效果**：主页和courses页面价格布局完全一致，提升用户体验的连贯性
+
+### v2.7.8 (2025-06-19 18:45)
+#### Courses页面价格布局重新设计
+- **问题**：用户反馈courses页面的价格布局不美观
+- **解决方案**：
+  - 重新设计CSS样式：价格区域添加背景色和边框
+  - 现价和原价并排显示
+  - 按钮改为全宽设计
+  - 添加渐变背景和悬停动画
+- **技术实现**：修改HTML结构和CSS样式，更新JavaScript函数动态重建价格结构
+- **效果**：所有8个课程都应用新的美观布局
+
+### v2.7.7 (2025-06-19 17:30)
+#### 修复特定课程折扣标签缺失
+- **问题**：CCIE Enterprise Wireless和Cisco Certified DevNet Expert没有折扣标签
+- **解决方案**：
+  - 修复课程标题映射不匹配问题
+  - `'CCIE Wireless': 'Wireless'` → `'CCIE Enterprise Wireless': 'Wireless'`
+  - `'CCIE DevNet Expert': 'DevNet Expert'` → `'Cisco Certified DevNet Expert': 'DevNet Expert'`
+- **技术实现**：更新courses页面JavaScript中的课程映射对象
+- **效果**：所有8个课程都正确显示折扣标签
+
+### v2.7.6 (2025-06-19 16:45)
+#### Courses页面价格同步
+- **问题**：用户要求courses子页面的价格与主页保持一致
+- **解决方案**：
+  - 修复courses页面的`getCurrentPromotion()`函数配置引用
+  - 添加课程价格映射系统
+  - 实现动态价格计算和更新
+  - 添加与主页相同的折扣标签显示
+  - 更新社会证明横幅显示当前促销信息
+- **技术实现**：在courses页面添加完整的价格同步JavaScript代码
+- **效果**：主页和courses页面价格完全同步
+
+### v2.7.5 (2025-06-19 15:30)
+#### 修复成功案例轮播问题
+- **问题**：用户发现"🎉 Latest CCIE Passes This Week"部分内容不见了
+- **解决方案**：
+  - 添加成功案例数据（6个真实案例）
+  - 创建`initializeSuccessCarousel()`函数动态生成成功案例卡片
+  - 添加`scrollCarousel()`函数处理轮播控制
+  - 集成到页面初始化流程中
+- **技术实现**：JavaScript动态生成HTML内容和轮播控制
+- **效果**：成功案例轮播功能完全恢复
+
+### v2.7.4 (2025-06-19 14:15)
+#### 促销横幅显示格式优化
+- **问题**：用户要求简化促销横幅为一行显示
+- **解决方案**：
+  - 将促销横幅从两行改回一行显示
+  - 格式："Limited Time - Father's Day & Graduation Special: 21% OFF"
+  - 移除两行显示的CSS样式
+- **技术实现**：简化HTML结构和JavaScript更新逻辑
+- **效果**：促销横幅显示简洁清晰
+
+### v2.7.3 (2025-06-19 13:00)
+#### 修复最大折扣金额显示
+- **问题**：横幅的"(approx. $840)"应该显示最大折扣课程的价格而不是平均值
+- **解决方案**：
+  - 修改计算逻辑从平均值改为最大值
+  - 修复JavaScript语法错误
+  - 优化代码结构，分离横幅更新和课程价格更新逻辑
+- **技术实现**：`Math.max(...Object.values(basePrices))`获取最大原价
+- **效果**：横幅显示最大折扣金额$1,260（CCDE Design Expert课程）
+
+### v2.7.2 (2025-06-19 11:45)
+#### 促销显示格式优化
+- **问题**：用户要求优化促销显示格式
+- **解决方案**：
+  1. 将"Limited Time: 95% Pass Rate Special"改为动态节日特惠信息
+  2. 简化课程卡片折扣显示，移除单独的节日折扣标签
+  3. 将节日信息合并到Save标签中
+- **技术实现**：
+  - 促销横幅：`Limited Time: [节日名称] Special: [折扣%] OFF (approx. $[金额])`
+  - Save标签：`[节日名称] Special: Save $[金额] ([折扣%] OFF)`
+- **效果**：促销信息更加统一和清晰
+
+### v2.7.1 (2025-06-19 10:30)
+#### 主页课程价格详细显示
+- **问题**：用户要求在主页显示具体的原价、节日折扣和折扣后价格
+- **解决方案**：
+  - 修改HTML结构，为每个课程卡片添加详细价格显示组件
+  - 添加CSS样式支持价格显示
+  - 创建`updateCoursePrices()`函数动态更新价格信息
+  - 集成`promotions-config.js`配置文件
+- **技术实现**：JavaScript动态计算和显示价格信息
+- **效果**：主页显示完整的价格信息，包括原价、现价和节省金额
+
+## 核心技术组件
+
+### 动态促销系统
+- **配置文件**：`js/promotions-config.js`
+- **功能**：12个月完整促销配置，自动检测当前月份
+- **价格计算**：动态计算原价、折扣价和节省金额
+- **课程覆盖**：支持8个课程的价格管理
+
+### 12个月促销配置详情
+```javascript
+const CCIE_PROMOTIONS_CONFIG = {
+    basePrices: {
+        'Enterprise Infrastructure': 3999,
+        'Security': 4299,
+        'Data Center': 4199,
+        'CCDE Design Expert': 5999,
+        'Service Provider': 4399,
+        'Wireless': 4099,
+        'Collaboration': 3899,
+        'DevNet Expert': 4599
+    },
+    promotions: {
+        1: { holidayName: 'New Year & Resolution', discount: 0.25 },  // 25% OFF, ~$1,500
+        2: { holidayName: 'Valentine\'s Day & Love', discount: 0.18 }, // 18% OFF, ~$1,080
+        3: { holidayName: 'Spring Break & Renewal', discount: 0.22 }, // 22% OFF, ~$1,320
+        4: { holidayName: 'Easter & Fresh Start', discount: 0.20 },   // 20% OFF, ~$1,200
+        5: { holidayName: 'Mother\'s Day & Appreciation', discount: 0.19 }, // 19% OFF, ~$1,140
+        6: { holidayName: 'Father\'s Day & Graduation', discount: 0.21 }, // 21% OFF, ~$1,260
+        7: { holidayName: 'Independence Day & Freedom', discount: 0.24 }, // 24% OFF, ~$1,440
+        8: { holidayName: 'Back to School & Growth', discount: 0.23 }, // 23% OFF, ~$1,380
+        9: { holidayName: 'Labor Day & Achievement', discount: 0.20 }, // 20% OFF, ~$1,200
+        10: { holidayName: 'Halloween & Transformation', discount: 0.26 }, // 26% OFF, ~$1,560
+        11: { holidayName: 'Black Friday & Cyber Monday', discount: 0.35 }, // 35% OFF, ~$2,100
+        12: { holidayName: 'Christmas & New Year', discount: 0.30 } // 30% OFF, ~$1,800
+    }
+};
+```
+
+### 成功案例轮播系统
+- **数据源**：6个真实成功案例
+- **功能**：自动轮播展示最新通过考试的学员
+- **技术**：JavaScript动态生成卡片和轮播控制
+
+### 价格布局系统
+- **主页**：课程卡片中的价格显示组件
+- **Courses页面**：详细的价格布局，包括背景、边框、动画效果
+- **同步机制**：两个页面使用相同的价格配置和计算逻辑
+- **布局特点**：现价突出显示，原价划线，折扣标签醒目
+
+## 部署信息
+- **最新部署**：2025-06-19 19:54
+- **部署方式**：`./auto-deploy.sh update`
+- **Git提交**：自动提交到main分支
+- **网站状态**：主页和courses页面价格布局完全统一，用户体验一致
+
+## 项目特点
+- ✅ 静态HTML构建，无Node.js依赖
+- ✅ 苹果设计风格，简洁美观
+- ✅ 动态促销系统，每月自动更新
+- ✅ 响应式设计，多设备兼容
+- ✅ 价格布局统一，用户体验一致
+- ✅ 成功案例轮播，社会证明强化
+
+*最后更新：2025-06-19 19:54* 
