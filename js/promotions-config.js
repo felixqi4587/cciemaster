@@ -20,11 +20,11 @@ window.CCIE_PROMOTIONS_CONFIG = {
         'Enterprise Infrastructure': 3999,  // CCIE企业基础设施
         'Security': 4299,                   // CCIE安全
         'Data Center': 4199,                // CCIE数据中心
-        'CCDE Design Expert': 5999,         // CCDE设计专家
-        'Collaboration': 3899,              // CCIE协作（如果需要）
-        'Service Provider': 4099,           // CCIE服务提供商（如果需要）
-        'Enterprise Wireless': 3799,        // CCIE企业无线（如果需要）
-        'DevNet Expert': 4499               // DevNet专家（如果需要）
+        'Collaboration': 3799,              // CCIE协作
+        'Service Provider': 4499,           // CCIE服务提供商
+        'Wireless': 4199,                   // CCIE企业无线
+        'DevNet Expert': 4799,              // DevNet专家
+        'CCDE Design Expert': 5999          // CCDE设计专家
     },
     
     // ========================================
