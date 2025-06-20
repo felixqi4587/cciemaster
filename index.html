@@ -640,31 +640,6 @@
             letter-spacing: 0.5px;
         }
 
-        .holiday-discount-info {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: var(--color-text-light);
-            padding: 8px 16px;
-            border-radius: var(--border-radius);
-            margin: 8px 0;
-            display: inline-block;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .holiday-name {
-            font-size: 12px;
-            font-weight: var(--font-weight-medium);
-            margin-right: 8px;
-            opacity: 0.9;
-        }
-
-        .discount-percentage {
-            font-size: 14px;
-            font-weight: var(--font-weight-bold);
-            background: rgba(255, 255, 255, 0.2);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
         .price-current-wrapper {
             margin: 12px 0 8px 0;
         }
@@ -1548,7 +1523,7 @@
                     <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
                         <div class="urgency-icon">⚡</div>
                         <div class="urgency-text" style="flex: 1;">
-                            <h3>Limited Time: 95% Pass Rate Special</h3>
+                            <h3 id="limitedTimeTitle">Limited Time: Father's Day Special: 21% OFF (approx. $840)</h3>
                             <p>Only <span id="spotsLeft">7</span> spots remaining this month • <span id="promotionText">Father's Day Special: 21% OFF</span> • Next batch starts in <span id="countdown">15 days</span></p>
                         </div>
                     </div>
@@ -1621,16 +1596,12 @@
                                 <span class="price-original">$3,999</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
-                            <div class="holiday-discount-info">
-                                <span class="holiday-name">Father's Day & Graduation</span>
-                                <span class="discount-percentage">21% OFF</span>
-                            </div>
                             <div class="price-current-wrapper">
                                 <span class="price-amount">$3,159</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Save $840</span>
+                                <span class="price-save">Father's Day Special: Save $840 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -1658,16 +1629,12 @@
                                 <span class="price-original">$4,299</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
-                            <div class="holiday-discount-info">
-                                <span class="holiday-name">Father's Day & Graduation</span>
-                                <span class="discount-percentage">21% OFF</span>
-                            </div>
                             <div class="price-current-wrapper">
                                 <span class="price-amount">$3,396</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Save $903</span>
+                                <span class="price-save">Father's Day Special: Save $903 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -1695,16 +1662,12 @@
                                 <span class="price-original">$4,199</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
-                            <div class="holiday-discount-info">
-                                <span class="holiday-name">Father's Day & Graduation</span>
-                                <span class="discount-percentage">21% OFF</span>
-                            </div>
                             <div class="price-current-wrapper">
                                 <span class="price-amount">$3,317</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Save $882</span>
+                                <span class="price-save">Father's Day Special: Save $882 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -1732,16 +1695,12 @@
                                 <span class="price-original">$5,999</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
-                            <div class="holiday-discount-info">
-                                <span class="holiday-name">Father's Day & Graduation</span>
-                                <span class="discount-percentage">21% OFF</span>
-                            </div>
                             <div class="price-current-wrapper">
                                 <span class="price-amount">$4,739</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Save $1,260</span>
+                                <span class="price-save">Father's Day Special: Save $1,260 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -2419,6 +2378,17 @@
                 return;
             }
 
+            // 计算平均折扣金额（用于横幅显示）
+            const avgOriginalPrice = Object.values(basePrices).reduce((sum, price) => sum + price, 0) / Object.values(basePrices).length;
+            const avgSavings = Math.round(avgOriginalPrice * promotion.discount);
+
+            // 更新促销横幅标题
+            const limitedTimeTitleElement = document.getElementById('limitedTimeTitle');
+            if (limitedTimeTitleElement) {
+                const discountPercent = Math.round(promotion.discount * 100);
+                limitedTimeTitleElement.textContent = `Limited Time: ${promotion.holidayName} Special: ${discountPercent}% OFF (approx. $${avgSavings.toLocaleString()})`;
+            }
+
             // 课程映射
             const courseMapping = {
                 0: 'Enterprise Infrastructure',  // 第一个课程卡片
@@ -2436,22 +2406,12 @@
                 const originalPrice = basePrices[courseKey];
                 const discountedPrice = Math.round(originalPrice * (1 - promotion.discount));
                 const savings = originalPrice - discountedPrice;
+                const discountPercent = Math.round(promotion.discount * 100);
 
                 // 更新原价
                 const originalPriceElement = card.querySelector('.price-original');
                 if (originalPriceElement) {
                     originalPriceElement.textContent = `$${originalPrice.toLocaleString()}`;
-                }
-
-                // 更新节日信息
-                const holidayNameElement = card.querySelector('.holiday-name');
-                if (holidayNameElement) {
-                    holidayNameElement.textContent = promotion.holidayName;
-                }
-
-                const discountPercentageElement = card.querySelector('.discount-percentage');
-                if (discountPercentageElement) {
-                    discountPercentageElement.textContent = `${Math.round(promotion.discount * 100)}% OFF`;
                 }
 
                 // 更新折扣后价格
@@ -2460,10 +2420,10 @@
                     currentPriceElement.textContent = `$${discountedPrice.toLocaleString()}`;
                 }
 
-                // 更新节省金额
+                // 更新节省金额（新格式：包含节日名称和百分比）
                 const savingsElement = card.querySelector('.price-save');
                 if (savingsElement) {
-                    savingsElement.textContent = `Save $${savings.toLocaleString()}`;
+                    savingsElement.textContent = `${promotion.holidayName} Special: Save $${savings.toLocaleString()} (${discountPercent}% OFF)`;
                 }
             });
         }
