@@ -621,10 +621,59 @@
             margin-bottom: 24px;
         }
 
+        .price-original-wrapper {
+            margin-bottom: 8px;
+        }
+
+        .price-original {
+            font-size: 18px;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-tertiary);
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .price-crossed {
+            font-size: 12px;
+            color: var(--color-text-quaternary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .holiday-discount-info {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-text-light);
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            margin: 8px 0;
+            display: inline-block;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .holiday-name {
+            font-size: 12px;
+            font-weight: var(--font-weight-medium);
+            margin-right: 8px;
+            opacity: 0.9;
+        }
+
+        .discount-percentage {
+            font-size: 14px;
+            font-weight: var(--font-weight-bold);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .price-current-wrapper {
+            margin: 12px 0 8px 0;
+        }
+
         .price-amount {
             font-size: 32px;
             font-weight: var(--font-weight-extrabold);
             color: var(--color-text);
+            display: block;
         }
 
         .price-period {
@@ -632,15 +681,19 @@
             color: var(--color-text-secondary);
         }
 
+        .price-savings {
+            margin-top: 8px;
+        }
+
         .price-save {
             font-size: 12px;
             color: var(--color-success);
             font-weight: var(--font-weight-semibold);
             background: rgba(34, 197, 94, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-top: 4px;
+            padding: 4px 12px;
+            border-radius: 6px;
             display: inline-block;
+            border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
         /* Testimonials Section */
@@ -1564,9 +1617,21 @@
                             <li><i class="fas fa-check"></i> Lifetime access</li>
                         </ul>
                         <div class="course-price">
-                            <span class="price-amount">$2,999</span>
-                            <span class="price-period">one-time payment</span>
-                            <span class="price-save">Save $1,000</span>
+                            <div class="price-original-wrapper">
+                                <span class="price-original">$3,999</span>
+                                <span class="price-crossed">Regular Price</span>
+                            </div>
+                            <div class="holiday-discount-info">
+                                <span class="holiday-name">Father's Day & Graduation</span>
+                                <span class="discount-percentage">21% OFF</span>
+                            </div>
+                            <div class="price-current-wrapper">
+                                <span class="price-amount">$3,159</span>
+                                <span class="price-period">one-time payment</span>
+                            </div>
+                            <div class="price-savings">
+                                <span class="price-save">Save $840</span>
+                            </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
                             Start Training
@@ -1589,9 +1654,21 @@
                             <li><i class="fas fa-check"></i> Industry case studies</li>
                         </ul>
                         <div class="course-price">
-                            <span class="price-amount">$3,299</span>
-                            <span class="price-period">one-time payment</span>
-                            <span class="price-save">Save $1,000</span>
+                            <div class="price-original-wrapper">
+                                <span class="price-original">$4,299</span>
+                                <span class="price-crossed">Regular Price</span>
+                            </div>
+                            <div class="holiday-discount-info">
+                                <span class="holiday-name">Father's Day & Graduation</span>
+                                <span class="discount-percentage">21% OFF</span>
+                            </div>
+                            <div class="price-current-wrapper">
+                                <span class="price-amount">$3,396</span>
+                                <span class="price-period">one-time payment</span>
+                            </div>
+                            <div class="price-savings">
+                                <span class="price-save">Save $903</span>
+                            </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
                             Start Training
@@ -1614,9 +1691,21 @@
                             <li><i class="fas fa-check"></i> Cloud integration</li>
                         </ul>
                         <div class="course-price">
-                            <span class="price-amount">$3,199</span>
-                            <span class="price-period">one-time payment</span>
-                            <span class="price-save">Save $1,000</span>
+                            <div class="price-original-wrapper">
+                                <span class="price-original">$4,199</span>
+                                <span class="price-crossed">Regular Price</span>
+                            </div>
+                            <div class="holiday-discount-info">
+                                <span class="holiday-name">Father's Day & Graduation</span>
+                                <span class="discount-percentage">21% OFF</span>
+                            </div>
+                            <div class="price-current-wrapper">
+                                <span class="price-amount">$3,317</span>
+                                <span class="price-period">one-time payment</span>
+                            </div>
+                            <div class="price-savings">
+                                <span class="price-save">Save $882</span>
+                            </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
                             Start Training
@@ -1639,9 +1728,21 @@
                             <li><i class="fas fa-check"></i> Expert-level guarantee</li>
                         </ul>
                         <div class="course-price">
-                            <span class="price-amount">$4,999</span>
-                            <span class="price-period">one-time payment</span>
-                            <span class="price-save">Save $1,000</span>
+                            <div class="price-original-wrapper">
+                                <span class="price-original">$5,999</span>
+                                <span class="price-crossed">Regular Price</span>
+                            </div>
+                            <div class="holiday-discount-info">
+                                <span class="holiday-name">Father's Day & Graduation</span>
+                                <span class="discount-percentage">21% OFF</span>
+                            </div>
+                            <div class="price-current-wrapper">
+                                <span class="price-amount">$4,739</span>
+                                <span class="price-period">one-time payment</span>
+                            </div>
+                            <div class="price-savings">
+                                <span class="price-save">Save $1,260</span>
+                            </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
                             Start Training
@@ -2278,6 +2379,9 @@
             updatePromotionDisplay();
             addPromotionCountdown();
             
+            // 动态更新课程价格信息
+            updateCoursePrices();
+            
             initSuccessCarousel();
             updateSuccessStories();
             initUrgencyElements();
@@ -2296,6 +2400,72 @@
                 const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
                 countdownElement.textContent = `${daysLeft} days`;
             }
+        }
+
+        // 动态更新课程价格信息
+        function updateCoursePrices() {
+            // 确保promotions配置已加载
+            if (typeof window.CCIE_PROMOTIONS_CONFIG === 'undefined') {
+                console.warn('Promotions config not loaded, using default values');
+                return;
+            }
+
+            const currentMonth = new Date().getMonth() + 1;
+            const promotion = window.CCIE_PROMOTIONS_CONFIG.promotions[currentMonth];
+            const basePrices = window.CCIE_PROMOTIONS_CONFIG.basePrices;
+
+            if (!promotion) {
+                console.warn('No promotion found for current month');
+                return;
+            }
+
+            // 课程映射
+            const courseMapping = {
+                0: 'Enterprise Infrastructure',  // 第一个课程卡片
+                1: 'Security',                   // 第二个课程卡片  
+                2: 'Data Center',                // 第三个课程卡片
+                3: 'CCDE Design Expert'          // 第四个课程卡片
+            };
+
+            // 更新每个课程卡片的价格
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach((card, index) => {
+                const courseKey = courseMapping[index];
+                if (!courseKey || !basePrices[courseKey]) return;
+
+                const originalPrice = basePrices[courseKey];
+                const discountedPrice = Math.round(originalPrice * (1 - promotion.discount));
+                const savings = originalPrice - discountedPrice;
+
+                // 更新原价
+                const originalPriceElement = card.querySelector('.price-original');
+                if (originalPriceElement) {
+                    originalPriceElement.textContent = `$${originalPrice.toLocaleString()}`;
+                }
+
+                // 更新节日信息
+                const holidayNameElement = card.querySelector('.holiday-name');
+                if (holidayNameElement) {
+                    holidayNameElement.textContent = promotion.holidayName;
+                }
+
+                const discountPercentageElement = card.querySelector('.discount-percentage');
+                if (discountPercentageElement) {
+                    discountPercentageElement.textContent = `${Math.round(promotion.discount * 100)}% OFF`;
+                }
+
+                // 更新折扣后价格
+                const currentPriceElement = card.querySelector('.price-amount');
+                if (currentPriceElement) {
+                    currentPriceElement.textContent = `$${discountedPrice.toLocaleString()}`;
+                }
+
+                // 更新节省金额
+                const savingsElement = card.querySelector('.price-save');
+                if (savingsElement) {
+                    savingsElement.textContent = `Save $${savings.toLocaleString()}`;
+                }
+            });
         }
     </script>
 </body>
