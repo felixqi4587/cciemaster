@@ -1491,13 +1491,15 @@
     <section class="social-proof-section">
         <div class="social-proof-container">
             <div class="urgency-banner">
-                <div class="urgency-content">
-                    <div class="urgency-icon">⚡</div>
-                    <div class="urgency-text">
-                        <h3>Limited Time: 95% Pass Rate Special</h3>
-                        <p>Only <span id="spotsLeft">7</span> spots remaining this month • Next batch starts in <span id="countdown">15 days</span></p>
+                <div class="urgency-content" style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                        <div class="urgency-icon">⚡</div>
+                        <div class="urgency-text" style="flex: 1;">
+                            <h3>Limited Time: 95% Pass Rate Special</h3>
+                            <p>Only <span id="spotsLeft">7</span> spots remaining this month • <span id="promotionText">Father's Day Special: 21% OFF</span> • Next batch starts in <span id="countdown">15 days</span></p>
+                        </div>
                     </div>
-                    <a href="/contact/" class="urgency-btn">Secure Your Spot Now</a>
+                    <a href="/contact/" class="urgency-btn" style="flex-shrink: 0;">Secure Your Spot Now</a>
                 </div>
             </div>
             
@@ -1807,22 +1809,29 @@
 
         // 获取当前月份的促销信息
         function getCurrentPromotion() {
-            const currentMonth = new Date().getMonth() + 1; // JavaScript月份从0开始
-            return MONTHLY_PROMOTIONS.promotions[currentMonth] || MONTHLY_PROMOTIONS.promotions[6]; // 默认使用6月配置
+            const currentMonth = new Date().getMonth() + 1;
+            return promotionsConfig[currentMonth] || promotionsConfig[6]; // 默认使用6月配置
         }
 
         // 计算折扣后价格
         function calculateDiscountedPrice(courseName, originalPrice = null) {
             const promotion = getCurrentPromotion();
-            const basePrice = originalPrice || MONTHLY_PROMOTIONS.basePrices[courseName];
+            const basePrices = {
+                'Enterprise Infrastructure': 3999,
+                'Security': 4299,
+                'Data Center': 4199,
+                'CCDE Design Expert': 5999
+            };
+            const basePrice = originalPrice || basePrices[courseName];
             if (!basePrice) return null;
             
-            const discountAmount = Math.round(basePrice * promotion.discount / 100);
+            const discountPercent = Math.round(promotion.discount * 100);
+            const discountAmount = Math.round(basePrice * promotion.discount);
             const finalPrice = basePrice - discountAmount;
             
             return {
                 originalPrice: basePrice,
-                discount: promotion.discount,
+                discount: discountPercent,
                 discountAmount: discountAmount,
                 finalPrice: finalPrice,
                 savings: discountAmount
@@ -1832,32 +1841,12 @@
         // 更新页面上的促销信息
         function updatePromotionDisplay() {
             const promotion = getCurrentPromotion();
-            const settings = MONTHLY_PROMOTIONS.settings || {};
             
-            // 更新主要促销横幅
-            const urgencyTitle = document.querySelector('.urgency-text h3');
-            if (urgencyTitle) {
-                let titleText = `${promotion.emoji} ${promotion.title}`;
-                
-                // 添加节日信息（如果启用）
-                if (settings.showHolidayInfo && promotion.holidayName) {
-                    titleText += ` - ${promotion.holidayName}`;
-                }
-                
-                urgencyTitle.innerHTML = titleText;
-            }
-            
-            const urgencyDescription = document.querySelector('.urgency-text p');
-            if (urgencyDescription) {
-                let descriptionText = promotion.urgencyText + ' • Next batch starts in';
-                
-                // 添加具体折扣信息（如果启用）
-                if (settings.showDiscountAmount && promotion.discountDisplay) {
-                    descriptionText = promotion.discountDisplay + ' • ' + descriptionText;
-                }
-                
-                const spotsText = urgencyDescription.innerHTML;
-                urgencyDescription.innerHTML = spotsText.replace(/Next batch starts in/, descriptionText);
+            // 更新促销文字
+            const promotionText = document.getElementById('promotionText');
+            if (promotionText) {
+                const discountPercent = Math.round(promotion.discount * 100);
+                promotionText.textContent = `${promotion.holidayName}: ${discountPercent}% OFF`;
             }
             
             // 更新课程价格
@@ -1868,7 +1857,6 @@
         function updateCoursePrices() {
             const courseCards = document.querySelectorAll('.course-card');
             const promotion = getCurrentPromotion();
-            const settings = MONTHLY_PROMOTIONS.settings || {};
             
             courseCards.forEach((card, index) => {
                 const courseTitle = card.querySelector('.course-title').textContent.replace('CCIE ', '');
@@ -1883,13 +1871,7 @@
                     }
                     
                     if (priceSave) {
-                        let saveText = `Save $${priceInfo.savings.toLocaleString()} (${priceInfo.discount}% OFF)`;
-                        
-                        // 添加节日信息到价格标签
-                        if (settings.showHolidayInfo && promotion.holidayName) {
-                            saveText += ` - ${promotion.holidayName} Special`;
-                        }
-                        
+                        const saveText = `Save $${priceInfo.savings.toLocaleString()} (${priceInfo.discount}% OFF)`;
                         priceSave.textContent = saveText;
                         priceSave.style.background = 'linear-gradient(135deg, #FF6B6B, #FF8E53)';
                         priceSave.style.color = 'white';
@@ -2302,6 +2284,19 @@
             enhanceSocialProof();
             emphasizeGuarantee();
         });
+
+        // 更新倒计时显示
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                // 计算到月底的剩余天数
+                const now = new Date();
+                const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                const timeLeft = endOfMonth - now;
+                const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+                countdownElement.textContent = `${daysLeft} days`;
+            }
+        }
     </script>
 </body>
 </html>
