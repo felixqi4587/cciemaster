@@ -641,7 +641,7 @@
         }
 
         .price-current-wrapper {
-            margin: 12px 0 8px 0;
+            margin-top: 8px;
         }
 
         .price-amount {
@@ -665,10 +665,25 @@
             color: var(--color-success);
             font-weight: var(--font-weight-semibold);
             background: rgba(34, 197, 94, 0.1);
-            padding: 4px 12px;
+            padding: 6px 12px;
             border-radius: 6px;
-            display: inline-block;
             border: 1px solid rgba(34, 197, 94, 0.2);
+            text-align: center;
+            line-height: 1.3;
+            min-height: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .price-save .holiday-line {
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .price-save .savings-line {
+            font-size: 12px;
+            font-weight: var(--font-weight-bold);
         }
 
         /* Testimonials Section */
@@ -1523,7 +1538,7 @@
                     <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
                         <div class="urgency-icon">⚡</div>
                         <div class="urgency-text" style="flex: 1;">
-                            <h3 id="limitedTimeTitle">Limited Time: Father's Day Special: 21% OFF (approx. $840)</h3>
+                            <h3 id="limitedTimeTitle">Limited Time - Father's Day & Graduation Special: 21% OFF</h3>
                             <p>Only <span id="spotsLeft">7</span> spots remaining this month • Next batch starts in <span id="countdown">15 days</span></p>
                         </div>
                     </div>
@@ -1870,7 +1885,8 @@
         // 获取当前月份的促销信息
         function getCurrentPromotion() {
             const currentMonth = new Date().getMonth() + 1;
-            return promotionsConfig[currentMonth] || promotionsConfig[6]; // 默认使用6月配置
+            const promotions = window.CCIE_PROMOTIONS_CONFIG?.promotions || MONTHLY_PROMOTIONS.promotions;
+            return promotions[currentMonth] || promotions[6]; // 默认使用6月配置
         }
 
         // 计算折扣后价格
@@ -1903,7 +1919,12 @@
             const promotion = getCurrentPromotion();
             
             // 计算最大折扣金额（用于横幅显示）
-            const basePrices = window.CCIE_PROMOTIONS_CONFIG?.basePrices || {};
+            const basePrices = window.CCIE_PROMOTIONS_CONFIG?.basePrices || {
+                'Enterprise Infrastructure': 3999,
+                'Security': 4299,
+                'Data Center': 4199,
+                'CCDE Design Expert': 5999
+            };
             const maxOriginalPrice = Math.max(...Object.values(basePrices));
             const maxSavings = Math.round(maxOriginalPrice * promotion.discount);
 
@@ -1911,7 +1932,7 @@
             const limitedTimeTitleElement = document.getElementById('limitedTimeTitle');
             if (limitedTimeTitleElement) {
                 const discountPercent = Math.round(promotion.discount * 100);
-                limitedTimeTitleElement.textContent = `Limited Time: ${promotion.holidayName} Special: ${discountPercent}% OFF (approx. $${maxSavings.toLocaleString()})`;
+                limitedTimeTitleElement.textContent = `Limited Time - ${promotion.holidayName} Special: ${discountPercent}% OFF`;
             }
             
             // 更新课程价格
@@ -1979,10 +2000,13 @@
                     currentPriceElement.textContent = `$${discountedPrice.toLocaleString()}`;
                 }
 
-                // 更新节省金额（新格式：包含节日名称和百分比）
+                // 更新节省金额（新格式：两行显示）
                 const savingsElement = card.querySelector('.price-save');
                 if (savingsElement) {
-                    savingsElement.textContent = `${promotion.holidayName} Special: Save $${savings.toLocaleString()} (${discountPercent}% OFF)`;
+                    savingsElement.innerHTML = `
+                        <div class="holiday-line">${promotion.holidayName} Special</div>
+                        <div class="savings-line">Save $${savings.toLocaleString()} (${discountPercent}% OFF)</div>
+                    `;
                 }
             });
         }
@@ -1991,7 +2015,118 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化促销信息
             updatePromotionDisplay();
+            
+            // 初始化成功案例轮播
+            initializeSuccessCarousel();
+            
+            // 更新倒计时
+            updateCountdown();
         });
+
+        // 成功案例数据
+        const successStories = [
+            {
+                name: "Michael Chen",
+                track: "CCIE Enterprise Infrastructure",
+                date: "June 15, 2025",
+                score: "Score: 85/100",
+                quote: "The lab simulations were exactly like the real exam. Passed on first attempt!"
+            },
+            {
+                name: "Sarah Johnson",
+                track: "CCIE Security", 
+                date: "June 12, 2025",
+                score: "Score: 88/100",
+                quote: "Outstanding mentorship and support throughout my journey."
+            },
+            {
+                name: "David Rodriguez",
+                track: "CCIE Data Center",
+                date: "June 10, 2025", 
+                score: "Score: 82/100",
+                quote: "The practical labs prepared me perfectly for the real exam environment."
+            },
+            {
+                name: "Emily Wang",
+                track: "CCDE Design Expert",
+                date: "June 8, 2025",
+                score: "Score: 90/100", 
+                quote: "Comprehensive training that covers every aspect of network design."
+            },
+            {
+                name: "James Wilson",
+                track: "CCIE Enterprise Infrastructure",
+                date: "June 5, 2025",
+                score: "Score: 87/100",
+                quote: "The instructor support was incredible. They were always available to help."
+            },
+            {
+                name: "Lisa Thompson",
+                track: "CCIE Security",
+                date: "June 3, 2025", 
+                score: "Score: 91/100",
+                quote: "Best investment I ever made in my career. The training quality is exceptional."
+            }
+        ];
+
+        // 初始化成功案例轮播
+        function initializeSuccessCarousel() {
+            const successTrack = document.getElementById('successTrack');
+            if (!successTrack) return;
+
+            // 生成成功案例卡片
+            const cardsHTML = successStories.map(story => `
+                <div class="success-card">
+                    <div class="success-image">
+                        <div class="exam-certificate">
+                            <div class="cert-header">CISCO CERTIFIED</div>
+                            <div class="cert-title">${story.track}</div>
+                            <div class="cert-date">${story.date}</div>
+                            <div class="cert-score">${story.score}</div>
+                        </div>
+                    </div>
+                    <div class="success-info">
+                        <div class="success-name">${story.name}</div>
+                        <div class="success-track-info">${story.track}</div>
+                        <div class="success-quote">"${story.quote}"</div>
+                        <div class="success-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">1st</div>
+                                <div class="stat-label">Attempt</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">95%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            successTrack.innerHTML = cardsHTML;
+        }
+
+        // 轮播控制
+        let currentSlide = 0;
+        function scrollCarousel(direction) {
+            const successTrack = document.getElementById('successTrack');
+            if (!successTrack) return;
+
+            const cardWidth = 320 + 24; // card width + gap
+            const maxSlides = successStories.length - 3; // Show 3 cards at a time
+
+            currentSlide += direction;
+            
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide > maxSlides) currentSlide = maxSlides;
+
+            const translateX = -currentSlide * cardWidth;
+            successTrack.style.transform = `translateX(${translateX}px)`;
+        }
     </script>
 </body>
 </html>
