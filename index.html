@@ -1524,7 +1524,7 @@
                         <div class="urgency-icon">⚡</div>
                         <div class="urgency-text" style="flex: 1;">
                             <h3 id="limitedTimeTitle">Limited Time: Father's Day Special: 21% OFF (approx. $840)</h3>
-                            <p>Only <span id="spotsLeft">7</span> spots remaining this month • <span id="promotionText">Father's Day Special: 21% OFF</span> • Next batch starts in <span id="countdown">15 days</span></p>
+                            <p>Only <span id="spotsLeft">7</span> spots remaining this month • Next batch starts in <span id="countdown">15 days</span></p>
                         </div>
                     </div>
                     <a href="/contact/" class="urgency-btn" style="flex-shrink: 0;">Secure Your Spot Now</a>
@@ -1902,11 +1902,13 @@
         function updatePromotionDisplay() {
             const promotion = getCurrentPromotion();
             
-            // 更新促销文字
-            const promotionText = document.getElementById('promotionText');
-            if (promotionText) {
+            // 更新限时促销标题
+            const limitedTimeTitle = document.getElementById('limitedTimeTitle');
+            if (limitedTimeTitle) {
                 const discountPercent = Math.round(promotion.discount * 100);
-                promotionText.textContent = `${promotion.holidayName}: ${discountPercent}% OFF`;
+                const avgOriginalPrice = Object.values(window.CCIE_PROMOTIONS_CONFIG?.basePrices || {}).reduce((sum, price) => sum + price, 0) / Object.values(window.CCIE_PROMOTIONS_CONFIG?.basePrices || {}).length;
+                const avgSavings = Math.round(avgOriginalPrice * promotion.discount);
+                limitedTimeTitle.textContent = `Limited Time: ${promotion.holidayName} Special: ${discountPercent}% OFF (approx. $${avgSavings.toLocaleString()})`;
             }
             
             // 更新课程价格
