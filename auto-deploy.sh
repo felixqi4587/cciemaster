@@ -65,8 +65,4 @@ fi
 echo ""
 echo "[SUCCESS] 🎉 部署完成！"
 echo ""
-echo "📋 后续步骤："
-echo "1. 检查网站: ./start.sh"
-echo "2. 验证功能: 测试所有页面链接"
-echo "3. 远端更新: 在您的主机上执行 git pull 更新"
 echo "" 
