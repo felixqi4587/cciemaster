@@ -1701,12 +1701,6 @@
             const promotion = getCurrentPromotion();
             const basePrices = getBasePrices();
             
-            console.log('Courses Debug:', {
-                promotion: promotion,
-                basePrices: basePrices,
-                coursePriceMapping: coursePriceMapping
-            });
-            
             // 更新社会证明横幅
             const socialBanner = document.querySelector('.social-proof-banner');
             if (socialBanner && promotion.holidayName) {
@@ -1722,12 +1716,6 @@
 
                 const courseTitle = titleElement.textContent.trim();
                 const courseKey = coursePriceMapping[courseTitle];
-                
-                console.log(`Course ${index + 1}:`, {
-                    courseTitle: courseTitle,
-                    courseKey: courseKey,
-                    hasPrice: !!basePrices[courseKey]
-                });
                 
                 if (courseKey && basePrices[courseKey]) {
                     const originalPrice = basePrices[courseKey];
@@ -1777,8 +1765,6 @@
                             <div style="font-size: 12px; font-weight: bold;">Save $${savings.toLocaleString()} (${discountPercent}% OFF)</div>
                         `;
                     }
-                } else {
-                    console.warn(`No price mapping found for course: "${courseTitle}"`);
                 }
             });
         }
