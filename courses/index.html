@@ -1657,34 +1657,28 @@
     <script>
         // 获取当前促销信息
         function getCurrentPromotion() {
-            const PROMOTIONS = window.CCIE_PROMOTIONS_CONFIG || {};
             const currentMonth = new Date().getMonth() + 1;
-            return PROMOTIONS.promotions?.[currentMonth] || {
+            return promotionsConfig[currentMonth] || {
                 theme: "Special Offer",
-                title: "Limited Time Special",
                 emoji: "⭐",
-                discount: 15,
-                discountAmount: "$600",
-                holidayName: "限时优惠",
-                holidayPeriod: "本月限定",
-                description: "Special pricing for this month",
-                urgencyText: "Limited time offer",
-                holidayContext: "限时特惠，机会难得",
-                discountDisplay: "限时特惠：立减15%（约$600）"
+                discount: 0.15,
+                holidayName: "Limited Time Special",
+                holidayPeriod: "This Month Only",
+                holidayContext: "Limited time offer - don't miss out",
+                discountDisplay: "Special Offer: Save 15% (approx. $600)"
             };
         }
 
         // 更新课程价格显示
         function updateCoursePromotions() {
             const promotion = getCurrentPromotion();
-            const settings = window.CCIE_PROMOTIONS_CONFIG?.settings || {};
             
-            // 更新社会证明横幅
+            // 更新社会证明横幅（只在最上面显示一次）
             const socialBanner = document.querySelector('.social-proof-banner');
             if (socialBanner && promotion.holidayName) {
                 const originalText = socialBanner.textContent;
                 if (!originalText.includes(promotion.holidayName)) {
-                    socialBanner.innerHTML = `🔥 ${promotion.holidayName}特惠进行中！${originalText}`;
+                    socialBanner.innerHTML = `🔥 ${promotion.holidayName} Special Ongoing! ${originalText}`;
                 }
             }
 
@@ -1695,15 +1689,15 @@
                 const priceAmount = container.querySelector('.price-amount');
                 
                 if (priceOriginal && priceAmount) {
-                    // 添加节日折扣标签
+                    // 添加节日折扣标签 - 修复位置避免遮挡
                     let discountBadge = container.querySelector('.holiday-discount-badge');
                     if (!discountBadge) {
                         discountBadge = document.createElement('div');
                         discountBadge.className = 'holiday-discount-badge';
                         discountBadge.style.cssText = `
                             position: absolute;
-                            top: -10px;
-                            right: -10px;
+                            top: -12px;
+                            left: -12px;
                             background: linear-gradient(135deg, #FF6B6B, #FF8E53);
                             color: white;
                             padding: 4px 8px;
@@ -1712,30 +1706,26 @@
                             font-weight: bold;
                             z-index: 10;
                             animation: pulse 2s infinite;
+                            white-space: nowrap;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
                         `;
                         container.style.position = 'relative';
+                        container.style.marginTop = '15px'; // 增加顶部边距避免遮挡
                         container.appendChild(discountBadge);
                     }
                     
-                    // 显示节日和折扣信息
-                    if (settings.showHolidayInfo && promotion.holidayName) {
-                        discountBadge.innerHTML = `${promotion.emoji} ${promotion.holidayName}<br/>${promotion.discount}% OFF`;
-                    } else {
-                        discountBadge.innerHTML = `${promotion.emoji} ${promotion.discount}% OFF`;
-                    }
+                    // 显示节日和折扣信息（英文）
+                    const discountPercent = Math.round(promotion.discount * 100);
+                    discountBadge.innerHTML = `${promotion.emoji} ${promotion.holidayName}<br/>${discountPercent}% OFF`;
                 }
             });
-
-            // 在页面顶部添加节日促销通知
-            addHolidayPromotionNotice();
         }
 
-        // 添加节日促销通知
+        // 添加节日促销通知（只在页面顶部显示一次）
         function addHolidayPromotionNotice() {
             const promotion = getCurrentPromotion();
-            const settings = window.CCIE_PROMOTIONS_CONFIG?.settings || {};
             
-            if (!document.querySelector('.holiday-promotion-notice') && settings.showHolidayInfo) {
+            if (!document.querySelector('.holiday-promotion-notice')) {
                 const notice = document.createElement('div');
                 notice.className = 'holiday-promotion-notice';
                 notice.style.cssText = `
@@ -1751,12 +1741,12 @@
                     animation: slideInDown 0.5s ease-out;
                 `;
                 
-                let noticeText = `${promotion.emoji} ${promotion.holidayName}特惠进行中！`;
-                if (settings.showDiscountAmount && promotion.discountDisplay) {
+                let noticeText = `${promotion.emoji} ${promotion.holidayName} Special Ongoing!`;
+                if (promotion.discountDisplay) {
                     noticeText += ` ${promotion.discountDisplay}`;
                 }
                 if (promotion.holidayPeriod) {
-                    noticeText += ` | 活动期间：${promotion.holidayPeriod}`;
+                    noticeText += ` | Period: ${promotion.holidayPeriod}`;
                 }
                 
                 notice.innerHTML = noticeText;
@@ -1834,6 +1824,7 @@
         // 页面加载完成后初始化促销显示
         document.addEventListener('DOMContentLoaded', function() {
             updateCoursePromotions();
+            addHolidayPromotionNotice();
         });
     </script>
 </body>
