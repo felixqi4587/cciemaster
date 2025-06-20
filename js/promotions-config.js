@@ -38,9 +38,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "New Year, New Career Special",
             emoji: "🎊",
             discount: 25,                    // 25% 折扣
+            discountAmount: "$1,000",        // 具体折扣金额（基于平均价格）
+            holidayName: "新年决心月",        // 节日名称
+            holidayPeriod: "1月1日-31日",     // 节日期间
             description: "Start 2025 with your CCIE certification goal",
             urgencyText: "New Year enrollment ends soon",
-            holidayContext: "新年决心，职业提升的最佳时机"
+            holidayContext: "新年决心，职业提升的最佳时机",
+            discountDisplay: "新年特惠：立减25%（约$1,000）"
         },
         
         // 二月 - 情人节/总统日
@@ -49,9 +53,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Love Your Career Special",
             emoji: "💝",
             discount: 20,                    // 20% 折扣
+            discountAmount: "$800",          // 具体折扣金额
+            holidayName: "情人节&总统日",
+            holidayPeriod: "2月14日&2月第三个周一",
             description: "Fall in love with your IT career this February",
             urgencyText: "Valentine's special pricing ends soon",
-            holidayContext: "情人节表达对职业的热爱"
+            holidayContext: "情人节表达对职业的热爱",
+            discountDisplay: "情人节特惠：立减20%（约$800）"
         },
         
         // 三月 - 春分/女性历史月
@@ -60,9 +68,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Spring Career Launch",
             emoji: "🌸",
             discount: 22,                    // 22% 折扣
+            discountAmount: "$880",          // 具体折扣金额
+            holidayName: "春分&女性历史月",
+            holidayPeriod: "3月20日春分&整个3月",
             description: "Spring into your CCIE certification journey",
             urgencyText: "Spring enrollment deadline approaching",
-            holidayContext: "春天来临，职业生涯新开始"
+            holidayContext: "春天来临，职业生涯新开始",
+            discountDisplay: "春季特惠：立减22%（约$880）"
         },
         
         // 四月 - 复活节/地球日
@@ -71,9 +83,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Fresh Start Special",
             emoji: "🐣",
             discount: 18,                    // 18% 折扣
+            discountAmount: "$720",          // 具体折扣金额
+            holidayName: "复活节&地球日",
+            holidayPeriod: "复活节周日&4月22日",
             description: "Celebrate new beginnings with CCIE training",
             urgencyText: "Spring special pricing ends this month",
-            holidayContext: "复活节新生，职业技能重生"
+            holidayContext: "复活节新生，职业技能重生",
+            discountDisplay: "复活节特惠：立减18%（约$720）"
         },
         
         // 五月 - 母亲节/阵亡将士纪念日
@@ -82,9 +98,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Honor & Achievement Special",
             emoji: "🌺",
             discount: 23,                    // 23% 折扣
+            discountAmount: "$920",          // 具体折扣金额
+            holidayName: "母亲节&阵亡将士纪念日",
+            holidayPeriod: "5月第二个周日&5月最后一个周一",
             description: "Honor your career goals this Memorial Day",
             urgencyText: "Memorial Day weekend special ends soon",
-            holidayContext: "向职业目标致敬的特殊月份"
+            holidayContext: "向职业目标致敬的特殊月份",
+            discountDisplay: "母亲节特惠：立减23%（约$920）"
         },
         
         // 六月 - 父亲节/毕业季
@@ -93,9 +113,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Father's Day Career Gift",
             emoji: "👔",
             discount: 21,                    // 21% 折扣
+            discountAmount: "$840",          // 具体折扣金额
+            holidayName: "父亲节&毕业季",
+            holidayPeriod: "6月第三个周日&6月毕业季",
             description: "The best gift for dads: career advancement",
             urgencyText: "Father's Day special pricing ends soon",
-            holidayContext: "父亲节，给爸爸最好的职业礼物"
+            holidayContext: "父亲节，给爸爸最好的职业礼物",
+            discountDisplay: "父亲节特惠：立减21%（约$840）"
         },
         
         // 七月 - 独立日（美国国庆）
@@ -104,9 +128,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Independence Day Freedom Special",
             emoji: "🇺🇸",
             discount: 30,                    // 30% 折扣 - 最高折扣之一
+            discountAmount: "$1,200",        // 具体折扣金额
+            holidayName: "美国独立日",
+            holidayPeriod: "7月4日国庆节",
             description: "Declare independence from career limitations",
             urgencyText: "July 4th special ends soon",
-            holidayContext: "独立日，摆脱职业限制获得自由"
+            holidayContext: "独立日，摆脱职业限制获得自由",
+            discountDisplay: "独立日特惠：立减30%（约$1,200）🎆"
         },
         
         // 八月 - 返校季
@@ -115,9 +143,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Back to School Special",
             emoji: "🎒",
             discount: 27,                    // 27% 折扣
+            discountAmount: "$1,080",        // 具体折扣金额
+            holidayName: "返校季",
+            holidayPeriod: "8月下旬-9月初",
             description: "Back to learning, forward to success",
             urgencyText: "Back-to-school pricing ends this month",
-            holidayContext: "返校季，重新学习迈向成功"
+            holidayContext: "返校季，重新学习迈向成功",
+            discountDisplay: "返校季特惠：立减27%（约$1,080）"
         },
         
         // 九月 - 劳动节
@@ -126,9 +158,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Labor Day Career Investment",
             emoji: "⚡",
             discount: 24,                    // 24% 折扣
+            discountAmount: "$960",          // 具体折扣金额
+            holidayName: "劳动节",
+            holidayPeriod: "9月第一个周一",
             description: "Invest in your career this Labor Day",
             urgencyText: "Labor Day special pricing ends soon",
-            holidayContext: "劳动节，为职业发展投资"
+            holidayContext: "劳动节，为职业发展投资",
+            discountDisplay: "劳动节特惠：立减24%（约$960）"
         },
         
         // 十月 - 万圣节/网络安全意识月
@@ -137,9 +173,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Cybersecurity Month Special",
             emoji: "🔒",
             discount: 26,                    // 26% 折扣
+            discountAmount: "$1,040",        // 具体折扣金额
+            holidayName: "万圣节&网络安全意识月",
+            holidayPeriod: "10月31日&整个10月",
             description: "October is National Cybersecurity Awareness Month",
             urgencyText: "Cybersecurity month special ends soon",
-            holidayContext: "网络安全意识月，提升安全技能"
+            holidayContext: "网络安全意识月，提升安全技能",
+            discountDisplay: "万圣节特惠：立减26%（约$1,040）🎃"
         },
         
         // 十一月 - 感恩节/黑色星期五
@@ -148,9 +188,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Black Friday Mega Deal",
             emoji: "🦃",
             discount: 35,                    // 35% 折扣 - 全年最高折扣
+            discountAmount: "$1,400",        // 具体折扣金额
+            holidayName: "感恩节&黑色星期五",
+            holidayPeriod: "11月第四个周四&周五",
             description: "Be thankful for this exclusive Black Friday offer",
             urgencyText: "Black Friday special ends soon",
-            holidayContext: "黑色星期五，全年最大优惠"
+            holidayContext: "黑色星期五，全年最大优惠",
+            discountDisplay: "黑五特惠：立减35%（约$1,400）🛍️"
         },
         
         // 十二月 - 圣诞节/新年准备
@@ -159,9 +203,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
             title: "Holiday Career Gift Special",
             emoji: "🎄",
             discount: 28,                    // 28% 折扣
+            discountAmount: "$1,120",        // 具体折扣金额
+            holidayName: "圣诞节&新年季",
+            holidayPeriod: "12月25日&年末",
             description: "Give yourself the gift of career advancement",
             urgencyText: "Holiday special ends before New Year",
-            holidayContext: "节日季，给自己最好的职业礼物"
+            holidayContext: "节日季，给自己最好的职业礼物",
+            discountDisplay: "圣诞特惠：立减28%（约$1,120）🎅"
         }
     },
     
@@ -193,7 +241,13 @@ window.CCIE_PROMOTIONS_CONFIG = {
         showOriginalPrice: true,
         
         // 是否启用动画效果
-        enableAnimations: true
+        enableAnimations: true,
+        
+        // 是否显示节日信息
+        showHolidayInfo: true,
+        
+        // 是否显示具体折扣金额
+        showDiscountAmount: true
     }
 };
 
@@ -219,5 +273,11 @@ window.CCIE_PROMOTIONS_CONFIG = {
 
 6. 修改默认折扣：
    修改 settings.defaultDiscount 的值
+
+7. 显示/隐藏节日信息：
+   修改 settings.showHolidayInfo 的值
+
+8. 显示/隐藏具体折扣金额：
+   修改 settings.showDiscountAmount 的值
 
 */ 

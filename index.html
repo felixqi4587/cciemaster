@@ -4,29 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- SEO Meta Tags -->
-    <title>CCIE Master - Expert IT Training & Certification | 95% Pass Rate Guarantee</title>
-    <meta name="description" content="Professional CCIE & CCDE certification training with hands-on labs, expert instructors, and 95% pass rate guarantee. Master Enterprise Infrastructure, Security, Data Center & more in 3 months.">
-    <meta name="keywords" content="CCIE training, CCDE certification, Cisco certification, IT training, network engineer, enterprise infrastructure, security, data center, service provider">
+    <!-- Enhanced SEO Meta Tags -->
+    <title>CCIE Master - #1 CCIE Training | 95% Pass Rate | $120K+ Career Transformation</title>
+    <meta name="description" content="Transform your career with CCIE Master's expert training. 95% pass rate guarantee, real lab access, Fortune 500 trusted. Master Enterprise Infrastructure, Security, Data Center in 3 months. 10,000+ successful professionals.">
+    <meta name="keywords" content="CCIE training, CCDE certification, Cisco certification, IT training, network engineer, enterprise infrastructure, security, data center, service provider, CCIE lab, CCIE bootcamp, career transformation, salary increase">
     <meta name="author" content="CCIE Master">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://cciemaster.com/">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Enhanced Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cciemaster.com/">
-    <meta property="og:title" content="CCIE Master - Expert IT Training & Certification">
-    <meta property="og:description" content="Professional CCIE & CCDE certification training with 95% pass rate guarantee. Join 10,000+ successful IT professionals.">
+    <meta property="og:title" content="CCIE Master - #1 CCIE Training with 95% Pass Rate Guarantee">
+    <meta property="og:description" content="Transform your career with CCIE Master's expert training. 95% pass rate guarantee, real lab access, Fortune 500 trusted. Join 10,000+ successful IT professionals.">
     <meta property="og:image" content="https://cciemaster.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="CCIE Master">
     <meta property="og:locale" content="en_US">
+    <meta property="article:author" content="CCIE Master">
     
-    <!-- Twitter -->
+    <!-- Enhanced Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://cciemaster.com/">
-    <meta property="twitter:title" content="CCIE Master - Expert IT Training & Certification">
-    <meta property="twitter:description" content="Professional CCIE & CCDE certification training with 95% pass rate guarantee. Join 10,000+ successful IT professionals.">
+    <meta property="twitter:title" content="CCIE Master - #1 CCIE Training with 95% Pass Rate">
+    <meta property="twitter:description" content="Transform your IT career with expert CCIE training. 95% pass rate, real labs, Fortune 500 trusted. Join 10,000+ successful professionals.">
     <meta property="twitter:image" content="https://cciemaster.com/images/twitter-card.jpg">
+    <meta property="twitter:creator" content="@cciemaster">
+    <meta property="twitter:site" content="@cciemaster">
     
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -54,29 +59,77 @@
         "description": "Professional CCIE & CCDE certification training with hands-on labs and expert instructors",
         "url": "https://cciemaster.com",
         "logo": "https://cciemaster.com/images/logo.png",
+        "foundingDate": "2015",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "US",
+            "addressRegion": "Nationwide"
+        },
         "sameAs": [
             "https://linkedin.com/company/cciemaster",
-            "https://twitter.com/cciemaster"
+            "https://twitter.com/cciemaster",
+            "https://facebook.com/cciemaster",
+            "https://youtube.com/cciemaster"
         ],
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+1-800-CCIE-MASTER",
             "contactType": "customer service",
-            "availableLanguage": "English"
+            "availableLanguage": ["English"],
+            "hoursAvailable": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "20:00"
+            }
         },
-        "offers": {
-            "@type": "Offer",
-            "name": "CCIE Training Programs",
-            "description": "Comprehensive CCIE certification training with 95% pass rate guarantee",
-            "category": "IT Training",
-            "availability": "https://schema.org/InStock"
-        },
+        "hasCredential": [
+            {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Cisco Learning Partner",
+                "credentialCategory": "certification"
+            },
+            {
+                "@type": "EducationalOccupationalCredential", 
+                "name": "ISO 27001 Certified",
+                "credentialCategory": "certification"
+            }
+        ],
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "CCIE Enterprise Infrastructure Training",
+                "description": "Complete CCIE Enterprise Infrastructure certification training with 95% pass rate guarantee",
+                "category": "IT Training",
+                "price": "2999",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2024-01-01",
+                "priceValidUntil": "2025-12-31"
+            },
+            {
+                "@type": "Offer",
+                "name": "CCIE Security Training",
+                "description": "Advanced CCIE Security certification training with expert mentorship",
+                "category": "IT Training", 
+                "price": "3299",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+            }
+        ],
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
             "reviewCount": "2847",
-            "bestRating": "5"
-        }
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "alumni": [
+            {
+                "@type": "Person",
+                "name": "Network Engineers at Fortune 500 Companies"
+            }
+        ]
     }
     </script>
     <style>
@@ -1779,17 +1832,32 @@
         // 更新页面上的促销信息
         function updatePromotionDisplay() {
             const promotion = getCurrentPromotion();
+            const settings = MONTHLY_PROMOTIONS.settings || {};
             
             // 更新主要促销横幅
             const urgencyTitle = document.querySelector('.urgency-text h3');
             if (urgencyTitle) {
-                urgencyTitle.innerHTML = `${promotion.emoji} ${promotion.title}`;
+                let titleText = `${promotion.emoji} ${promotion.title}`;
+                
+                // 添加节日信息（如果启用）
+                if (settings.showHolidayInfo && promotion.holidayName) {
+                    titleText += ` - ${promotion.holidayName}`;
+                }
+                
+                urgencyTitle.innerHTML = titleText;
             }
             
             const urgencyDescription = document.querySelector('.urgency-text p');
             if (urgencyDescription) {
+                let descriptionText = promotion.urgencyText + ' • Next batch starts in';
+                
+                // 添加具体折扣信息（如果启用）
+                if (settings.showDiscountAmount && promotion.discountDisplay) {
+                    descriptionText = promotion.discountDisplay + ' • ' + descriptionText;
+                }
+                
                 const spotsText = urgencyDescription.innerHTML;
-                urgencyDescription.innerHTML = spotsText.replace(/Next batch starts in/, promotion.urgencyText + ' • Next batch starts in');
+                urgencyDescription.innerHTML = spotsText.replace(/Next batch starts in/, descriptionText);
             }
             
             // 更新课程价格
@@ -1799,6 +1867,8 @@
         // 更新所有课程价格
         function updateCoursePrices() {
             const courseCards = document.querySelectorAll('.course-card');
+            const promotion = getCurrentPromotion();
+            const settings = MONTHLY_PROMOTIONS.settings || {};
             
             courseCards.forEach((card, index) => {
                 const courseTitle = card.querySelector('.course-title').textContent.replace('CCIE ', '');
@@ -1813,7 +1883,14 @@
                     }
                     
                     if (priceSave) {
-                        priceSave.textContent = `Save $${priceInfo.savings.toLocaleString()} (${priceInfo.discount}% OFF)`;
+                        let saveText = `Save $${priceInfo.savings.toLocaleString()} (${priceInfo.discount}% OFF)`;
+                        
+                        // 添加节日信息到价格标签
+                        if (settings.showHolidayInfo && promotion.holidayName) {
+                            saveText += ` - ${promotion.holidayName}优惠`;
+                        }
+                        
+                        priceSave.textContent = saveText;
                         priceSave.style.background = 'linear-gradient(135deg, #FF6B6B, #FF8E53)';
                         priceSave.style.color = 'white';
                         priceSave.style.fontWeight = 'bold';
@@ -1838,6 +1915,7 @@
         // 添加促销倒计时功能
         function addPromotionCountdown() {
             const promotion = getCurrentPromotion();
+            const settings = MONTHLY_PROMOTIONS.settings || {};
             
             // 在页面中添加促销倒计时
             const promotionBanner = document.querySelector('.urgency-banner');
@@ -1862,7 +1940,14 @@
                 const timeLeft = endOfMonth - now;
                 const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
                 
-                countdownDiv.innerHTML = `${promotion.emoji} ${promotion.description} • ${daysLeft} days left!`;
+                let countdownText = `${promotion.emoji} ${promotion.description} • ${daysLeft} days left!`;
+                
+                // 添加节日期间信息
+                if (settings.showHolidayInfo && promotion.holidayPeriod) {
+                    countdownText += ` (${promotion.holidayPeriod})`;
+                }
+                
+                countdownDiv.innerHTML = countdownText;
                 promotionBanner.appendChild(countdownDiv);
             }
         }

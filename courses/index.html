@@ -41,7 +41,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
     
-    <!-- Structured Data for Courses -->
+    <!-- Enhanced Structured Data for Courses -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -51,27 +51,58 @@
         "provider": {
             "@type": "EducationalOrganization",
             "name": "CCIE Master",
-            "url": "https://cciemaster.com"
+            "url": "https://cciemaster.com",
+            "logo": "https://cciemaster.com/images/logo.png",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-800-CCIE-MASTER",
+                "contactType": "customer service"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "US",
+                "addressRegion": "Nationwide"
+            }
         },
         "courseMode": "online",
+        "educationalLevel": "Professional",
+        "teaches": ["Network Engineering", "Cybersecurity", "Data Center Management", "Network Design"],
         "hasCourseInstance": [
             {
                 "@type": "CourseInstance",
                 "name": "CCIE Enterprise Infrastructure",
-                "description": "Complete CCIE Enterprise Infrastructure certification training",
-                "courseMode": "online"
+                "description": "Complete CCIE Enterprise Infrastructure certification training with 95% pass rate",
+                "courseMode": "online",
+                "duration": "P3M",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "2999",
+                    "priceCurrency": "USD"
+                }
             },
             {
                 "@type": "CourseInstance", 
                 "name": "CCIE Security",
-                "description": "Advanced CCIE Security certification training",
-                "courseMode": "online"
+                "description": "Advanced CCIE Security certification training with expert mentorship",
+                "courseMode": "online",
+                "duration": "P3M",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "3299",
+                    "priceCurrency": "USD"
+                }
             },
             {
                 "@type": "CourseInstance",
                 "name": "CCIE Data Center", 
-                "description": "Specialized CCIE Data Center certification training",
-                "courseMode": "online"
+                "description": "Specialized CCIE Data Center certification training with real lab access",
+                "courseMode": "online",
+                "duration": "P3M",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "3199",
+                    "priceCurrency": "USD"
+                }
             }
         ],
         "aggregateRating": {
@@ -148,6 +179,128 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Social Proof Banner */
+        .social-proof-banner {
+            background: linear-gradient(90deg, var(--color-success) 0%, var(--color-secondary) 100%);
+            color: var(--color-text-light);
+            padding: 12px 32px;
+            text-align: center;
+            font-weight: var(--font-weight-semibold);
+            font-size: 14px;
+            animation: pulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-proof-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Authority Badges */
+        .authority-badges {
+            background: var(--color-background-secondary);
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .badges-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+        }
+
+        .badge-icon {
+            font-size: 16px;
+            color: var(--color-accent);
+        }
+
+        /* Live Activity Notification */
+        .live-activity {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-large);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            max-width: 320px;
+            animation: slideInLeft 0.5s ease-out;
+            display: none;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .live-activity.show {
+            display: block;
+        }
+
+        .live-activity-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--color-success);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .live-activity-text {
+            font-size: 13px;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+        }
+
+        .live-activity-details {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+
         /* Header */
         .header {
             position: sticky;
@@ -218,8 +371,6 @@
             align-items: center;
             gap: 16px;
         }
-
-
 
         .btn-header {
             background: var(--color-primary);
@@ -807,6 +958,48 @@
             </div>
         </nav>
     </header>
+
+    <!-- Social Proof Banner -->
+    <div class="social-proof-banner">
+        🔥 <strong>Live:</strong> 47 students enrolled in CCIE programs in the last 24 hours • Michael R. just passed CCIE Security in Dallas
+    </div>
+
+    <!-- Authority Badges -->
+    <section class="authority-badges">
+        <div class="badges-container">
+            <div class="badge-item">
+                <i class="fas fa-award badge-icon"></i>
+                <span>Cisco Learning Partner</span>
+            </div>
+            <div class="badge-item">
+                <i class="fas fa-shield-check badge-icon"></i>
+                <span>ISO 27001 Certified</span>
+            </div>
+            <div class="badge-item">
+                <i class="fas fa-star badge-icon"></i>
+                <span>4.9/5 Rating (2,847 Reviews)</span>
+            </div>
+            <div class="badge-item">
+                <i class="fas fa-medal badge-icon"></i>
+                <span>95% Pass Rate Guarantee</span>
+            </div>
+            <div class="badge-item">
+                <i class="fas fa-undo badge-icon"></i>
+                <span>100% Money Back</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Activity Notification -->
+    <div class="live-activity" id="liveActivity">
+        <div class="live-activity-header">
+            <div class="live-indicator"></div>
+            <span class="live-activity-text">Recent Activity</span>
+        </div>
+        <div class="live-activity-details" id="activityText">
+            Sarah M. just enrolled in CCIE Enterprise Infrastructure
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1458,8 +1651,120 @@
         </div>
     </footer>
 
+    <!-- 引入促销配置 -->
+    <script src="../js/promotions-config.js"></script>
+
     <script>
-        // Course filtering
+        // 获取当前促销信息
+        function getCurrentPromotion() {
+            const PROMOTIONS = window.CCIE_PROMOTIONS_CONFIG || {};
+            const currentMonth = new Date().getMonth() + 1;
+            return PROMOTIONS.promotions?.[currentMonth] || {
+                theme: "Special Offer",
+                title: "Limited Time Special",
+                emoji: "⭐",
+                discount: 15,
+                discountAmount: "$600",
+                holidayName: "限时优惠",
+                holidayPeriod: "本月限定",
+                description: "Special pricing for this month",
+                urgencyText: "Limited time offer",
+                holidayContext: "限时特惠，机会难得",
+                discountDisplay: "限时特惠：立减15%（约$600）"
+            };
+        }
+
+        // 更新课程价格显示
+        function updateCoursePromotions() {
+            const promotion = getCurrentPromotion();
+            const settings = window.CCIE_PROMOTIONS_CONFIG?.settings || {};
+            
+            // 更新社会证明横幅
+            const socialBanner = document.querySelector('.social-proof-banner');
+            if (socialBanner && promotion.holidayName) {
+                const originalText = socialBanner.textContent;
+                if (!originalText.includes(promotion.holidayName)) {
+                    socialBanner.innerHTML = `🔥 ${promotion.holidayName}特惠进行中！${originalText}`;
+                }
+            }
+
+            // 更新课程价格标签
+            const priceContainers = document.querySelectorAll('.course-price');
+            priceContainers.forEach((container, index) => {
+                const priceOriginal = container.querySelector('.price-original');
+                const priceAmount = container.querySelector('.price-amount');
+                
+                if (priceOriginal && priceAmount) {
+                    // 添加节日折扣标签
+                    let discountBadge = container.querySelector('.holiday-discount-badge');
+                    if (!discountBadge) {
+                        discountBadge = document.createElement('div');
+                        discountBadge.className = 'holiday-discount-badge';
+                        discountBadge.style.cssText = `
+                            position: absolute;
+                            top: -10px;
+                            right: -10px;
+                            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+                            color: white;
+                            padding: 4px 8px;
+                            border-radius: 12px;
+                            font-size: 10px;
+                            font-weight: bold;
+                            z-index: 10;
+                            animation: pulse 2s infinite;
+                        `;
+                        container.style.position = 'relative';
+                        container.appendChild(discountBadge);
+                    }
+                    
+                    // 显示节日和折扣信息
+                    if (settings.showHolidayInfo && promotion.holidayName) {
+                        discountBadge.innerHTML = `${promotion.emoji} ${promotion.holidayName}<br/>${promotion.discount}% OFF`;
+                    } else {
+                        discountBadge.innerHTML = `${promotion.emoji} ${promotion.discount}% OFF`;
+                    }
+                }
+            });
+
+            // 在页面顶部添加节日促销通知
+            addHolidayPromotionNotice();
+        }
+
+        // 添加节日促销通知
+        function addHolidayPromotionNotice() {
+            const promotion = getCurrentPromotion();
+            const settings = window.CCIE_PROMOTIONS_CONFIG?.settings || {};
+            
+            if (!document.querySelector('.holiday-promotion-notice') && settings.showHolidayInfo) {
+                const notice = document.createElement('div');
+                notice.className = 'holiday-promotion-notice';
+                notice.style.cssText = `
+                    background: linear-gradient(135deg, #10b981, #059669);
+                    color: white;
+                    padding: 12px 20px;
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    position: sticky;
+                    top: 0;
+                    z-index: 1000;
+                    animation: slideInDown 0.5s ease-out;
+                `;
+                
+                let noticeText = `${promotion.emoji} ${promotion.holidayName}特惠进行中！`;
+                if (settings.showDiscountAmount && promotion.discountDisplay) {
+                    noticeText += ` ${promotion.discountDisplay}`;
+                }
+                if (promotion.holidayPeriod) {
+                    noticeText += ` | 活动期间：${promotion.holidayPeriod}`;
+                }
+                
+                notice.innerHTML = noticeText;
+                document.body.insertBefore(notice, document.body.firstChild);
+            }
+        }
+
+        // 课程filtering
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1499,6 +1804,36 @@
             } else {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
+        });
+
+        // 添加动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInDown {
+                from {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 页面加载完成后初始化促销显示
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCoursePromotions();
         });
     </script>
 </body>
