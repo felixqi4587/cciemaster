@@ -2007,8 +2007,23 @@
             // 初始化成功案例轮播
             initializeSuccessCarousel();
             
+            // 启动自动轮播
+            startAutoScroll();
+            
+            // 添加鼠标悬停控制
+            const successCarousel = document.querySelector('.success-carousel');
+            if (successCarousel) {
+                successCarousel.addEventListener('mouseenter', stopAutoScroll);
+                successCarousel.addEventListener('mouseleave', startAutoScroll);
+            }
+            
             // 更新倒计时
             updateCountdown();
+            
+            // 定期更新成功案例（每10分钟）
+            setInterval(() => {
+                initializeSuccessCarousel();
+            }, 600000); // 10分钟
         });
 
         // 成功案例数据
@@ -2018,49 +2033,112 @@
                 track: "CCIE Enterprise Infrastructure",
                 date: "June 15, 2025",
                 score: "Score: 85/100",
-                quote: "The lab simulations were exactly like the real exam. Passed on first attempt!"
+                quote: "The lab simulations were exactly like the real exam. Passed on first attempt!",
+                months: 2
             },
             {
                 name: "Sarah Johnson",
                 track: "CCIE Security", 
                 date: "June 12, 2025",
                 score: "Score: 88/100",
-                quote: "Outstanding mentorship and support throughout my journey."
+                quote: "Outstanding mentorship and support throughout my journey.",
+                months: 3
             },
             {
                 name: "David Rodriguez",
                 track: "CCIE Data Center",
                 date: "June 10, 2025", 
                 score: "Score: 82/100",
-                quote: "The practical labs prepared me perfectly for the real exam environment."
+                quote: "The practical labs prepared me perfectly for the real exam environment.",
+                months: 4
             },
             {
                 name: "Emily Wang",
                 track: "CCDE Design Expert",
                 date: "June 8, 2025",
                 score: "Score: 90/100", 
-                quote: "Comprehensive training that covers every aspect of network design."
+                quote: "Comprehensive training that covers every aspect of network design.",
+                months: 5
             },
             {
                 name: "James Wilson",
                 track: "CCIE Enterprise Infrastructure",
                 date: "June 5, 2025",
                 score: "Score: 87/100",
-                quote: "The instructor support was incredible. They were always available to help."
+                quote: "The instructor support was incredible. They were always available to help.",
+                months: 3
             },
             {
                 name: "Lisa Thompson",
                 track: "CCIE Security",
                 date: "June 3, 2025", 
                 score: "Score: 91/100",
-                quote: "Best investment I ever made in my career. The training quality is exceptional."
+                quote: "Best investment I ever made in my career. The training quality is exceptional.",
+                months: 2
+            },
+            {
+                name: "Robert Kim",
+                track: "CCIE Collaboration",
+                date: "June 1, 2025",
+                score: "Score: 89/100",
+                quote: "The voice and collaboration training exceeded my expectations.",
+                months: 4
+            },
+            {
+                name: "Maria Garcia",
+                track: "CCIE Service Provider",
+                date: "May 28, 2025",
+                score: "Score: 86/100",
+                quote: "BGP and MPLS concepts became crystal clear with their training.",
+                months: 6
+            },
+            {
+                name: "Alex Thompson",
+                track: "CCIE Enterprise Wireless",
+                date: "May 25, 2025",
+                score: "Score: 92/100",
+                quote: "Wireless troubleshooting skills improved dramatically.",
+                months: 3
+            },
+            {
+                name: "Jennifer Lee",
+                track: "DevNet Expert",
+                date: "May 22, 2025",
+                score: "Score: 94/100",
+                quote: "Network automation became my superpower after this training.",
+                months: 4
             }
         ];
+
+        // 生成动态日期（最近30天内的随机日期）
+        function generateRecentDate() {
+            const today = new Date();
+            const daysAgo = Math.floor(Math.random() * 30) + 1; // 1-30天前
+            const date = new Date(today.getTime() - (daysAgo * 24 * 60 * 60 * 1000));
+            return date.toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
+
+        // 更新成功案例数据（自动更新日期）
+        function updateSuccessStories() {
+            successStories.forEach(story => {
+                // 随机更新日期，保持在最近30天内
+                if (Math.random() < 0.3) { // 30%概率更新日期
+                    story.date = generateRecentDate();
+                }
+            });
+        }
 
         // 初始化成功案例轮播
         function initializeSuccessCarousel() {
             const successTrack = document.getElementById('successTrack');
             if (!successTrack) return;
+
+            // 更新案例数据
+            updateSuccessStories();
 
             // 生成成功案例卡片
             const cardsHTML = successStories.map(story => `
@@ -2083,11 +2161,11 @@
                                 <div class="stat-label">Attempt</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">3</div>
+                                <div class="stat-value">${story.months}</div>
                                 <div class="stat-label">Months</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">95%</div>
+                                <div class="stat-value">100%</div>
                                 <div class="stat-label">Success Rate</div>
                             </div>
                         </div>
@@ -2096,6 +2174,26 @@
             `).join('');
 
             successTrack.innerHTML = cardsHTML;
+        }
+
+        // 自动轮播功能
+        let autoScrollInterval;
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                scrollCarousel(1);
+                
+                // 如果到达最后一页，重置到开头
+                const maxSlides = Math.max(0, successStories.length - 3);
+                if (currentSlide >= maxSlides) {
+                    currentSlide = -1; // 下次会变成0
+                }
+            }, 4000); // 每4秒自动滚动
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
         }
 
         // 轮播控制
