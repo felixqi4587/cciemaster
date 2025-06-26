@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="120" height="40">
+  <g>
+    <!-- Netflix logo -->
+    <rect x="25" y="15" width="8" height="30" fill="#e50914"/>
+    <rect x="35" y="15" width="8" height="30" fill="#e50914"/>
+    <rect x="45" y="15" width="8" height="30" fill="#e50914"/>
+    
+    <!-- Diagonal connecting strip -->
+    <polygon points="33,15 43,15 43,45 33,45" fill="#e50914" transform="skewX(-15)"/>
+    
+    <!-- Netflix text -->
+    <text x="65" y="32" font-family="Netflix Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#e50914">NETFLIX</text>
+  </g>
+</svg> 

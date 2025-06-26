@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <g fill="#1f70c1">
+    <!-- IBM text with horizontal stripes style -->
+    <rect x="30" y="20" width="30" height="4"/>
+    <rect x="30" y="26" width="30" height="4"/>
+    <rect x="30" y="32" width="30" height="4"/>
+    <rect x="30" y="38" width="30" height="4"/>
+    
+    <!-- Letters -->
+    <text x="70" y="35" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f70c1">IBM</text>
+  </g>
+</svg> 

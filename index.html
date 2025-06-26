@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Enhanced SEO Meta Tags -->
-    <title>CCIE Master - #1 CCIE Training | 95% Pass Rate | $120K+ Career Transformation</title>
-    <meta name="description" content="Transform your career with CCIE Master's expert training. 95% pass rate guarantee, real lab access, Fortune 500 trusted. Master Enterprise Infrastructure, Security, Data Center in 3 months. 10,000+ successful professionals.">
+    <title>CCIE Master - Pass Your CCIE First Try | 95% Success Rate</title>
+    <meta name="description" content="Join 10,000+ professionals who passed CCIE with our proven system. Expert instructors, real labs, 95% first-attempt pass rate. Free trial available. Start today!">
     <meta name="keywords" content="CCIE training, CCDE certification, Cisco certification, IT training, network engineer, enterprise infrastructure, security, data center, service provider, CCIE lab, CCIE bootcamp, career transformation, salary increase">
     <meta name="author" content="CCIE Master">
     <meta name="robots" content="index, follow">
@@ -33,11 +33,8 @@
     <meta property="twitter:creator" content="@cciemaster">
     <meta property="twitter:site" content="@cciemaster">
     
-    <!-- Favicon and Icons -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
     
@@ -414,12 +411,12 @@
         }
 
         .btn-primary {
-            background: var(--color-text-light);
-            color: var(--color-primary);
+            background: linear-gradient(135deg, #FF6600, #FF8533);
+            color: var(--color-text-light);
             padding: 18px 36px;
             border-radius: var(--border-radius);
             text-decoration: none;
-            font-weight: var(--font-weight-semibold);
+            font-weight: var(--font-weight-bold);
             font-size: 16px;
             transition: var(--transition-medium);
             border: none;
@@ -429,12 +426,15 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary:hover {
-            background: var(--color-background-secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, #e05500, #e07300);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.4);
         }
 
         .btn-secondary {
@@ -1119,7 +1119,7 @@
         .footer {
             background: var(--color-background-dark);
             color: var(--color-text-light);
-            padding: 80px 32px 32px;
+            padding: 60px 32px 32px;
         }
 
         .footer-container {
@@ -1166,6 +1166,7 @@
             padding-top: 32px;
             text-align: center;
             color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
         }
 
         /* Social Proof Notifications */
@@ -1419,6 +1420,277 @@
             font-weight: bold !important;
             animation: pulse 1.5s infinite;
         }
+
+        /* Trusted Companies Section */
+        .trusted-companies-section {
+            background: var(--color-background-secondary);
+            padding: 80px 32px;
+            text-align: center;
+        }
+
+        .trusted-companies-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trusted-title {
+            font-size: 28px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: 48px;
+        }
+
+        .trusted-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 64px;
+            padding: 32px 0;
+        }
+
+        .logo-item {
+            transition: var(--transition-medium);
+            opacity: 0.7;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .logo-item img {
+            max-width: 120px;
+            height: 60px;
+            object-fit: contain;
+            filter: grayscale(0%);
+            transition: var(--transition-medium);
+        }
+
+        .logo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .certifications-section {
+            border-top: 1px solid var(--color-border);
+            padding-top: 48px;
+        }
+
+        .certifications-title {
+            font-size: 24px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: 32px;
+        }
+
+        .certification-badges {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-medium);
+        }
+
+        .badge-item:hover img {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .badge-item span {
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+        }
+
+        /* Quick Lead Capture Section */
+        .quick-lead-section {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-light);
+            padding: 80px 32px;
+            text-align: center;
+        }
+
+        .quick-lead-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .lead-title {
+            font-size: 32px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 16px;
+        }
+
+        .lead-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .quick-lead-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 16px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background: var(--color-background);
+            color: var(--color-text);
+            transition: var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-quick-lead {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #FF6600, #FF8533);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 18px;
+            font-weight: var(--font-weight-bold);
+            cursor: pointer;
+            transition: var(--transition-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-quick-lead:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.4);
+        }
+
+        .privacy-note {
+            font-size: 14px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-lead-form {
+                padding: 24px;
+            }
+        }
+
+        /* Sticky Contact Button */
+        .sticky-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #FF6600, #FF8533);
+            color: white;
+            padding: 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.4);
+            text-decoration: none;
+            font-weight: var(--font-weight-bold);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+            transition: var(--transition-medium);
+        }
+
+        .sticky-contact:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(255, 102, 0, 0.6);
+        }
+
+        /* Mobile Sticky Contact Bar */
+        .mobile-contact-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #FF6600, #FF8533);
+            color: white;
+            padding: 16px 20px;
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-contact-bar .contact-text {
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 8px;
+        }
+
+        .mobile-contact-bar .contact-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .mobile-contact-bar a {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-fast);
+        }
+
+        .mobile-contact-bar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sticky-contact {
+                display: none;
+            }
+            
+            .mobile-contact-bar {
+                display: block;
+            }
+            
+            /* 添加底部间距以避免被悬浮条遮挡 */
+            body {
+                padding-bottom: 100px;
+            }
+        }
     </style>
     
     <!-- 促销配置文件 -->
@@ -1571,6 +1843,8 @@
             </div>
         </div>
     </section>
+
+
 
     <!-- Courses Section -->
     <section class="courses">
@@ -1784,6 +2058,51 @@
         </div>
     </section>
 
+    <!-- Trusted Companies Section -->
+    <section class="trusted-companies-section">
+        <div class="trusted-companies-container">
+            <h3 class="trusted-title">Our Alumni Work At These Leading Companies</h3>
+            <div class="trusted-logos">
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco Systems logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/google.com" alt="Google logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/apple.com" alt="Apple logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/netflix.com" alt="Netflix logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/meta.com" alt="Meta (Facebook) logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/tesla.com" alt="Tesla logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/salesforce.com" alt="Salesforce logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/adobe.com" alt="Adobe logo" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="https://logo.clearbit.com/intel.com" alt="Intel logo" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-container">
@@ -1805,24 +2124,26 @@
         </div>
     </section>
 
+
+
+
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3><i class="fas fa-graduation-cap"></i> CCIE Master</h3>
-                    <p>
-                        Professional CCIE certification training with guaranteed results. 
-                        Your success is our mission.
+                    <p style="margin-bottom: 16px; opacity: 0.8;">
+                        Professional CCIE certification training with guaranteed results. Your success is our mission.
                     </p>
-                    <br>
-                    <p>
-                        <i class="fas fa-envelope"></i> 
-                        <a href="mailto:cciemasternode@gmail.com">cciemasternode@gmail.com</a>
+                    <p style="font-size: 14px; margin-top: 12px;">
+                        <i class="fas fa-envelope" style="color: var(--color-primary); margin-right: 8px;"></i> 
+                        <a href="mailto:cciemasternode@gmail.com" style="color: var(--color-primary); text-decoration: none; font-weight: var(--font-weight-medium);">cciemasternode@gmail.com</a>
                     </p>
-                    <p>
-                        <i class="fab fa-whatsapp"></i> 
-                        <a href="https://wa.me/16034861896">+1 (603) 486-1896</a>
+                    <p style="font-size: 14px; margin-top: 8px;">
+                        <i class="fab fa-whatsapp" style="color: var(--color-primary); margin-right: 8px;"></i> 
+                        <a href="https://wa.me/16034861896" style="color: var(--color-primary); text-decoration: none; font-weight: var(--font-weight-medium);">+1 (603) 486-1896</a>
                     </p>
                 </div>
                 
@@ -1999,6 +2320,38 @@
             });
         }
 
+        // Quick Lead Form Handler
+        function handleQuickLeadForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            const submitBtn = form.querySelector('.btn-quick-lead');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual endpoint)
+            setTimeout(() => {
+                // Show success message
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 48px; margin-bottom: 24px;">✅</div>
+                        <h3 style="margin-bottom: 16px;">Thank You!</h3>
+                        <p>Your free CCIE study plan is on its way! Check your inbox in the next few minutes.</p>
+                        <p style="margin-top: 24px; opacity: 0.8;">Our team will contact you within 3 hours to discuss your training goals.</p>
+                    </div>
+                `;
+                
+                // Track conversion (add your analytics code here)
+                console.log('Lead captured:', data);
+                
+            }, 2000);
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化促销信息
@@ -2015,6 +2368,12 @@
             if (successCarousel) {
                 successCarousel.addEventListener('mouseenter', stopAutoScroll);
                 successCarousel.addEventListener('mouseleave', startAutoScroll);
+            }
+            
+            // 初始化快速联系表单
+            const quickLeadForm = document.getElementById('quickLeadForm');
+            if (quickLeadForm) {
+                quickLeadForm.addEventListener('submit', handleQuickLeadForm);
             }
             
             // 更新倒计时
@@ -2214,5 +2573,23 @@
             successTrack.style.transform = `translateX(${translateX}px)`;
         }
     </script>
+
+
+
+    <!-- Sticky Contact Elements -->
+    <a href="/contact/" class="sticky-contact">
+        <i class="fas fa-comments"></i>
+        Free Trial
+    </a>
+
+    <!-- Mobile Contact Bar -->
+    <div class="mobile-contact-bar">
+        <div class="contact-text">💬 Questions? Get Expert Help 24/7</div>
+        <div class="contact-buttons">
+            <a href="/contact/">Start Free Trial</a>
+            <a href="https://wa.me/18604861896">WhatsApp Chat</a>
+        </div>
+    </div>
+
 </body>
 </html>

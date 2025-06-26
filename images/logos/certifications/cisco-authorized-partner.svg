@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="200" height="80">
+  <defs>
+    <style>
+      .partner-text { font-family: "Helvetica Neue", Arial, sans-serif; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="5" y="5" width="290" height="110" rx="8" fill="#ffffff" stroke="#1ba0d7" stroke-width="2"/>
+  
+  <!-- Cisco bridge symbol -->
+  <g fill="#1ba0d7">
+    <rect x="25" y="30" width="3" height="20"/>
+    <rect x="32" y="25" width="3" height="25"/>
+    <rect x="39" y="20" width="3" height="30"/>
+    <rect x="46" y="18" width="3" height="34"/>
+    <rect x="53" y="22" width="3" height="26"/>
+    <rect x="60" y="28" width="3" height="14"/>
+    <rect x="67" y="32" width="3" height="6"/>
+  </g>
+  
+  <!-- Cisco text -->
+  <text x="85" y="38" class="partner-text" font-size="18" font-weight="bold" fill="#1ba0d7">cisco</text>
+  
+  <!-- Authorized Training Partner text -->
+  <text x="25" y="65" class="partner-text" font-size="14" font-weight="600" fill="#333">Authorized Training Partner</text>
+  
+  <!-- Badge frame -->
+  <rect x="5" y="5" width="290" height="110" rx="8" fill="none" stroke="#1ba0d7" stroke-width="2"/>
+</svg> 

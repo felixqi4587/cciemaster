@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <g>
+    <!-- PMP badge -->
+    <rect x="30" y="15" width="140" height="50" rx="25" fill="#0073e6"/>
+    
+    <!-- PMP text -->
+    <text x="100" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">PMP</text>
+    <text x="100" y="52" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Project Management Professional</text>
+    
+    <!-- Border -->
+    <rect x="30" y="15" width="140" height="50" rx="25" fill="none" stroke="white" stroke-width="2"/>
+  </g>
+</svg> 

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 100" width="180" height="72">
+  <defs>
+    <style>
+      .iso-text { font-family: "Arial", sans-serif; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="5" y="5" width="240" height="90" rx="8" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- ISO Logo Circle -->
+  <circle cx="60" cy="50" r="25" fill="#0066cc"/>
+  
+  <!-- ISO text in circle -->
+  <text x="60" y="45" class="iso-text" font-size="12" font-weight="bold" fill="white" text-anchor="middle">ISO</text>
+  <text x="60" y="60" class="iso-text" font-size="8" fill="white" text-anchor="middle">CERTIFIED</text>
+  
+  <!-- ISO 27001 text -->
+  <text x="105" y="40" class="iso-text" font-size="20" font-weight="bold" fill="#0066cc">ISO 27001</text>
+  <text x="105" y="60" class="iso-text" font-size="12" fill="#333">Information Security</text>
+  <text x="105" y="75" class="iso-text" font-size="12" fill="#333">Management System</text>
+  
+  <!-- Border -->
+  <rect x="5" y="5" width="240" height="90" rx="8" fill="none" stroke="#0066cc" stroke-width="2"/>
+</svg> 
