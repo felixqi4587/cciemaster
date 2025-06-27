@@ -701,6 +701,11 @@
                 <li><a href="/success-stories/" class="active">Success Stories</a></li>
                 <li><a href="/contact/">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
             </div>
@@ -1056,6 +1061,9 @@
         </div>
     </footer>
 
+    <!-- 移动端支持 -->
+    <link rel="stylesheet" href="../js/mobile-styles.css">
+
     <script>
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1104,5 +1112,8 @@
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', initStats);
     </script>
+
+    <!-- 移动端菜单脚本 -->
+    <script src="../js/mobile-menu.js"></script>
 </body>
 </html> 

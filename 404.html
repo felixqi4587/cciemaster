@@ -338,7 +338,11 @@
                 <li><a href="/success-stories/">Success Stories</a></li>
                 <li><a href="/contact/">Contact</a></li>
             </ul>
-            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
@@ -401,6 +405,9 @@
         </div>
     </footer>
 
+    <!-- 移动端支持 -->
+    <link rel="stylesheet" href="js/mobile-styles.css">
+
     <script>
         // Header scroll effect
         window.addEventListener('scroll', () => {
@@ -412,5 +419,8 @@
             }
         });
     </script>
+
+    <!-- 移动端菜单脚本 -->
+    <script src="js/mobile-menu.js"></script>
 </body>
 </html>

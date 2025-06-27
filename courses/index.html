@@ -973,6 +973,11 @@
                 <li><a href="/success-stories/">Success Stories</a></li>
                 <li><a href="/contact/">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
             </div>
@@ -1688,6 +1693,9 @@
         </div>
     </footer>
 
+    <!-- 移动端支持 -->
+    <link rel="stylesheet" href="../js/mobile-styles.css">
+    
     <!-- 引入促销配置 -->
     <script src="../js/promotions-config.js"></script>
 
@@ -1831,5 +1839,8 @@
             }, 100);
         });
     </script>
+
+    <!-- 移动端菜单脚本 -->
+    <script src="../js/mobile-menu.js"></script>
 </body>
 </html>
