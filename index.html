@@ -1226,6 +1226,101 @@
             animation: pulse 1.5s infinite;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            width: 30px;
+            height: 30px;
+            justify-content: space-between;
+        }
+
+        .mobile-menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 2px;
+            transition: var(--transition-fast);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--color-background);
+            border-top: 1px solid var(--color-border);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-list li {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .mobile-menu-list li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-list a {
+            display: block;
+            padding: 20px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            font-size: 16px;
+            transition: var(--transition-fast);
+        }
+
+        .mobile-menu-list a:hover,
+        .mobile-menu-list a.active {
+            background: var(--color-background-secondary);
+            color: var(--color-primary);
+        }
+
+        .mobile-cta {
+            padding: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .mobile-cta .btn-header {
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav {
@@ -1234,6 +1329,14 @@
             }
             
             .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .btn-header {
                 display: none;
             }
             
@@ -1714,9 +1817,27 @@
             </ul>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/courses/">Courses</a></li>
+            <li><a href="/success-stories/">Success Stories</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <div class="mobile-cta">
+            <a href="/contact/" class="btn-header">Start Free Trial</a>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -2596,6 +2717,37 @@
             const translateX = -currentSlide * cardWidth;
             successTrack.style.transform = `translateX(${translateX}px)`;
         }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu-list a').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const menuToggle = document.querySelector('.mobile-menu-toggle');
+                
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
     </script>
 
 
@@ -2611,7 +2763,7 @@
         <div class="contact-text">💬 Questions? Get Expert Help 24/7</div>
         <div class="contact-buttons">
             <a href="/contact/">Start Free Trial</a>
-            <a href="https://wa.me/18604861896">WhatsApp Chat</a>
+            <a href="https://wa.me/16034861896">WhatsApp Chat</a>
         </div>
     </div>
 
