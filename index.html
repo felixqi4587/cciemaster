@@ -1772,9 +1772,9 @@
     <section class="recent-success-section">
         <div class="recent-success-container">
             <div class="section-header">
-                <h2 class="section-title">🎉 Latest CCIE Passes This Week</h2>
+                <h2 class="section-title">🎉 Latest CCIE Passes This Month</h2>
                 <p class="section-description">
-                    Fresh success stories! Our students continue to achieve their CCIE dreams every week.
+                    Fresh success stories! Our students continue to achieve their CCIE dreams every month with remarkable consistency.
                 </p>
             </div>
             
@@ -2385,12 +2385,12 @@
             }, 600000); // 10分钟
         });
 
-        // 成功案例数据
+        // 成功案例数据 - 动态生成本月日期
         const successStories = [
             {
                 name: "Michael Chen",
                 track: "CCIE Enterprise Infrastructure",
-                date: "June 15, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 85/100",
                 quote: "The lab simulations were exactly like the real exam. Passed on first attempt!",
                 months: 2
@@ -2398,7 +2398,7 @@
             {
                 name: "Sarah Johnson",
                 track: "CCIE Security", 
-                date: "June 12, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 88/100",
                 quote: "Outstanding mentorship and support throughout my journey.",
                 months: 3
@@ -2406,7 +2406,7 @@
             {
                 name: "David Rodriguez",
                 track: "CCIE Data Center",
-                date: "June 10, 2025", 
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 82/100",
                 quote: "The practical labs prepared me perfectly for the real exam environment.",
                 months: 4
@@ -2414,7 +2414,7 @@
             {
                 name: "Emily Wang",
                 track: "CCDE Design Expert",
-                date: "June 8, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 90/100", 
                 quote: "Comprehensive training that covers every aspect of network design.",
                 months: 5
@@ -2422,7 +2422,7 @@
             {
                 name: "James Wilson",
                 track: "CCIE Enterprise Infrastructure",
-                date: "June 5, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 87/100",
                 quote: "The instructor support was incredible. They were always available to help.",
                 months: 3
@@ -2430,7 +2430,7 @@
             {
                 name: "Lisa Thompson",
                 track: "CCIE Security",
-                date: "June 3, 2025", 
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 91/100",
                 quote: "Best investment I ever made in my career. The training quality is exceptional.",
                 months: 2
@@ -2438,7 +2438,7 @@
             {
                 name: "Robert Kim",
                 track: "CCIE Collaboration",
-                date: "June 1, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 89/100",
                 quote: "The voice and collaboration training exceeded my expectations.",
                 months: 4
@@ -2446,7 +2446,7 @@
             {
                 name: "Maria Garcia",
                 track: "CCIE Service Provider",
-                date: "May 28, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 86/100",
                 quote: "BGP and MPLS concepts became crystal clear with their training.",
                 months: 6
@@ -2454,7 +2454,7 @@
             {
                 name: "Alex Thompson",
                 track: "CCIE Enterprise Wireless",
-                date: "May 25, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 92/100",
                 quote: "Wireless troubleshooting skills improved dramatically.",
                 months: 3
@@ -2462,31 +2462,55 @@
             {
                 name: "Jennifer Lee",
                 track: "DevNet Expert",
-                date: "May 22, 2025",
+                date: "", // 将由generateCurrentMonthDate()动态生成
                 score: "Score: 94/100",
                 quote: "Network automation became my superpower after this training.",
                 months: 4
             }
         ];
 
-        // 生成动态日期（最近30天内的随机日期）
-        function generateRecentDate() {
+        // 生成动态日期（本月内的随机日期）
+        function generateCurrentMonthDate() {
             const today = new Date();
-            const daysAgo = Math.floor(Math.random() * 30) + 1; // 1-30天前
-            const date = new Date(today.getTime() - (daysAgo * 24 * 60 * 60 * 1000));
-            return date.toLocaleDateString('en-US', { 
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            
+            // 获取本月第一天和最后一天
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            
+            // 在本月范围内生成随机日期
+            const randomTime = firstDay.getTime() + Math.random() * (lastDay.getTime() - firstDay.getTime());
+            const randomDate = new Date(randomTime);
+            
+            // 确保不超过今天
+            if (randomDate > today) {
+                return today.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            }
+            
+            return randomDate.toLocaleDateString('en-US', { 
                 month: 'long', 
                 day: 'numeric', 
                 year: 'numeric' 
             });
         }
 
-        // 更新成功案例数据（自动更新日期）
+        // 更新成功案例数据（自动更新日期，保持本月内）
         function updateSuccessStories() {
-            successStories.forEach(story => {
-                // 随机更新日期，保持在最近30天内
-                if (Math.random() < 0.3) { // 30%概率更新日期
-                    story.date = generateRecentDate();
+            successStories.forEach((story, index) => {
+                // 如果日期为空，则初始化为本月日期
+                if (!story.date) {
+                    story.date = generateCurrentMonthDate();
+                } else {
+                    // 使用索引创建伪随机种子，确保持久性但有变化
+                    const seed = (index * 17 + new Date().getDate()) % 100;
+                    if (seed < 25) { // 25%概率更新日期，确保有变化但保持相对稳定
+                        story.date = generateCurrentMonthDate();
+                    }
                 }
             });
         }
