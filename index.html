@@ -40,8 +40,6 @@
     
     <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-    <link rel="dns-prefetch" href="//logo.clearbit.com">
     <link rel="dns-prefetch" href="//wa.me">
     <link rel="prefetch" href="/courses/">
     <link rel="prefetch" href="/contact/">
@@ -500,8 +498,7 @@
             font-weight: var(--font-weight-medium);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: var(--color-text);
-            opacity: 0.9;
+            color: var(--color-text-secondary);
         }
 
         /* Section Headers */
@@ -900,7 +897,7 @@
 
         .stat-label {
             font-size: 12px;
-            color: var(--color-text-tertiary);
+            color: var(--color-text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -910,6 +907,8 @@
             justify-content: center;
             gap: 16px;
             margin-top: 32px;
+            position: relative;
+            transition: transform 0.3s ease; /* 平滑的对齐过渡动画 */
         }
 
         .carousel-btn {
@@ -1081,6 +1080,13 @@
         .trust-icon {
             font-size: 32px;
             min-width: 40px;
+        }
+
+        .trust-text h3 {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: 4px;
         }
 
         .trust-text h4 {
@@ -1901,7 +1907,7 @@
     <section class="recent-success-section">
         <div class="recent-success-container">
             <div class="section-header">
-                <h2 class="section-title">🎉 Latest CCIE Passes This Month</h2>
+                <h2 class="section-title" id="successSectionTitle">🎉 Latest CCIE Passes This Month</h2>
                 <p class="section-description">
                     Fresh success stories! Our students continue to achieve their CCIE dreams every month with remarkable consistency.
                 </p>
@@ -1914,10 +1920,10 @@
             </div>
             
             <div class="carousel-controls">
-                <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
+                <button class="carousel-btn prev" onclick="scrollCarousel(-1)" aria-label="上一条CCIE成功案例">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="carousel-btn next" onclick="scrollCarousel(1)">
+                <button class="carousel-btn next" onclick="scrollCarousel(1)" aria-label="下一条CCIE成功案例">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -1944,28 +1950,28 @@
                 <div class="trust-item">
                     <div class="trust-icon">🏆</div>
                     <div class="trust-text">
-                        <h4>Industry Leader</h4>
+                        <h3>Industry Leader</h3>
                         <p>Trusted by Fortune 500 companies</p>
                     </div>
                 </div>
                 <div class="trust-item" data-guarantee>
                     <div class="trust-icon">🔒</div>
                     <div class="trust-text">
-                        <h4>Money-Back Guarantee</h4>
+                        <h3>Money-Back Guarantee</h3>
                         <p>100% refund if you don't pass</p>
                     </div>
                 </div>
                 <div class="trust-item" data-guarantee>
                     <div class="trust-icon">⚡</div>
                     <div class="trust-text">
-                        <h4>Fast Track Success</h4>
+                        <h3>Fast Track Success</h3>
                         <p>Average 3-month completion</p>
                     </div>
                 </div>
                 <div class="trust-item">
                     <div class="trust-icon">👥</div>
                     <div class="trust-text">
-                        <h4>Expert Mentors</h4>
+                        <h3>Expert Mentors</h3>
                         <p>CCIE-certified instructors only</p>
                     </div>
                 </div>
@@ -2193,40 +2199,40 @@
             <h3 class="trusted-title">Our Alumni Work At These Leading Companies</h3>
             <div class="trusted-logos">
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco Systems - Leading network equipment manufacturer where CCIE Master graduates work" loading="lazy">
+                    <img src="/images/logos/companies/cisco.png" onerror="this.src='https://logo.clearbit.com/cisco.com'" alt="Cisco Systems - Leading network equipment manufacturer where CCIE Master graduates work" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft - Technology company employing CCIE certified professionals" loading="lazy">
+                    <img src="/images/logos/companies/microsoft.png" onerror="this.src='https://logo.clearbit.com/microsoft.com'" alt="Microsoft - Technology company employing CCIE certified professionals" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon - Cloud computing leader hiring CCIE Master graduates" loading="lazy">
+                    <img src="/images/logos/companies/amazon.png" onerror="this.src='https://logo.clearbit.com/amazon.com'" alt="Amazon - Cloud computing leader hiring CCIE Master graduates" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/google.com" alt="Google - Tech giant where CCIE experts advance their careers" loading="lazy">
+                    <img src="/images/logos/companies/google.png" onerror="this.src='https://logo.clearbit.com/google.com'" alt="Google - Tech giant where CCIE experts advance their careers" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/apple.com" alt="Apple - Innovation company with CCIE Master alumni in network engineering roles" loading="lazy">
+                    <img src="/images/logos/companies/apple.png" onerror="this.src='https://logo.clearbit.com/apple.com'" alt="Apple - Innovation company with CCIE Master alumni in network engineering roles" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/netflix.com" alt="Netflix - Streaming platform employing network engineering experts" loading="lazy">
+                    <img src="/images/logos/companies/netflix.png" onerror="this.src='https://logo.clearbit.com/netflix.com'" alt="Netflix - Streaming platform employing network engineering experts" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/meta.com" alt="Meta (Facebook) - Social media company with CCIE certified engineers" loading="lazy">
+                    <img src="/images/logos/companies/meta.png" onerror="this.src='https://logo.clearbit.com/meta.com'" alt="Meta (Facebook) - Social media company with CCIE certified engineers" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/tesla.com" alt="Tesla - Electric vehicle company hiring networking professionals" loading="lazy">
+                    <img src="/images/logos/companies/tesla.png" onerror="this.src='https://logo.clearbit.com/tesla.com'" alt="Tesla - Electric vehicle company hiring networking professionals" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/salesforce.com" alt="Salesforce - CRM leader employing CCIE Master graduates" loading="lazy">
+                    <img src="/images/logos/companies/salesforce.png" onerror="this.src='https://logo.clearbit.com/salesforce.com'" alt="Salesforce - CRM leader employing CCIE Master graduates" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA - Graphics and AI company with network infrastructure teams" loading="lazy">
+                    <img src="/images/logos/companies/nvidia.png" onerror="this.src='https://logo.clearbit.com/nvidia.com'" alt="NVIDIA - Graphics and AI company with network infrastructure teams" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/adobe.com" alt="Adobe - Creative software company employing network experts" loading="lazy">
+                    <img src="/images/logos/companies/adobe.png" onerror="this.src='https://logo.clearbit.com/adobe.com'" alt="Adobe - Creative software company employing network experts" loading="eager">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/intel.com" alt="Intel - Semiconductor company hiring CCIE certified professionals" loading="lazy">
+                    <img src="/images/logos/companies/intel.png" onerror="this.src='https://logo.clearbit.com/intel.com'" alt="Intel - Semiconductor company hiring CCIE certified professionals" loading="eager">
                 </div>
             </div>
         </div>
@@ -2476,7 +2482,7 @@
                 `;
                 
                 // Track conversion (add your analytics code here)
-                console.log('Lead captured:', data);
+                // Lead captured successfully
                 
             }, 2000);
         }
@@ -2486,10 +2492,10 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
-                        console.log('Service Worker registered successfully');
+                        // Service Worker registered successfully
                     })
                     .catch((error) => {
-                        console.log('Service Worker registration failed');
+                        // Service Worker registration failed
                     });
             });
         }
@@ -2521,10 +2527,14 @@
             // 更新倒计时
             updateCountdown();
             
-            // 定期更新成功案例（每10分钟）
-            setInterval(() => {
-                initializeSuccessCarousel();
-            }, 600000); // 10分钟
+            // 监听窗口大小变化，重新调整按钮对齐
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateCarouselButtonAlignment();
+                }, 250); // 防抖处理
+            });
         });
 
         // 成功案例数据 - 动态生成本月日期
@@ -2611,49 +2621,59 @@
             }
         ];
 
-        // 生成动态日期（本月内的随机日期）
-        function generateCurrentMonthDate() {
+        // 生成基于当前日期的固定成功案例日期
+        function generateRealisticDate(storyIndex) {
             const today = new Date();
-            const currentMonth = today.getMonth();
             const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth();
+            const currentDay = today.getDate();
             
-            // 获取本月第一天和最后一天
-            const firstDay = new Date(currentYear, currentMonth, 1);
-            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            // 使用故事索引和当前月份作为种子，确保每个故事在同一个月内有固定的日期
+            const seed = (storyIndex * 7 + currentMonth * 3) % 31;
             
-            // 在本月范围内生成随机日期
-            const randomTime = firstDay.getTime() + Math.random() * (lastDay.getTime() - firstDay.getTime());
-            const randomDate = new Date(randomTime);
-            
-            // 确保不超过今天
-            if (randomDate > today) {
-                return today.toLocaleDateString('en-US', { 
+            // 计算这个故事应该显示的日期（确保在今天之前）
+            let targetDay;
+            if (currentDay <= 7) {
+                // 如果今天是月初，显示上个月的日期
+                const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+                const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+                const lastMonthDays = new Date(lastMonthYear, lastMonth + 1, 0).getDate();
+                targetDay = Math.max(1, lastMonthDays - seed % 15); // 上个月后半个月
+                
+                const targetDate = new Date(lastMonthYear, lastMonth, targetDay);
+                return targetDate.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            } else {
+                // 本月的日期，确保在今天之前
+                targetDay = Math.max(1, Math.min(currentDay - 1 - (seed % 7), currentDay - 1));
+                
+                const targetDate = new Date(currentYear, currentMonth, targetDay);
+                return targetDate.toLocaleDateString('en-US', { 
                     month: 'long', 
                     day: 'numeric', 
                     year: 'numeric' 
                 });
             }
-            
-            return randomDate.toLocaleDateString('en-US', { 
-                month: 'long', 
-                day: 'numeric', 
-                year: 'numeric' 
-            });
         }
 
-        // 更新成功案例数据（自动更新日期，保持本月内）
+        // 更新标题以反映当前月份
+        function updateSectionTitle() {
+            const today = new Date();
+            const currentMonth = today.toLocaleDateString('en-US', { month: 'long' });
+            const titleElement = document.getElementById('successSectionTitle');
+            if (titleElement) {
+                titleElement.textContent = `🎉 Latest CCIE Passes - ${currentMonth} 2024`;
+            }
+        }
+
+        // 更新成功案例数据（基于当前日期生成固定内容）
         function updateSuccessStories() {
             successStories.forEach((story, index) => {
-                // 如果日期为空，则初始化为本月日期
-                if (!story.date) {
-                    story.date = generateCurrentMonthDate();
-                } else {
-                    // 使用索引创建伪随机种子，确保持久性但有变化
-                    const seed = (index * 17 + new Date().getDate()) % 100;
-                    if (seed < 25) { // 25%概率更新日期，确保有变化但保持相对稳定
-                        story.date = generateCurrentMonthDate();
-                    }
-                }
+                // 生成基于当前日期的固定日期
+                story.date = generateRealisticDate(index);
             });
         }
 
@@ -2662,6 +2682,9 @@
             const successTrack = document.getElementById('successTrack');
             if (!successTrack) return;
 
+            // 更新标题
+            updateSectionTitle();
+            
             // 更新案例数据
             updateSuccessStories();
 
@@ -2699,6 +2722,11 @@
             `).join('');
 
             successTrack.innerHTML = cardsHTML;
+            
+            // 更新按钮对齐
+            setTimeout(() => {
+                updateCarouselButtonAlignment();
+            }, 100); // 短暂延迟确保DOM更新完成
         }
 
         // 自动轮播功能
@@ -2721,6 +2749,68 @@
             }
         }
 
+        // 计算可见卡片数量
+        function getVisibleCardsCount() {
+            const container = document.querySelector('.recent-success-container');
+            if (!container) return 3;
+            
+            const containerWidth = container.offsetWidth;
+            const cardWidth = 320;
+            const gap = 24;
+            
+            // 计算完整可见的卡片数量
+            let visibleCards = Math.floor((containerWidth + gap) / (cardWidth + gap));
+            
+            // 最少显示3个，最多显示4个
+            return Math.max(3, Math.min(4, visibleCards));
+        }
+
+        // 更新按钮位置以与卡片间隔对齐
+        function updateCarouselButtonAlignment() {
+            const controls = document.querySelector('.carousel-controls');
+            const cards = document.querySelectorAll('.success-card');
+            
+            if (!controls || cards.length < 4) {
+                controls.style.transform = 'none';
+                return;
+            }
+            
+            // 检查是否显示4个完整卡片
+            const carousel = document.querySelector('.success-carousel');
+            const carouselWidth = carousel.offsetWidth;
+            const cardWidth = 320 + 24; // 卡片宽度 + 间隔
+            const visibleCards = Math.floor(carouselWidth / cardWidth);
+            
+            if (visibleCards >= 4) {
+                // 获取第2和第3个卡片的实际位置
+                const card2 = cards[1];
+                const card3 = cards[2];
+                
+                if (card2 && card3) {
+                    // 计算第2个卡片右边缘和第3个卡片左边缘之间的中心点
+                    const card2Rect = card2.getBoundingClientRect();
+                    const card3Rect = card3.getBoundingClientRect();
+                    const carouselRect = carousel.getBoundingClientRect();
+                    
+                    // 间隔中心相对于轮播容器的位置
+                    const gapCenter = ((card2Rect.right + card3Rect.left) / 2) - carouselRect.left;
+                    
+                    // 轮播容器的中心位置
+                    const carouselCenter = carousel.offsetWidth / 2;
+                    
+                    // 计算偏移量
+                    const offset = gapCenter - carouselCenter;
+                    
+                    controls.style.transform = `translateX(${offset}px)`;
+                } else {
+                    controls.style.transform = 'none';
+                }
+            } else {
+                // 显示3个或更少卡片时保持居中
+                controls.style.transform = 'none';
+            }
+        }
+
         // 轮播控制
         let currentSlide = 0;
         function scrollCarousel(direction) {
@@ -2728,7 +2818,8 @@
             if (!successTrack) return;
 
             const cardWidth = 320 + 24; // card width + gap
-            const maxSlides = successStories.length - 3; // Show 3 cards at a time
+            const visibleCards = getVisibleCardsCount();
+            const maxSlides = Math.max(0, successStories.length - visibleCards);
 
             currentSlide += direction;
             
