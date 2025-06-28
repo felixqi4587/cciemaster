@@ -110,4 +110,236 @@ img[loading="lazy"] {
 .form-select,
 .form-textarea {
     contain: layout style;
+}
+
+/* Critical Resource Hints */
+/* DNS prefetch for external domains */
+link[rel="dns-prefetch"] {
+    display: none;
+}
+
+/* Preconnect for critical third-party resources */
+link[rel="preconnect"] {
+    display: none;
+}
+
+/* Hardware Acceleration for Animations */
+.mobile-menu-toggle,
+.mobile-menu,
+.btn-primary,
+.btn-secondary,
+.course-card,
+.story-card {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* GPU Acceleration for Mobile Menu */
+.mobile-menu {
+    transform: translate3d(0, -100%, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.mobile-menu.active {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Contain Layout for Performance */
+.hero,
+.courses-section,
+.stories-section,
+.contact-section {
+    contain: layout style;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .mobile-menu {
+        transition: none;
+    }
+    
+    .mobile-menu-toggle span {
+        transition: none;
+    }
+}
+
+/* Critical CSS for Above-the-Fold Content */
+.header {
+    contain: layout;
+}
+
+.nav {
+    contain: layout;
+}
+
+/* Optimize Image Loading */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Font Loading Optimization */
+@font-face {
+    font-family: 'SF Pro Display';
+    font-display: swap;
+    src: local('SF Pro Display'), local('SFProDisplay');
+}
+
+/* Critical Path Optimization */
+.above-fold {
+    contain: layout style paint;
+}
+
+/* Memory Management for Large Lists */
+.courses-grid,
+.stories-grid {
+    contain: layout;
+}
+
+/* Intersection Observer Optimization */
+.lazy-section {
+    min-height: 100px;
+    contain: layout;
+}
+
+/* Touch Action Optimization */
+.mobile-menu-toggle,
+.carousel-btn,
+.btn-primary,
+.btn-secondary {
+    touch-action: manipulation;
+}
+
+/* Scroll Performance */
+.success-carousel {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Critical Rendering Path */
+.hero-content {
+    contain: layout style;
+}
+
+/* Prevent Layout Shifts */
+.course-card,
+.story-card {
+    min-height: 400px;
+    contain: layout;
+}
+
+/* Optimize Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+    will-change: transform, opacity;
+}
+
+/* Resource Loading Optimization */
+.preload-image {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+/* Form Validation Styles */
+.form-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 4px;
+    display: block;
+}
+
+.form-error-field {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
+}
+
+.form-message {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.form-message-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.form-message-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.character-counter {
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: right;
+}
+
+.character-counter-warning {
+    color: #ffc107;
+}
+
+.character-counter-success {
+    color: #28a745;
+}
+
+.form-select.has-value {
+    color: var(--color-text);
+}
+
+/* Loading States */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 } 
