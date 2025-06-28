@@ -772,8 +772,9 @@
         .success-carousel {
             position: relative;
             overflow: hidden;
-            margin: 40px 0;
+            margin: 40px auto; /* 改为auto实现居中 */
             border-radius: var(--border-radius-large);
+            max-width: 1200px; /* 与其他section保持一致的容器宽度 */
         }
 
         .success-track {
