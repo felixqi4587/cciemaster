@@ -493,6 +493,15 @@ textarea:focus {
         gap: var(--mobile-spacing-md) !important;
     }
 
+    /* 确保移动端课程卡片中的按钮居中 */
+    .course-body .btn-primary {
+        margin: 0 auto !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
     /* ================================================
        网格布局优化
        ================================================ */
