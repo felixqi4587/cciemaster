@@ -917,6 +917,9 @@
             margin-top: 32px;
             position: relative;
             transition: transform 0.3s ease; /* 平滑的对齐过渡动画 */
+            max-width: 1200px; /* 与其他section保持一致的容器宽度 */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .carousel-btn {
@@ -2805,50 +2808,19 @@
             return Math.max(3, Math.min(4, visibleCards));
         }
 
-        // 更新按钮位置以与卡片间隔对齐
+        // 更新按钮位置以与页面中心对齐
         function updateCarouselButtonAlignment() {
             const controls = document.querySelector('.carousel-controls');
-            const cards = document.querySelectorAll('.success-card');
             
-            if (!controls || cards.length < 4) {
-                controls.style.transform = 'none';
+            if (!controls) {
                 return;
             }
             
-            // 检查是否显示4个完整卡片
-            const carousel = document.querySelector('.success-carousel');
-            const carouselWidth = carousel.offsetWidth;
-            const cardWidth = 320 + 24; // 卡片宽度 + 间隔
-            const visibleCards = Math.floor(carouselWidth / cardWidth);
+            // 重置transform，让按钮组始终与页面其他section的中心对齐
+            controls.style.transform = 'none';
             
-            if (visibleCards >= 4) {
-                // 获取第2和第3个卡片的实际位置
-                const card2 = cards[1];
-                const card3 = cards[2];
-                
-                if (card2 && card3) {
-                    // 计算第2个卡片右边缘和第3个卡片左边缘之间的中心点
-                    const card2Rect = card2.getBoundingClientRect();
-                    const card3Rect = card3.getBoundingClientRect();
-                    const carouselRect = carousel.getBoundingClientRect();
-                    
-                    // 间隔中心相对于轮播容器的位置
-                    const gapCenter = ((card2Rect.right + card3Rect.left) / 2) - carouselRect.left;
-                    
-                    // 轮播容器的中心位置
-                    const carouselCenter = carousel.offsetWidth / 2;
-                    
-                    // 计算偏移量
-                    const offset = gapCenter - carouselCenter;
-                    
-                    controls.style.transform = `translateX(${offset}px)`;
-                } else {
-                    controls.style.transform = 'none';
-                }
-            } else {
-                // 显示3个或更少卡片时保持居中
-                controls.style.transform = 'none';
-            }
+            // 确保按钮组居中显示，与页面下方1200px容器的中心对齐
+            // 由于已经设置了max-width: 1200px和margin: auto，按钮会自动居中
         }
 
         // 轮播控制
