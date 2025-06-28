@@ -2493,10 +2493,42 @@
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
                         // Service Worker registered successfully
+                        
+                        // Force update check
+                        registration.update();
+                        
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed') {
+                                    if (navigator.serviceWorker.controller) {
+                                        // New content available, auto-reload
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
                     })
                     .catch((error) => {
                         // Service Worker registration failed
                     });
+            });
+            
+            // Listen for controller change (new SW activated)
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                window.location.reload();
+            });
+            
+            // Force update when page becomes visible
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.getRegistration().then(registration => {
+                        if (registration) {
+                            registration.update();
+                        }
+                    });
+                }
             });
         }
 

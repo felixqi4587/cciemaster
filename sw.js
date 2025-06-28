@@ -1,8 +1,8 @@
 // Service Worker for CCIE Master
-const CACHE_NAME = 'ccie-master-v2.0.0';
-const STATIC_CACHE = 'ccie-master-static-v2';
-const DYNAMIC_CACHE = 'ccie-master-dynamic-v2';
-const IMAGE_CACHE = 'ccie-master-images-v2';
+const CACHE_NAME = 'ccie-master-v2.1.0';
+const STATIC_CACHE = 'ccie-master-static-v2.1';
+const DYNAMIC_CACHE = 'ccie-master-dynamic-v2.1';
+const IMAGE_CACHE = 'ccie-master-images-v2.1';
 
 // Critical resources to cache immediately
 const STATIC_CACHE_URLS = [
@@ -20,6 +20,7 @@ const STATIC_CACHE_URLS = [
 
 // Network-first resources (always try network first)
 const NETWORK_FIRST_URLS = [
+    '/',
     '/contact/',
     '/sw.js'
 ];
@@ -65,12 +66,24 @@ function getCacheStrategy(url) {
 
 // Cache critical resources on install
 self.addEventListener('install', (event) => {
+    // Force immediate activation
+    self.skipWaiting();
+    
     event.waitUntil(
         Promise.all([
             caches.open(STATIC_CACHE).then((cache) => {
                 return cache.addAll(STATIC_CACHE_URLS);
             }),
-            self.skipWaiting()
+            // Clear all old caches immediately
+            caches.keys().then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => {
+                        if (!cacheName.includes('v2.1')) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
         ])
     );
 });
