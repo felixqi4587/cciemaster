@@ -527,49 +527,93 @@ textarea:focus {
     }
 
     /* ================================================
-       轮播和滑动优化
+       轮播和滑动优化 - 完全重新设计移动端轮播
        ================================================ */
+    
+    /* 重置section级别的padding */
+    .recent-success-section {
+        padding: var(--mobile-spacing-2xl) 0 !important;
+    }
+
+    .recent-success-container {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* 轮播容器 - 统一管理所有间距 */
     .success-carousel {
+        position: relative !important;
+        overflow: hidden !important;
+        margin: var(--mobile-spacing-xl) 0 !important;
+        padding: 0 var(--mobile-spacing-md) !important; /* 统一左右内边距 */
+        /* 移动端启用触摸滚动作为备选方案 */
         -webkit-overflow-scrolling: touch;
-        overflow-x: auto;
-        overflow-y: hidden;
         scroll-snap-type: x mandatory;
-        padding-bottom: var(--mobile-spacing-sm);
-        margin-bottom: var(--mobile-spacing-lg);
-        /* 容器的左右边距通过主页面CSS设置 */
     }
 
+    /* 轮播轨道 - 完全重置 */
+    .success-track {
+        display: flex !important;
+        gap: var(--mobile-spacing-md) !important;
+        padding: 0 !important; /* 完全移除内边距 */
+        margin: 0 !important;
+        transition: transform 0.5s ease !important;
+    }
+
+    /* 轮播卡片 - 精确控制尺寸 */
     .success-card {
+        /* 确保卡片宽度适合移动端，同时不被切掉 */
+        /* 100vw - 容器左右padding(20px*2) - 预留滚动空间(24px) = 100vw - 64px */
+        flex: 0 0 calc(100vw - 64px) !important;
+        max-width: 320px !important;
+        min-width: 280px !important;
+        margin: 0 !important; /* 卡片间距由gap控制 */
         scroll-snap-align: start;
-        flex: 0 0 calc(100vw - 80px); /* 移动端一次显示一个卡片 */
-        max-width: 320px; /* 但不超过桌面版的宽度 */
-        margin-right: var(--mobile-spacing-md);
-        /* 确保第一个和最后一个卡片有合适的间距 */
+        /* 确保内容不溢出 */
+        box-sizing: border-box !important;
     }
 
-    .success-card:first-child {
-        /* 第一个卡片不需要额外的左边距 */
-        margin-left: 0;
-    }
-
+    /* 移除所有卡片的特殊边距设置 */
+    .success-card:first-child,
     .success-card:last-child {
-        /* 最后一个卡片需要右边距确保不被切掉 */
-        margin-right: var(--mobile-spacing-lg);
+        margin: 0 !important;
     }
 
+    /* 控制按钮 */
     .carousel-controls {
-        /* 移动端也显示控制按钮，通过主页面CSS控制 */
+        display: flex !important;
         justify-content: center !important;
         gap: var(--mobile-spacing-md) !important;
+        margin: var(--mobile-spacing-lg) auto 0 !important;
+        padding: 0 var(--mobile-spacing-md) !important;
     }
 
-    .success-track {
-        gap: var(--mobile-spacing-md) !important;
-        /* padding通过主页面CSS设置 */
+    .carousel-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 14px !important;
+        min-height: var(--touch-target-min) !important;
     }
 
+    /* 禁用自动滚动动画 */
     .success-track.auto-scroll {
         animation: none !important;
+    }
+
+    /* 极小屏幕优化 (小于320px) */
+    @media (max-width: 320px) {
+        .success-card {
+            flex: 0 0 calc(100vw - 32px) !important; /* 减少padding以适应极小屏幕 */
+            min-width: 240px !important;
+        }
+
+        .success-carousel {
+            padding: 0 var(--mobile-spacing-sm) !important;
+        }
+
+        .carousel-controls {
+            padding: 0 var(--mobile-spacing-sm) !important;
+        }
     }
 
     /* ================================================

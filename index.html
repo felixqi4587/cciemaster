@@ -1403,33 +1403,58 @@
                 text-align: center;
             }
 
-            /* Success Stories Mobile Responsive */
-            .success-card {
-                flex: 0 0 280px;
+            /* Success Stories Mobile Responsive - 彻底重新设计 */
+            .recent-success-section {
+                padding: 60px 0 !important; /* 移除左右padding，由内部容器控制 */
+            }
+
+            .recent-success-container {
+                padding: 0 !important; /* 移除默认padding */
+            }
+
+            .success-carousel {
+                /* 重置所有轮播容器样式 */
+                position: relative;
+                overflow: hidden;
+                margin: 40px 0;
+                padding: 0 20px; /* 只在容器级别添加左右padding */
+                /* 移除负边距，使用更简洁的布局 */
             }
 
             .success-track {
+                /* 重置轨道样式 */
+                display: flex;
                 gap: 16px;
-                padding: 20px 0; /* 只给上下padding，避免左右切掉卡片 */
+                padding: 0; /* 移除所有内边距 */
+                transition: transform 0.5s ease;
+                /* 确保轨道从容器左边缘开始 */
+                margin: 0;
+            }
+
+            .success-card {
+                /* 移动端卡片设置 */
+                flex: 0 0 calc(100vw - 64px); /* 100vw减去容器左右padding(20px*2)和额外间距(24px) */
+                max-width: 320px; /* 限制最大宽度 */
+                min-width: 280px; /* 确保最小宽度 */
+                margin-right: 16px; /* 卡片间距 */
+            }
+
+            .success-card:last-child {
+                margin-right: 0; /* 最后一个卡片无右边距 */
             }
 
             .carousel-controls {
-                display: flex !important; /* 显示控制按钮在移动端 */
-                margin-top: 20px;
+                display: flex !important;
+                justify-content: center;
+                gap: 16px;
+                margin: 20px auto 0;
+                padding: 0 20px; /* 与容器padding保持一致 */
             }
 
             .carousel-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 14px;
-            }
-
-            .success-carousel {
-                -webkit-overflow-scrolling: touch;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 0 20px; /* 给容器添加左右padding */
-                margin: 0 -20px; /* 负边距抵消容器padding，让控制按钮对齐 */
             }
 
             .success-track.auto-scroll {
@@ -2859,7 +2884,13 @@
             const carousel = document.querySelector('.success-carousel');
             if (!carousel) return 0;
             
-            const carouselWidth = carousel.offsetWidth; // 使用轮播容器的实际宽度（1200px限制）
+            // 移动端检测
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                return 0; // 移动端不需要居中偏移，使用padding控制
+            }
+            
+            const carouselWidth = carousel.offsetWidth;
             const cardWidth = 320;
             const gap = 24;
             const visibleCards = getVisibleCardsCount();
@@ -2873,13 +2904,33 @@
             return Math.max(0, centerOffset);
         }
 
-        // 轮播控制
+        // 轮播控制 - 重新设计支持移动端动态宽度
         let currentSlide = 0;
         function scrollCarousel(direction) {
             const successTrack = document.getElementById('successTrack');
             if (!successTrack) return;
 
-            const cardWidth = 320 + 24; // card width + gap
+            // 动态计算卡片宽度和间距
+            const isMobile = window.innerWidth <= 768;
+            let cardWidth, gap;
+            
+            if (isMobile) {
+                // 移动端：使用实际卡片宽度
+                const firstCard = successTrack.querySelector('.success-card');
+                if (firstCard) {
+                    cardWidth = firstCard.offsetWidth;
+                    gap = 16; // 移动端间距
+                } else {
+                    cardWidth = Math.min(320, window.innerWidth - 64); // 回退值
+                    gap = 16;
+                }
+            } else {
+                // 桌面端：固定宽度
+                cardWidth = 320;
+                gap = 24;
+            }
+
+            const moveDistance = cardWidth + gap;
             const visibleCards = getVisibleCardsCount();
             const maxSlides = Math.max(0, successStories.length - visibleCards);
 
@@ -2889,9 +2940,9 @@
             if (currentSlide > maxSlides) currentSlide = maxSlides;
 
             // 计算基础滚动位置
-            const baseTranslateX = -currentSlide * cardWidth;
+            const baseTranslateX = -currentSlide * moveDistance;
             
-            // 添加居中偏移量
+            // 添加居中偏移量（仅桌面端）
             const centerOffset = getCarouselCenterOffset();
             const finalTranslateX = baseTranslateX + centerOffset;
 
@@ -2943,10 +2994,27 @@
         window.addEventListener('resize', function() {
             setTimeout(() => {
                 // 重新计算和设置轮播位置
-                const centerOffset = getCarouselCenterOffset();
                 const successTrack = document.getElementById('successTrack');
                 if (successTrack) {
-                    const cardWidth = 320 + 24;
+                    // 使用与scrollCarousel相同的动态计算方法
+                    const isMobile = window.innerWidth <= 768;
+                    let cardWidth, gap;
+                    
+                    if (isMobile) {
+                        const firstCard = successTrack.querySelector('.success-card');
+                        if (firstCard) {
+                            cardWidth = firstCard.offsetWidth;
+                            gap = 16;
+                        } else {
+                            cardWidth = Math.min(320, window.innerWidth - 64);
+                            gap = 16;
+                        }
+                    } else {
+                        cardWidth = 320;
+                        gap = 24;
+                    }
+
+                    const moveDistance = cardWidth + gap;
                     const visibleCards = getVisibleCardsCount();
                     const maxSlides = Math.max(0, successStories.length - visibleCards);
                     
@@ -2955,7 +3023,8 @@
                         currentSlide = maxSlides;
                     }
                     
-                    const baseTranslateX = -currentSlide * cardWidth;
+                    const baseTranslateX = -currentSlide * moveDistance;
+                    const centerOffset = getCarouselCenterOffset();
                     const finalTranslateX = baseTranslateX + centerOffset;
                     successTrack.style.transform = `translateX(${finalTranslateX}px)`;
                 }
