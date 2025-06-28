@@ -340,6 +340,9 @@
     <meta property="og:site_name" content="CCIE Master">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -352,10 +355,10 @@
             </ul>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </button>
             </div>
         </nav>
@@ -375,7 +378,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="main">
+    <main id="main-content" class="main">
         <div class="error-content">
             <div class="error-code">404</div>
             <h1 class="error-title">Page Not Found</h1>

@@ -85,7 +85,7 @@ self.addEventListener('activate', (event) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => {
                         if (!currentCaches.includes(cacheName)) {
-                            console.log('Deleting old cache:', cacheName);
+                            // console.log('Deleting old cache:', cacheName); // Disabled for production
                             return caches.delete(cacheName);
                         }
                     })

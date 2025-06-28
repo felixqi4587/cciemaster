@@ -890,6 +890,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -904,10 +907,10 @@
             </ul>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </button>
             </div>
         </nav>
@@ -926,6 +929,8 @@
         </div>
     </div>
 
+    <!-- Main Content -->
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -993,7 +998,7 @@
                             <p><a href="https://wa.me/16034861896" target="_blank" style="color: #25D366; font-weight: var(--font-weight-semibold);">+1 (603) 486-1896</a></p>
                             <p>Instant messaging, voice calls, free consultation & live chat available</p>
                             <div style="margin-top: 14px;">
-                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code - Scan to start instant chat with CCIE Master support team" style="width: 150px; height: auto; max-height: 150px; object-fit: contain; border-radius: var(--border-radius); border: 2px solid var(--color-border); cursor: pointer;" onclick="openWhatsAppModal()">
+                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code - Scan to start instant chat with CCIE Master support team" style="width: 150px; height: auto; max-height: 150px; object-fit: contain; border-radius: var(--border-radius); border: 2px solid var(--color-border); cursor: pointer;" onclick="openWhatsAppModal()" width="150" height="150">
                                 <p style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 5px;">Scan QR code to start chatting</p>
                             </div>
                         </div>
@@ -1017,7 +1022,7 @@
                 <h2 id="form-title" class="form-title">Send Us a Message</h2>
                 <p class="form-subtitle">Fill out the form below and we'll get back to you within 3 hours</p>
 
-                <form id="contactForm" action="https://formspree.io/f/movwnvkw" method="POST" role="form" aria-labelledby="form-title" novalidate>
+                <form id="contactForm" action="https://formspree.io/f/movwnvkw" method="POST" role="form" aria-labelledby="form-title">
                     <input type="hidden" name="_subject" value="New Contact Form Submission - CCIE Master">
                     <input type="hidden" name="_next" value="https://cciemaster.com/contact/?success=true">
                     <input type="hidden" name="_captcha" value="false">
@@ -1133,7 +1138,7 @@
             <p style="color: var(--color-text-secondary); margin-bottom: 16px;">
                 Scan the QR code with your phone to start chatting with us on WhatsApp
             </p>
-                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code - Scan to start instant chat with CCIE Master support team" loading="lazy">
+                                <img src="/images/whatsapp.jpg" alt="WhatsApp QR Code - Scan to start instant chat with CCIE Master support team" loading="lazy" width="200" height="200">
             <p style="color: var(--color-text-secondary); font-size: 14px; margin: 16px 0;">
                 Or click the button below to open WhatsApp directly
             </p>
@@ -1144,6 +1149,8 @@
             </div>
         </div>
     </div>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">

@@ -73,14 +73,14 @@ function initPerformanceMonitoring() {
         // Largest Contentful Paint
         new PerformanceObserver((entryList) => {
             for (const entry of entryList.getEntries()) {
-                console.log('LCP:', entry.startTime);
+                // console.log('LCP:', entry.startTime); // Development only
             }
         }).observe({ entryTypes: ['largest-contentful-paint'] });
 
         // First Input Delay
         new PerformanceObserver((entryList) => {
             for (const entry of entryList.getEntries()) {
-                console.log('FID:', entry.processingStart - entry.startTime);
+                // console.log('FID:', entry.processingStart - entry.startTime); // Development only
             }
         }).observe({ entryTypes: ['first-input'] });
 
@@ -88,7 +88,7 @@ function initPerformanceMonitoring() {
         new PerformanceObserver((entryList) => {
             for (const entry of entryList.getEntries()) {
                 if (!entry.hadRecentInput) {
-                    console.log('CLS:', entry.value);
+                    // console.log('CLS:', entry.value); // Development only
                 }
             }
         }).observe({ entryTypes: ['layout-shift'] });
@@ -101,7 +101,7 @@ function registerServiceWorker() {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
                 .then(registration => {
-                    console.log('SW registered: ', registration);
+                    // console.log('SW registered: ', registration); // Disabled for production
                     
                     // Check for updates
                     registration.addEventListener('updatefound', () => {
@@ -115,7 +115,7 @@ function registerServiceWorker() {
                     });
                 })
                 .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
+                    // console.log('SW registration failed: ', registrationError); // Disabled for production
                 });
         });
     }

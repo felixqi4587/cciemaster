@@ -4,8 +4,14 @@ function toggleMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     
     if (mobileMenu && menuToggle) {
+        const isOpen = mobileMenu.classList.contains('active');
+        
         mobileMenu.classList.toggle('active');
         menuToggle.classList.toggle('active');
+        
+        // Update ARIA attributes for accessibility
+        menuToggle.setAttribute('aria-expanded', !isOpen);
+        menuToggle.setAttribute('aria-label', !isOpen ? 'Close navigation menu' : 'Open navigation menu');
     }
 }
 
@@ -21,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
             !menuToggle.contains(event.target)) {
             mobileMenu.classList.remove('active');
             menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
         }
     });
 
@@ -34,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileMenu && menuToggle) {
                 mobileMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
             }
         });
     });
@@ -47,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileMenu && menuToggle) {
                 mobileMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
             }
         }
     });
