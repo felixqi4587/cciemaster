@@ -520,11 +520,25 @@ textarea:focus {
         scroll-snap-type: x mandatory;
         padding-bottom: var(--mobile-spacing-sm);
         margin-bottom: var(--mobile-spacing-lg);
+        /* 添加左右padding防止卡片被切掉 */
+        padding-left: var(--mobile-spacing-md);
+        padding-right: var(--mobile-spacing-md);
     }
 
     .success-card {
         scroll-snap-align: start;
         flex: 0 0 280px;
+        margin-right: var(--mobile-spacing-md);
+        /* 确保第一个和最后一个卡片有合适的间距 */
+    }
+
+    .success-card:first-child {
+        /* 第一个卡片不需要额外的左边距 */
+        margin-left: 0;
+    }
+
+    .success-card:last-child {
+        /* 最后一个卡片需要右边距确保不被切掉 */
         margin-right: var(--mobile-spacing-md);
     }
 
@@ -534,6 +548,7 @@ textarea:focus {
 
     .success-track {
         gap: var(--mobile-spacing-md) !important;
+        /* 移除padding，因为容器已经有了 */
         padding: var(--mobile-spacing-md) 0;
     }
 
