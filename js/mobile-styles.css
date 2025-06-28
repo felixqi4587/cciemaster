@@ -282,15 +282,10 @@ textarea:focus {
     }
 
     .urgency-icon {
-        font-size: 36px !important;
-        margin-bottom: var(--mobile-spacing-sm);
-        animation: mobileFlash 2s ease-in-out infinite;
+        display: none !important; /* 在移动端隐藏图标，避免挤压文字 */
     }
 
-    @keyframes mobileFlash {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.8; transform: scale(1.05); }
-    }
+
 
     .urgency-text {
         text-align: center !important;
@@ -553,11 +548,16 @@ textarea:focus {
         min-height: var(--touch-target-min);
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     .faq-answer {
-        padding: 0 var(--mobile-spacing-lg) var(--mobile-spacing-lg) !important;
+        padding: 0 !important; /* 确保折叠时没有padding */
         line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: var(--mobile-spacing-md) var(--mobile-spacing-lg) var(--mobile-spacing-lg) !important;
     }
 
     /* ================================================
