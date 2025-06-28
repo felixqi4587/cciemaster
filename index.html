@@ -2164,7 +2164,7 @@
                     <div class="testimonial-author">
                         <div class="author-avatar">MJ</div>
                         <div class="author-info">
-                            <h4>Michael Johnson</h4>
+                            <h3>Michael Johnson</h3>
                             <p>Network Engineer, Cisco</p>
                         </div>
                     </div>
@@ -2178,7 +2178,7 @@
                     <div class="testimonial-author">
                         <div class="author-avatar">SL</div>
                         <div class="author-info">
-                            <h4>Sarah Liu</h4>
+                            <h3>Sarah Liu</h3>
                             <p>Senior Network Architect</p>
                         </div>
                     </div>
@@ -2192,7 +2192,7 @@
                     <div class="testimonial-author">
                         <div class="author-avatar">RK</div>
                         <div class="author-info">
-                            <h4>Robert Kim</h4>
+                            <h3>Robert Kim</h3>
                             <p>Cybersecurity Specialist</p>
                         </div>
                     </div>
@@ -2872,8 +2872,12 @@
             const mobileMenu = document.getElementById('mobileMenu');
             const menuToggle = document.querySelector('.mobile-menu-toggle');
             
-            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            
+            // 更新ARIA属性以提升可访问性
+            menuToggle.setAttribute('aria-expanded', isActive.toString());
+            menuToggle.setAttribute('aria-label', isActive ? '关闭导航菜单' : '打开导航菜单');
         }
 
         // Close mobile menu when clicking outside
@@ -2884,6 +2888,9 @@
             if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
                 mobileMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                // 重置ARIA属性
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开导航菜单');
             }
         });
 
@@ -2895,6 +2902,9 @@
                 
                 mobileMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                // 重置ARIA属性
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '打开导航菜单');
             });
         });
     </script>
