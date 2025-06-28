@@ -1399,20 +1399,26 @@
 
             .success-track {
                 gap: 16px;
+                padding: 20px 0; /* 只给上下padding，避免左右切掉卡片 */
             }
 
             .carousel-controls {
-                display: none; /* Hide controls on mobile, use touch swipe */
+                display: flex !important; /* 显示控制按钮在移动端 */
+                margin-top: 20px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
             }
 
             .success-carousel {
                 -webkit-overflow-scrolling: touch;
                 overflow-x: auto;
                 overflow-y: hidden;
-            }
-
-            .success-track {
-                padding: 20px; /* 修复：给所有四边都添加padding，防止卡片被切掉 */
+                padding: 0 20px; /* 给容器添加左右padding */
+                margin: 0 -20px; /* 负边距抵消容器padding，让控制按钮对齐 */
             }
 
             .success-track.auto-scroll {
@@ -1437,6 +1443,10 @@
 
             .urgency-icon {
                 display: none !important; /* 隐藏移动端的星星图标 */
+            }
+
+            .stats {
+                display: none !important; /* 隐藏95% 3M 24/7 Exclusive统计数据 */
             }
 
             .urgency-text h3 {
@@ -2804,6 +2814,12 @@
             const carousel = document.querySelector('.success-carousel');
             if (!carousel) return 3;
             
+            // 移动端检测
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                return 1; // 移动端一次只显示1个卡片
+            }
+            
             const carouselWidth = carousel.offsetWidth; // 使用轮播容器的实际宽度
             const cardWidth = 320;
             const gap = 24;
@@ -2910,6 +2926,31 @@
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuToggle.setAttribute('aria-label', '打开导航菜单');
             });
+        });
+
+        // 窗口大小改变时重新计算轮播布局
+        window.addEventListener('resize', function() {
+            setTimeout(() => {
+                // 重新计算和设置轮播位置
+                const centerOffset = getCarouselCenterOffset();
+                const successTrack = document.getElementById('successTrack');
+                if (successTrack) {
+                    const cardWidth = 320 + 24;
+                    const visibleCards = getVisibleCardsCount();
+                    const maxSlides = Math.max(0, successStories.length - visibleCards);
+                    
+                    // 确保当前slide不超过新的最大值
+                    if (currentSlide > maxSlides) {
+                        currentSlide = maxSlides;
+                    }
+                    
+                    const baseTranslateX = -currentSlide * cardWidth;
+                    const finalTranslateX = baseTranslateX + centerOffset;
+                    successTrack.style.transform = `translateX(${finalTranslateX}px)`;
+                }
+                
+                updateCarouselButtonAlignment();
+            }, 100);
         });
     </script>
 

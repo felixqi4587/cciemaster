@@ -511,6 +511,13 @@ textarea:focus {
     }
 
     /* ================================================
+       统计数据隐藏（移动端）
+       ================================================ */
+    .stats {
+        display: none !important;
+    }
+
+    /* ================================================
        轮播和滑动优化
        ================================================ */
     .success-carousel {
@@ -520,14 +527,13 @@ textarea:focus {
         scroll-snap-type: x mandatory;
         padding-bottom: var(--mobile-spacing-sm);
         margin-bottom: var(--mobile-spacing-lg);
-        /* 添加左右padding防止卡片被切掉 */
-        padding-left: var(--mobile-spacing-md);
-        padding-right: var(--mobile-spacing-md);
+        /* 容器的左右边距通过主页面CSS设置 */
     }
 
     .success-card {
         scroll-snap-align: start;
-        flex: 0 0 280px;
+        flex: 0 0 calc(100vw - 80px); /* 移动端一次显示一个卡片 */
+        max-width: 320px; /* 但不超过桌面版的宽度 */
         margin-right: var(--mobile-spacing-md);
         /* 确保第一个和最后一个卡片有合适的间距 */
     }
@@ -539,17 +545,18 @@ textarea:focus {
 
     .success-card:last-child {
         /* 最后一个卡片需要右边距确保不被切掉 */
-        margin-right: var(--mobile-spacing-md);
+        margin-right: var(--mobile-spacing-lg);
     }
 
     .carousel-controls {
-        display: none !important;
+        /* 移动端也显示控制按钮，通过主页面CSS控制 */
+        justify-content: center !important;
+        gap: var(--mobile-spacing-md) !important;
     }
 
     .success-track {
         gap: var(--mobile-spacing-md) !important;
-        /* 移除padding，因为容器已经有了 */
-        padding: var(--mobile-spacing-md) 0;
+        /* padding通过主页面CSS设置 */
     }
 
     .success-track.auto-scroll {
