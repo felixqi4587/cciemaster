@@ -281,7 +281,9 @@ textarea:focus {
         flex: none !important;
     }
 
-    .urgency-icon {
+    .urgency-banner .urgency-icon,
+    .social-proof-section .urgency-icon,
+    .urgency-content .urgency-icon {
         display: none !important; /* 在移动端隐藏图标，避免挤压文字 */
     }
 
