@@ -38,6 +38,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
     
+    <!-- Performance Optimizations -->
+    <link rel="stylesheet" href="../js/performance-optimizations.css" media="all">
+    
     <!-- Enhanced Structured Data for Courses -->
     <script type="application/ld+json">
     {
@@ -973,16 +976,29 @@
                 <li><a href="/success-stories/">Success Stories</a></li>
                 <li><a href="/contact/">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <div class="nav-actions">
                 <a href="/contact/" class="btn-header">Start Free Trial</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses/" class="active">Courses</a></li>
+            <li><a href="/success-stories/">Success Stories</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <div class="mobile-cta">
+            <a href="/contact/" class="btn-header">Start Free Trial</a>
+        </div>
+    </div>
 
     <!-- Social Proof Banner -->
     <div class="social-proof-banner">

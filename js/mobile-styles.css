@@ -96,11 +96,15 @@
 /* Mobile-specific improvements */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
-        display: flex;
+        display: flex !important;
     }
 
-    .btn-header {
-        display: none;
+    .nav-links {
+        display: none !important;
+    }
+
+    .nav-actions .btn-header {
+        display: none !important;
     }
 
     /* Improved touch targets */

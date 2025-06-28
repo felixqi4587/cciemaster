@@ -42,10 +42,17 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//wa.me">
+    <link rel="dns-prefetch" href="//logo.clearbit.com">
+    <link rel="prefetch" href="/courses/">
+    <link rel="prefetch" href="/contact/">
     
     <!-- Font Awesome with font-display optimization -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
+    
+    <!-- Performance Optimizations -->
+    <link rel="stylesheet" href="/js/performance-optimizations.css" media="all">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -2185,40 +2192,40 @@
             <h3 class="trusted-title">Our Alumni Work At These Leading Companies</h3>
             <div class="trusted-logos">
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco Systems logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco Systems - Leading network equipment manufacturer where CCIE Master graduates work" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft - Technology company employing CCIE certified professionals" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon - Cloud computing leader hiring CCIE Master graduates" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/google.com" alt="Google logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/google.com" alt="Google - Tech giant where CCIE experts advance their careers" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/apple.com" alt="Apple logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/apple.com" alt="Apple - Innovation company with CCIE Master alumni in network engineering roles" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/netflix.com" alt="Netflix logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/netflix.com" alt="Netflix - Streaming platform employing network engineering experts" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/meta.com" alt="Meta (Facebook) logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/meta.com" alt="Meta (Facebook) - Social media company with CCIE certified engineers" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/tesla.com" alt="Tesla logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/tesla.com" alt="Tesla - Electric vehicle company hiring networking professionals" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/salesforce.com" alt="Salesforce logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/salesforce.com" alt="Salesforce - CRM leader employing CCIE Master graduates" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA - Graphics and AI company with network infrastructure teams" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/adobe.com" alt="Adobe logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/adobe.com" alt="Adobe - Creative software company employing network experts" loading="lazy">
                 </div>
                 <div class="logo-item">
-                    <img src="https://logo.clearbit.com/intel.com" alt="Intel logo" loading="lazy">
+                    <img src="https://logo.clearbit.com/intel.com" alt="Intel - Semiconductor company hiring CCIE certified professionals" loading="lazy">
                 </div>
             </div>
         </div>
@@ -2471,6 +2478,19 @@
                 console.log('Lead captured:', data);
                 
             }, 2000);
+        }
+
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully');
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed');
+                    });
+            });
         }
 
         // 初始化页面

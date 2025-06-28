@@ -1,0 +1,113 @@
+/* Performance Optimizations CSS */
+
+/* Critical rendering path optimization */
+.above-fold * {
+    font-display: swap;
+}
+
+/* Image optimization */
+img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Lazy loading placeholder */
+img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, transparent 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Hardware acceleration for animations */
+.btn-primary,
+.btn-secondary,
+.course-card,
+.mobile-menu-toggle {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Optimize font loading */
+@font-face {
+    font-family: 'Inter-optimized';
+    src: local('Inter'), local('Inter-Regular');
+    font-display: swap;
+    font-weight: 400;
+}
+
+/* Critical CSS for above-the-fold content */
+.header {
+    contain: layout style;
+}
+
+.hero {
+    contain: layout;
+}
+
+/* Improve rendering performance */
+.nav-links a::after {
+    content: '';
+    contain: strict;
+}
+
+/* Optimize transitions */
+.mobile-menu {
+    contain: layout style paint;
+}
+
+/* Preload hover states to prevent layout shift */
+.btn-primary:hover,
+.btn-secondary:hover {
+    will-change: auto;
+}
+
+/* GPU acceleration for mobile menu */
+@media (max-width: 768px) {
+    .mobile-menu {
+        transform: translate3d(0, -100%, 0);
+    }
+    
+    .mobile-menu.active {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Optimize scroll performance */
+.success-carousel {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Reduce paint during scroll */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    will-change: background-color;
+}
+
+/* Optimize form rendering */
+.form-input,
+.form-select,
+.form-textarea {
+    contain: layout style;
+} 

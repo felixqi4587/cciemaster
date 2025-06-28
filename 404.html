@@ -326,6 +326,17 @@
             }
         }
     </style>
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Page not found. Return to CCIE Master homepage or explore our CCIE certification training courses, success stories, and contact information.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cciemaster.com/404.html">
+    <meta property="og:title" content="Page Not Found - CCIE Master">
+    <meta property="og:description" content="The page you're looking for doesn't exist. Explore our CCIE training courses and resources instead.">
+    <meta property="og:site_name" content="CCIE Master">
 </head>
 <body>
     <!-- Header -->
@@ -338,13 +349,29 @@
                 <li><a href="/success-stories/">Success Stories</a></li>
                 <li><a href="/contact/">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-actions">
+                <a href="/contact/" class="btn-header">Start Free Trial</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses/">Courses</a></li>
+            <li><a href="/success-stories/">Success Stories</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+        <div class="mobile-cta">
+            <a href="/contact/" class="btn-header">Start Free Trial</a>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main">
