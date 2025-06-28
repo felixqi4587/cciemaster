@@ -722,6 +722,11 @@ textarea:focus {
     .cta-buttons .btn-secondary {
         width: 100% !important;
         max-width: 320px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
     }
 
     /* ================================================
