@@ -52,50 +52,50 @@ def start_server():
     
     # 检查index.html是否存在
     if not os.path.exists('index.html'):
-        print("❌ 错误：未找到index.html文件")
-        print("   请确保在项目根目录运行此脚本")
+        print("Error: index.html file not found")
+        print("   Please make sure to run this script from the project root directory")
         sys.exit(1)
     
     try:
         # 创建服务器
         with socketserver.TCPServer((HOST, PORT), CustomHTTPRequestHandler) as httpd:
             server_url = f"http://{HOST}:{PORT}"
-            print("🚀 CCIE培训网站本地服务器")
+            print("CCIE Training Website Local Server")
             print("=" * 40)
-            print(f"📂 服务目录: {os.getcwd()}")
-            print(f"🌐 访问地址: {server_url}")
-            print(f"📱 端口: {PORT}")
+            print(f"Service directory: {os.getcwd()}")
+            print(f"Access URL: {server_url}")
+            print(f"Port: {PORT}")
             print("=" * 40)
-            print("💡 提示:")
-            print("   - 按 Ctrl+C 停止服务器")
-            print("   - 修改文件后刷新浏览器即可看到更改")
-            print("   - 所有路由都会正确工作")
+            print("Tips:")
+            print("   - Press Ctrl+C to stop server")
+            print("   - Refresh browser after file changes")
+            print("   - All routes will work correctly")
             print("=" * 40)
             
             # 自动打开浏览器
             try:
                 webbrowser.open(server_url)
-                print("🌐 已自动打开浏览器")
+                print("Browser opened automatically")
             except:
-                print("⚠️  无法自动打开浏览器，请手动访问上述地址")
+                print("Could not open browser automatically, please visit the URL manually")
             
-            print(f"\n✅ 服务器已启动，正在监听 {HOST}:{PORT}")
-            print("   (按 Ctrl+C 停止)")
+            print(f"\nServer started, listening on {HOST}:{PORT}")
+            print("   (Press Ctrl+C to stop)")
             
             # 启动服务器
             httpd.serve_forever()
             
     except KeyboardInterrupt:
-        print("\n\n🛑 服务器已停止")
+        print("\n\nServer stopped")
     except OSError as e:
         if e.errno == 48:  # Address already in use
-            print(f"❌ 端口 {PORT} 已被占用")
-            print("   请关闭其他使用该端口的程序，或者修改PORT变量")
+            print(f"Port {PORT} is already in use")
+            print("   Please close other programs using this port, or modify the PORT variable")
         else:
-            print(f"❌ 启动服务器时出错: {e}")
+            print(f"Error starting server: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ 意外错误: {e}")
+        print(f"Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

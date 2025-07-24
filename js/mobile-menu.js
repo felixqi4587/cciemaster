@@ -15,8 +15,47 @@ function toggleMobileMenu() {
     }
 }
 
+// Close mobile menu function
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (mobileMenu && menuToggle) {
+        mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+    }
+}
+
 // Initialize mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Keyboard navigation support
+    document.addEventListener('keydown', function(e) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+            menuToggle.focus(); // Return focus to toggle button
+        }
+        
+        // Tab trapping when mobile menu is open
+        if (e.key === 'Tab' && mobileMenu && mobileMenu.classList.contains('active')) {
+            const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
+        }
+    });
+    
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
         const mobileMenu = document.getElementById('mobileMenu');
@@ -25,10 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mobileMenu && menuToggle && 
             !mobileMenu.contains(event.target) && 
             !menuToggle.contains(event.target)) {
-            mobileMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            closeMobileMenu();
         }
     });
 
@@ -36,30 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (mobileMenu && menuToggle) {
-                mobileMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.setAttribute('aria-label', 'Open navigation menu');
-            }
+            closeMobileMenu();
         });
     });
 
     // Handle window resize
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (mobileMenu && menuToggle) {
-                mobileMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.setAttribute('aria-label', 'Open navigation menu');
-            }
+            closeMobileMenu();
         }
     });
 });

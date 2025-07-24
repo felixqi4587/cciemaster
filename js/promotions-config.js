@@ -17,14 +17,10 @@ window.CCIE_PROMOTIONS_CONFIG = {
     // 课程基础价格配置（美元）
     // ========================================
     basePrices: {
-        'Enterprise Infrastructure': 3999,  // CCIE企业基础设施
-        'Security': 4299,                   // CCIE安全
-        'Data Center': 4199,                // CCIE数据中心
-        'Collaboration': 3799,              // CCIE协作
-        'Service Provider': 4499,           // CCIE服务提供商
-        'Wireless': 4199,                   // CCIE企业无线
-        'DevNet Expert': 4799,              // DevNet专家
-        'CCDE Design Expert': 5999          // CCDE设计专家
+        'Enterprise Infrastructure': 3999,  // CCIE EI
+        'Security': 4299,                   // CCIE Lab 安全
+        'Service Provider': 4499,           // CCIE SP
+        'DevNet Expert': 4799               // DevNet专家
     },
     
     // ========================================
@@ -37,12 +33,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "New Year",
             title: "New Year, New Career Special",
             emoji: "🎊",
-            discount: 0.25,                    // 25% 折扣
-            discountAmount: "$1,000",        // 具体折扣金额（基于平均价格）
+            discount: 0.35,                    // 35% 折扣
+            discountAmount: "$1,400",        // 具体折扣金额（基于平均价格）
             holidayName: "New Year & Fresh Start",
             holidayPeriod: "New Year Month & Career Fresh Start",
             holidayContext: "New Year, new career goals - start your CCIE journey",
-            discountDisplay: "New Year Special: Save 25% (approx. $1,000)"
+            discountDisplay: "New Year Special: Save 35% (approx. $1,400)"
         },
         
         // 二月 - 情人节/总统日
@@ -50,12 +46,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Valentine's Day",
             title: "Love Your Career Special",
             emoji: "💝",
-            discount: 0.18,                    // 18% 折扣
-            discountAmount: "$720",          // 具体折扣金额
+            discount: 0.33,                    // 33% 折扣
+            discountAmount: "$1,320",          // 具体折扣金额
             holidayName: "Valentine's Day & Love Learning",
             holidayPeriod: "Valentine's Day & February Learning Month",
             holidayContext: "Valentine's Day - fall in love with technology",
-            discountDisplay: "Valentine's Special: Save 18% (approx. $720)"
+            discountDisplay: "Valentine's Special: Save 33% (approx. $1,320)"
         },
         
         // 三月 - 春分/女性历史月
@@ -63,12 +59,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Spring Break",
             title: "Spring Career Launch",
             emoji: "🌸",
-            discount: 0.22,                    // 22% 折扣
-            discountAmount: "$880",          // 具体折扣金额
+            discount: 0.37,                    // 37% 折扣
+            discountAmount: "$1,480",          // 具体折扣金额
             holidayName: "Spring Break & Career Bloom",
             holidayPeriod: "Spring Break & Career Growth Season",
             holidayContext: "Spring Break - let your career bloom",
-            discountDisplay: "Spring Special: Save 22% (approx. $880)"
+            discountDisplay: "Spring Special: Save 37% (approx. $1,480)"
         },
         
         // 四月 - 复活节/地球日
@@ -76,12 +72,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Easter",
             title: "Fresh Start Special",
             emoji: "🐰",
-            discount: 0.20,                    // 20% 折扣
-            discountAmount: "$800",          // 具体折扣金额
+            discount: 0.35,                    // 35% 折扣
+            discountAmount: "$1,400",          // 具体折扣金额
             holidayName: "Easter & New Beginnings",
             holidayPeriod: "Easter Season & New Career Beginnings",
             holidayContext: "Easter - time for new beginnings in your career",
-            discountDisplay: "Easter Special: Save 20% (approx. $800)"
+            discountDisplay: "Easter Special: Save 35% (approx. $1,400)"
         },
         
         // 五月 - 母亲节/阵亡将士纪念日
@@ -89,12 +85,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Mother's Day",
             title: "Honor & Achievement Special",
             emoji: "🌹",
-            discount: 0.19,                    // 19% 折扣
-            discountAmount: "$760",          // 具体折扣金额
+            discount: 0.34,                    // 34% 折扣
+            discountAmount: "$1,360",          // 具体折扣金额
             holidayName: "Mother's Day & Career Growth",
             holidayPeriod: "Mother's Day & May Career Month",
             holidayContext: "Mother's Day - invest in your professional growth",
-            discountDisplay: "Mother's Day Special: Save 19% (approx. $760)"
+            discountDisplay: "Mother's Day Special: Save 34% (approx. $1,360)"
         },
         
         // 六月 - 父亲节/毕业季
@@ -102,12 +98,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Father's Day",
             title: "Father's Day Career Gift",
             emoji: "👔",
-            discount: 0.21,                    // 21% 折扣
-            discountAmount: "$840",          // 具体折扣金额
+            discount: 0.36,                    // 36% 折扣
+            discountAmount: "$1,440",          // 具体折扣金额
             holidayName: "Father's Day & Graduation",
             holidayPeriod: "Father's Day & June Graduation Season",
             holidayContext: "Father's Day - the best career gift for dad",
-            discountDisplay: "Father's Day Special: Save 21% (approx. $840)"
+            discountDisplay: "Father's Day Special: Save 36% (approx. $1,440)"
         },
         
         // 七月 - 独立日（美国国庆）
@@ -115,12 +111,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Independence Day",
             title: "Independence Day Freedom Special",
             emoji: "🇺🇸",
-            discount: 0.24,                    // 24% 折扣 - 最高折扣之一
-            discountAmount: "$960",        // 具体折扣金额
+            discount: 0.39,                    // 39% 折扣 - 最高折扣之一
+            discountAmount: "$1,560",        // 具体折扣金额
             holidayName: "Independence Day & Summer Learning",
             holidayPeriod: "Independence Day & Summer Intensive",
             holidayContext: "Independence Day - achieve career independence",
-            discountDisplay: "July 4th Special: Save 24% (approx. $960)"
+            discountDisplay: "July 4th Special: Save 39% (approx. $1,560)"
         },
         
         // 八月 - 返校季
@@ -128,12 +124,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Back to School",
             title: "Back to School Special",
             emoji: "🎒",
-            discount: 0.23,                    // 23% 折扣
-            discountAmount: "$920",        // 具体折扣金额
+            discount: 0.38,                    // 38% 折扣
+            discountAmount: "$1,520",        // 具体折扣金额
             holidayName: "Back to School & Professional Development",
             holidayPeriod: "Back to School & August Learning Month",
             holidayContext: "Back to School - advance your professional education",
-            discountDisplay: "Back to School Special: Save 23% (approx. $920)"
+            discountDisplay: "Back to School Special: Save 38% (approx. $1,520)"
         },
         
         // 九月 - 劳动节
@@ -141,12 +137,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Labor Day",
             title: "Labor Day Career Investment",
             emoji: "👷",
-            discount: 0.20,                    // 20% 折扣
-            discountAmount: "$800",          // 具体折扣金额
+            discount: 0.35,                    // 35% 折扣
+            discountAmount: "$1,400",          // 具体折扣金额
             holidayName: "Labor Day & Career Advancement",
             holidayPeriod: "Labor Day & September Career Month",
             holidayContext: "Labor Day - elevate your professional skills",
-            discountDisplay: "Labor Day Special: Save 20% (approx. $800)"
+            discountDisplay: "Labor Day Special: Save 35% (approx. $1,400)"
         },
         
         // 十月 - 万圣节/网络安全意识月
@@ -154,12 +150,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Halloween",
             title: "Cybersecurity Month Special",
             emoji: "🎃",
-            discount: 0.26,                    // 26% 折扣
-            discountAmount: "$1,040",        // 具体折扣金额
+            discount: 0.41,                    // 41% 折扣
+            discountAmount: "$1,640",        // 具体折扣金额
             holidayName: "Halloween & Spooky Good Deals",
             holidayPeriod: "Halloween Season & October Specials",
             holidayContext: "Halloween - scary good career opportunities",
-            discountDisplay: "Halloween Special: Save 26% (approx. $1,040)"
+            discountDisplay: "Halloween Special: Save 41% (approx. $1,640)"
         },
         
         // 十一月 - 感恩节/黑色星期五
@@ -167,12 +163,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Thanksgiving",
             title: "Black Friday Mega Deal",
             emoji: "🦃",
-            discount: 0.35,                    // 35% 折扣 - 全年最高折扣
-            discountAmount: "$1,400",        // 具体折扣金额
+            discount: 0.45,                    // 45% 折扣 - 全年最高折扣
+            discountAmount: "$1,800",        // 具体折扣金额
             holidayName: "Thanksgiving & Black Friday",
             holidayPeriod: "Thanksgiving & Black Friday Mega Sale",
             holidayContext: "Thanksgiving & Black Friday - biggest savings of the year",
-            discountDisplay: "Black Friday Special: Save 35% (approx. $1,400)"
+            discountDisplay: "Black Friday Special: Save 45% (approx. $1,800)"
         },
         
         // 十二月 - 圣诞节/新年准备
@@ -180,12 +176,12 @@ window.CCIE_PROMOTIONS_CONFIG = {
             theme: "Christmas",
             title: "Holiday Career Gift Special",
             emoji: "🎄",
-            discount: 0.30,                    // 30% 折扣
-            discountAmount: "$1,200",        // 具体折扣金额
+            discount: 0.40,                    // 40% 折扣
+            discountAmount: "$1,600",        // 具体折扣金额
             holidayName: "Christmas & Year-End Special",
             holidayPeriod: "Christmas Season & Year-End Celebration",
             holidayContext: "Christmas - give yourself the gift of career advancement",
-            discountDisplay: "Christmas Special: Save 30% (approx. $1,200)"
+            discountDisplay: "Christmas Special: Save 40% (approx. $1,600)"
         }
     },
     

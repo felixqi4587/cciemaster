@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cciemaster.com/">
     <meta property="og:title" content="CCIE Master - #1 CCIE Training with 95% Pass Rate Guarantee">
-    <meta property="og:description" content="Transform your career with CCIE Master's expert training. 95% pass rate guarantee, real lab access, Fortune 500 trusted. Join 10,000+ successful IT professionals.">
+    <meta property="og:description" content="Transform your career with CCIE Master's expert training. 4-month service period, 8 hours daily support, real lab access. Join 10,000+ successful IT professionals.">
     <meta property="og:image" content="https://cciemaster.com/images/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://cciemaster.com/">
     <meta property="twitter:title" content="CCIE Master - #1 CCIE Training with 95% Pass Rate">
-    <meta property="twitter:description" content="Transform your IT career with expert CCIE training. 95% pass rate, real labs, Fortune 500 trusted. Join 10,000+ successful professionals.">
+    <meta property="twitter:description" content="Transform your IT career with expert CCIE training. 4-month service, 8 hours daily support, real labs. Join 10,000+ successful professionals.">
     <meta property="twitter:image" content="https://cciemaster.com/images/twitter-card.jpg">
     <meta property="twitter:creator" content="@cciemaster">
     <meta property="twitter:site" content="@cciemaster">
@@ -48,9 +48,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
     
+    <!-- Critical CSS -->
+    <style>
+    /* Critical above-the-fold styles */
+    :root{--color-primary:#2563eb;--color-background:#ffffff;--color-text:#1f2937;--font-weight-bold:700;--transition-fast:all 0.2s ease}
+    .header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);z-index:1000;border-bottom:1px solid rgba(229,231,235,0.8)}
+    .hero{padding:120px 20px 60px;text-align:center;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .btn-primary{background:var(--color-primary);color:white;padding:16px 32px;border:none;border-radius:8px;font-weight:var(--font-weight-bold);transition:var(--transition-fast);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+    </style>
+    
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="/js/performance-optimizations.css" media="all">
-    <script src="/js/performance-optimizations.js" defer></script>
+    <link rel="stylesheet" href="/js/mobile-styles.css" media="(max-width: 768px)">
+    <script src="/js/performance-optimizations.js" async></script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -101,12 +111,12 @@
             {
                 "@type": "Offer",
                 "name": "CCIE Enterprise Infrastructure Training",
-                "description": "Complete CCIE Enterprise Infrastructure certification training with 95% pass rate guarantee",
+                "description": "Complete CCIE Enterprise Infrastructure certification training with expert support",
                 "category": "IT Training",
                 "price": "2999",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
-                "validFrom": "2024-01-01",
+                "validFrom": "2025-01-01",
                 "priceValidUntil": "2025-12-31"
             },
             {
@@ -1869,7 +1879,7 @@
     </style>
     
     <!-- 促销配置文件 -->
-    <script src="/js/promotions-config.js"></script>
+    <script src="/js/promotions-config.js" defer></script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -1924,7 +1934,7 @@
             <p class="subtitle">95% Pass Rate Guarantee - Real Lab Practice & Exam Success</p>
             <p class="description">
                 Join thousands of successful IT professionals who achieved their CCIE/CCDE certification with our exclusive lab scenarios and insider materials. 
-                Get real exam practice, proven strategies, and guaranteed results in just 3 months.
+                Get real exam practice, proven strategies, and guaranteed results in just 4 months.
             </p>
             <div class="cta-buttons">
                 <a href="/courses/" class="btn-primary">
@@ -1946,7 +1956,7 @@
                     <div class="stat-label">First Attempt Pass</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">3M</div>
+                    <div class="stat-number">4M</div>
                     <div class="stat-label">Months Guarantee</div>
                 </div>
                 <div class="stat-item">
@@ -2023,7 +2033,7 @@
                     <div class="trust-icon">⚡</div>
                     <div class="trust-text">
                         <h3>Fast Track Success</h3>
-                        <p>Average 3-month completion</p>
+                        <p>Average 4-month completion</p>
                     </div>
                 </div>
                 <div class="trust-item">
@@ -2046,8 +2056,9 @@
                 <div class="section-badge">Training Tracks</div>
                 <h2 class="section-title">Choose Your CCIE/CCDE Track</h2>
                 <p class="section-description">
-                    Comprehensive training programs with real exam labs, insider materials, and expert mentorship. 
-                    95% pass guarantee with our proven exam success system and personalized support.
+                    4-month dedicated service programs providing real exam questions and direct assistance. 
+                    We help you pass CCIE/CCDE certifications with actual test materials, 
+                    lab scenarios, and continuous support throughout your preparation.
                 </p>
             </div>
             
@@ -2056,15 +2067,17 @@
                     <div class="course-header">
                         <div class="course-level">Most Popular</div>
                         <h3 class="course-title">CCIE Enterprise Infrastructure</h3>
-                        <p class="course-subtitle">Complete certification training</p>
+                        <p class="course-subtitle">Real exam question assistance</p>
                     </div>
                     <div class="course-body">
                         <ul class="course-features">
-                            <li><i class="fas fa-check"></i> 200+ hours of video content</li>
-                            <li><i class="fas fa-check"></i> 50+ hands-on labs</li>
-                            <li><i class="fas fa-check"></i> Practice exams & assessments</li>
-                            <li><i class="fas fa-check"></i> Expert mentorship included</li>
-                            <li><i class="fas fa-check"></i> Lifetime access</li>
+                            <li><i class="fas fa-check"></i> Real CCIE exam questions and solutions</li>
+                            <li><i class="fas fa-check"></i> 360 hours of lab practice over 4 months</li>
+                            <li><i class="fas fa-check"></i> Daily 8-hour instructor availability</li>
+                            <li><i class="fas fa-check"></i> Service extension if exam blueprint changes</li>
+                            <li><i class="fas fa-check"></i> Actual exam scenarios and troubleshooting</li>
+                            <li><i class="fas fa-check"></i> Direct help with lab preparation</li>
+                            <li><i class="fas fa-check"></i> Current exam materials and updates</li>
                         </ul>
                         <div class="course-price">
                             <div class="price-original-wrapper">
@@ -2089,15 +2102,17 @@
                     <div class="course-header">
                         <div class="course-level">Advanced</div>
                         <h3 class="course-title">CCIE Security</h3>
-                        <p class="course-subtitle">Cybersecurity expertise</p>
+                        <p class="course-subtitle">Real security exam assistance</p>
                     </div>
                     <div class="course-body">
                         <ul class="course-features">
-                            <li><i class="fas fa-check"></i> 180+ hours of video content</li>
-                            <li><i class="fas fa-check"></i> 40+ security labs</li>
-                            <li><i class="fas fa-check"></i> Real-world scenarios</li>
-                            <li><i class="fas fa-check"></i> Threat analysis training</li>
-                            <li><i class="fas fa-check"></i> Industry case studies</li>
+                            <li><i class="fas fa-check"></i> Real CCIE Security exam questions and solutions</li>
+                            <li><i class="fas fa-check"></i> 360 hours of security lab practice over 4 months</li>
+                            <li><i class="fas fa-check"></i> Daily 8-hour instructor availability</li>
+                            <li><i class="fas fa-check"></i> Service extension if exam blueprint changes</li>
+                            <li><i class="fas fa-check"></i> Actual security exam scenarios</li>
+                            <li><i class="fas fa-check"></i> Direct help with security lab preparation</li>
+                            <li><i class="fas fa-check"></i> Current security exam materials and updates</li>
                         </ul>
                         <div class="course-price">
                             <div class="price-original-wrapper">
@@ -2121,28 +2136,30 @@
                 <div class="course-card">
                     <div class="course-header">
                         <div class="course-level">Specialized</div>
-                        <h3 class="course-title">CCIE Data Center</h3>
-                        <p class="course-subtitle">Data center technologies</p>
+                        <h3 class="course-title">CCIE Service Provider</h3>
+                        <p class="course-subtitle">Real SP exam assistance</p>
                     </div>
                     <div class="course-body">
                         <ul class="course-features">
-                            <li><i class="fas fa-check"></i> 160+ hours of video content</li>
-                            <li><i class="fas fa-check"></i> 35+ data center labs</li>
-                            <li><i class="fas fa-check"></i> Virtualization training</li>
-                            <li><i class="fas fa-check"></i> Storage networking</li>
-                            <li><i class="fas fa-check"></i> Cloud integration</li>
+                            <li><i class="fas fa-check"></i> Real CCIE SP exam questions and solutions</li>
+                            <li><i class="fas fa-check"></i> 360 hours of SP lab practice over 4 months</li>
+                            <li><i class="fas fa-check"></i> Daily 8-hour instructor availability</li>
+                            <li><i class="fas fa-check"></i> Service extension if exam blueprint changes</li>
+                            <li><i class="fas fa-check"></i> Actual SP exam scenarios and BGP/MPLS labs</li>
+                            <li><i class="fas fa-check"></i> Direct help with service provider lab preparation</li>
+                            <li><i class="fas fa-check"></i> Current SP exam materials and updates</li>
                         </ul>
                         <div class="course-price">
                             <div class="price-original-wrapper">
-                                <span class="price-original">$4,199</span>
+                                <span class="price-original">$4,499</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
                             <div class="price-current-wrapper">
-                                <span class="price-amount">$3,317</span>
+                                <span class="price-amount">$3,554</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Father's Day Special: Save $882 (21% OFF)</span>
+                                <span class="price-save">Father's Day Special: Save $945 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -2154,28 +2171,30 @@
                 <div class="course-card">
                     <div class="course-header">
                         <div class="course-level">Expert Level</div>
-                        <h3 class="course-title">CCDE Design Expert</h3>
-                        <p class="course-subtitle">Network design mastery</p>
+                        <h3 class="course-title">DevNet Expert</h3>
+                        <p class="course-subtitle">Real DevNet exam assistance</p>
                     </div>
                     <div class="course-body">
                         <ul class="course-features">
-                            <li><i class="fas fa-check"></i> 200+ hours of design content</li>
-                            <li><i class="fas fa-check"></i> 30+ real design scenarios</li>
-                            <li><i class="fas fa-check"></i> Insider exam strategies</li>
-                            <li><i class="fas fa-check"></i> Exclusive design materials</li>
-                            <li><i class="fas fa-check"></i> Expert-level guarantee</li>
+                            <li><i class="fas fa-check"></i> Real DevNet Expert exam questions and solutions</li>
+                            <li><i class="fas fa-check"></i> 360 hours of automation lab practice over 4 months</li>
+                            <li><i class="fas fa-check"></i> Daily 8-hour instructor availability</li>
+                            <li><i class="fas fa-check"></i> Service extension if exam blueprint changes</li>
+                            <li><i class="fas fa-check"></i> Actual DevNet exam scenarios and coding challenges</li>
+                            <li><i class="fas fa-check"></i> Direct help with automation lab preparation</li>
+                            <li><i class="fas fa-check"></i> Current DevNet exam materials and updates</li>
                         </ul>
                         <div class="course-price">
                             <div class="price-original-wrapper">
-                                <span class="price-original">$5,999</span>
+                                <span class="price-original">$4,799</span>
                                 <span class="price-crossed">Regular Price</span>
                             </div>
                             <div class="price-current-wrapper">
-                                <span class="price-amount">$4,739</span>
+                                <span class="price-amount">$3,791</span>
                                 <span class="price-period">one-time payment</span>
                             </div>
                             <div class="price-savings">
-                                <span class="price-save">Father's Day Special: Save $1,260 (21% OFF)</span>
+                                <span class="price-save">Father's Day Special: Save $1,008 (21% OFF)</span>
                             </div>
                         </div>
                         <a href="/courses/" class="btn-primary" style="width: 100%;">
@@ -2299,10 +2318,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-container">
-            <h2 class="cta-title">Ready to Pass Your CCIE/CCDE in 3 Months?</h2>
+            <h2 class="cta-title">Ready to Start Your CCIE Training?</h2>
             <p class="cta-description">
-                Join thousands of successful IT professionals who achieved their certification with our exclusive lab practice and insider materials. 
-                95% pass guarantee - Start your journey to exam success today!
+                Professional CCIE certification training with 4-month service period, 8 hours daily instructor support, and extended coverage for exam changes.
             </p>
             <div class="cta-buttons">
                 <a href="/contact/" class="btn-primary">
@@ -2480,8 +2498,8 @@
             const courseMapping = {
                 0: 'Enterprise Infrastructure',  // 第一个课程卡片
                 1: 'Security',                   // 第二个课程卡片  
-                2: 'Data Center',                // 第三个课程卡片
-                3: 'CCDE Design Expert'          // 第四个课程卡片
+                2: 'Service Provider',           // 第三个课程卡片
+                3: 'DevNet Expert'               // 第四个课程卡片
             };
 
             // 更新每个课程卡片的价格
@@ -2755,7 +2773,7 @@
             const currentMonth = today.toLocaleDateString('en-US', { month: 'long' });
             const titleElement = document.getElementById('successSectionTitle');
             if (titleElement) {
-                titleElement.textContent = `🎉 Latest CCIE Passes - ${currentMonth} 2024`;
+                titleElement.textContent = `🎉 Latest CCIE Passes - ${currentMonth} 2025`;
             }
         }
 
